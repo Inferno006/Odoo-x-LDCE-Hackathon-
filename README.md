@@ -18,6 +18,7 @@ A multi-city travel planning and budget-tracking web application built for the h
 ## 📁 Repository Structure
 
 Odoo-x-LDCE-Hackathon-/
+
 ├── README.md
 ├── frontend/                 
 └── backend/
