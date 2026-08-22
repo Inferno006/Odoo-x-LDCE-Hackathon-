@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en"><head>
+<script src="/mock-api.js"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Build Itinerary - GlobeTrotter</title>
@@ -224,15 +225,15 @@
 <!-- Header & Budget Summary -->
 <header class="flex flex-col md:flex-row justify-between items-start md:items-end gap-unit-md pb-unit-sm border-b border-surface-variant">
 <div>
-<h1 id="trip-title" class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Parisian Escape</h1>
+<h1 id="trip-title" class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Golden Triangle Tour</h1>
 <p id="trip-dates" class="font-body-md text-body-md text-on-surface-variant mt-1 flex items-center gap-2">
-<span class="material-symbols-outlined text-[18px]">calendar_today</span> Oct 12 - Oct 18, 2024
+<span class="material-symbols-outlined text-[18px]">calendar_today</span> Apr 2 - Apr 8, 2026
                 </p>
 </div>
 <div class="bg-cloud-white p-unit-md rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-surface-container w-full md:w-80 cursor-pointer" onclick="window.location.href='/itinerary-budget?trip_id=' + new URLSearchParams(window.location.search).get('trip_id')">
 <div class="flex justify-between items-center mb-2">
 <span class="font-label-md text-label-md text-on-surface-variant">Budget Progress</span>
-<span id="budget-progress-text" class="font-label-md text-label-md text-primary">$0 / $5,000</span>
+<span id="budget-progress-text" class="font-label-md text-label-md text-primary">₹0 / ₹75,000</span>
 </div>
 <div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
 <div id="budget-progress-bar" class="h-full bg-secondary w-0 rounded-full"></div>
@@ -254,6 +255,12 @@
                     </button>
 </div>
 <!-- Timeline Container -->
+<div id="timeline-activities" class="relative flex flex-col gap-unit-md">
+<div class="group relative flex gap-unit-sm md:gap-unit-md items-stretch mb-unit-md">
+<div class="w-16 md:w-24 flex-shrink-0 text-right pt-4">
+<span class="font-label-md text-label-md text-on-surface font-semibold">09:00 AM</span>
+</div>
+<div class="relative flex flex-col items-center">
 <div class="z-10 w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center mt-3 bg-cloud-white shadow-sm">
 <span class="material-symbols-outlined text-[16px] text-tertiary">restaurant</span>
 </div>
@@ -270,19 +277,19 @@
 <button class="p-1.5 text-on-surface-variant hover:text-primary rounded-md hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[18px]">edit</span></button>
 <button class="p-1.5 text-on-surface-variant hover:text-error rounded-md hover:bg-error-container transition-colors"><span class="material-symbols-outlined text-[18px]">delete</span></button>
 </div>
-<h3 class="font-title-lg text-title-lg text-primary pr-16">Café de Flore</h3>
+<h3 class="font-title-lg text-title-lg text-primary pr-16">Paranthe Wali Gali Breakfast stop</h3>
 <p class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1 mt-1">
-<span class="material-symbols-outlined text-[14px]">location_on</span> 172 Bd Saint-Germain, 75006 Paris
+<span class="material-symbols-outlined text-[14px]">location_on</span> Chandni Chowk, Delhi
                             </p>
 <p class="font-body-md text-body-md text-on-surface mt-3">
-                                Classic Parisian breakfast. Famous spot for writers and artists. Try the hot chocolate and croissants.
+                                Famous heritage street breakfast. Taste the delicious traditional paranthas.
                             </p>
 <div class="mt-4 flex flex-wrap gap-2 items-center justify-between">
 <div class="flex gap-2">
 <span class="bg-surface-container-high text-on-surface px-2 py-1 rounded font-label-sm text-label-sm border border-outline-variant/30">Food</span>
 </div>
 <span class="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full font-label-md text-label-md border border-secondary-fixed-dim">
-                                    $45.00
+                                    ₹1,200
                                 </span>
 </div>
 </div>
@@ -312,12 +319,12 @@
 <button class="p-1.5 text-on-surface-variant hover:text-primary rounded-md hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[18px]">edit</span></button>
 <button class="p-1.5 text-on-surface-variant hover:text-error rounded-md hover:bg-error-container transition-colors"><span class="material-symbols-outlined text-[18px]">delete</span></button>
 </div>
-<h3 class="font-title-lg text-title-lg text-primary pr-16">Louvre Museum Guided Tour</h3>
+<h3 class="font-title-lg text-title-lg text-primary pr-16">Taj Mahal Sunrise View (Agra)</h3>
 <p class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1 mt-1">
-<span class="material-symbols-outlined text-[14px]">location_on</span> Rue de Rivoli, 75001 Paris
+<span class="material-symbols-outlined text-[14px]">location_on</span> Taj Mahal Eastern Gate, Agra
                                 </p>
 <p class="font-body-md text-body-md text-on-surface mt-3">
-                                    Skip-the-line access with an art historian. Focus on the Denon Wing and Italian Renaissance masterpieces.
+                                    Breathtaking sunrise view of the Taj Mahal. Expert guided tour of the Mughal architecture.
                                 </p>
 <div class="mt-4 flex flex-wrap gap-2 items-center justify-between">
 <div class="flex gap-2">
@@ -325,9 +332,8 @@
 <span class="bg-surface-container-high text-on-surface px-2 py-1 rounded font-label-sm text-label-sm border border-outline-variant/30">Tickets Booked</span>
 </div>
 <span class="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full font-label-md text-label-md border border-secondary-fixed-dim">
-                                        $120.00
+                                        ₹4,500
                                     </span>
-</div>
 </div>
 </div>
 </div>
@@ -350,12 +356,12 @@
 <button class="p-1.5 text-on-surface-variant hover:text-primary rounded-md hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[18px]">edit</span></button>
 <button class="p-1.5 text-on-surface-variant hover:text-error rounded-md hover:bg-error-container transition-colors"><span class="material-symbols-outlined text-[18px]">delete</span></button>
 </div>
-<h3 class="font-title-lg text-title-lg text-primary pr-16">Check-in: Le Meurice</h3>
+<h3 class="font-title-lg text-title-lg text-primary pr-16">Check-in: ITC Mughal Agra</h3>
 <p class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1 mt-1">
-<span class="material-symbols-outlined text-[14px]">location_on</span> 228 Rue de Rivoli, 75001 Paris
+<span class="material-symbols-outlined text-[14px]">location_on</span> 228 Taj Mahal Eastern Gate, Agra
                             </p>
 <p class="font-body-md text-body-md text-on-surface mt-3">
-                                Afternoon rest and freshen up before dinner. Confirmation code: XYZ-123.
+                                Luxury heritage stay. Refresh and relax before dinner. Confirmation code: XYZ-123.
                             </p>
 <div class="mt-4 flex flex-wrap gap-2 items-center justify-between">
 <div class="flex gap-2">
@@ -424,7 +430,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeStopIndex = 0;
 
     // Fetch Trip details
-    fetch(`http://localhost:8000/api/trips/${tripId}`)
+    fetch(`http://127.0.0.1:8000/api/trips/${tripId}`)
         .then(response => {
             if (!response.ok) throw new Error('Trip not found');
             return response.json();
@@ -460,10 +466,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     totalSpent += act.cost;
                 });
             });
-            const budgetLimit = trip.total_budget || 5000;
+            const budgetLimit = trip.total_budget || 75000;
             const pct = budgetLimit > 0 ? Math.min(Math.round((totalSpent / budgetLimit) * 100), 100) : 0;
 
-            budgetProgressText.textContent = `$${totalSpent.toLocaleString()} / $${budgetLimit.toLocaleString()}`;
+            budgetProgressText.textContent = `₹${totalSpent.toLocaleString()} / ₹${budgetLimit.toLocaleString()}`;
             budgetProgressBar.style.width = `${pct}%`;
 
             // Render Sidebar Stops (Days)
@@ -587,7 +593,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="bg-surface-container-high text-on-surface px-2 py-1 rounded font-label-sm text-label-sm border border-outline-variant/30">${catName.charAt(0).toUpperCase() + catName.slice(1)}</span>
                         </div>
                         <span class="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full font-label-md text-label-md border border-secondary-fixed-dim">
-                            $${act.cost.toLocaleString()}
+                            ₹${act.cost.toLocaleString()}
                         </span>
                     </div>
                 </div>
@@ -599,8 +605,130 @@ document.addEventListener('DOMContentLoaded', () => {
     const addActivityBtn = document.getElementById('add-activity-btn');
     if (addActivityBtn) {
         addActivityBtn.addEventListener('click', () => {
-            alert('Custom activity planning is available in Premium. Design your travel plans with our AI assistant!');
+            toggleActivityModal(true);
         });
+    }
+
+    function toggleActivityModal(open) {
+        let modal = document.getElementById('activity-create-modal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'activity-create-modal';
+            modal.className = 'fixed inset-0 bg-primary/40 backdrop-blur-sm z-[100] flex items-center justify-center p-4 transition-all duration-300 opacity-0 pointer-events-none';
+            modal.innerHTML = `
+                <div class="bg-cloud-white w-full max-w-[450px] rounded-xl shadow-lg overflow-hidden flex flex-col p-6 bg-white" style="font-family: 'Hanken Grotesk', sans-serif;">
+                    <div class="flex justify-between items-center mb-4 border-b pb-2 border-surface-variant">
+                        <h3 class="font-bold text-lg text-primary">Add Custom Activity</h3>
+                        <button id="act-modal-close" class="text-on-surface-variant hover:text-error transition-colors flex items-center justify-center">
+                            <span class="material-symbols-outlined">close</span>
+                        </button>
+                    </div>
+                    <form id="act-form" class="space-y-4 text-left">
+                        <div>
+                            <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-1">Activity Title</label>
+                            <input id="act-title" type="text" class="w-full bg-surface-bright border border-outline-variant rounded-lg px-4 py-2.5 text-sm" placeholder="e.g., Dinner at Taj Mahal Hotel" required />
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-1">Time</label>
+                                <input id="act-time" type="time" class="w-full bg-surface-bright border border-outline-variant rounded-lg px-4 py-2.5 text-sm" required />
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-1">Cost (INR)</label>
+                                <input id="act-cost" type="number" class="w-full bg-surface-bright border border-outline-variant rounded-lg px-4 py-2.5 text-sm" placeholder="0" required />
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-1">Category</label>
+                            <select id="act-category" class="w-full bg-surface-bright border border-outline-variant rounded-lg px-4 py-2.5 text-sm">
+                                <option value="sightseeing">Sightseeing</option>
+                                <option value="food">Food & Drinks</option>
+                                <option value="outdoors">Outdoors</option>
+                                <option value="shopping">Shopping</option>
+                            </select>
+                        </div>
+                        <div class="flex justify-end gap-3 pt-2">
+                            <button type="button" id="act-modal-cancel" class="px-4 py-2 border border-primary text-primary rounded-full hover:bg-primary-fixed/20 text-sm font-semibold transition-colors">Cancel</button>
+                            <button type="submit" class="px-6 py-2 bg-primary text-cloud-white rounded-full hover:bg-deep-ocean text-sm font-semibold transition-colors">Save Activity</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            document.getElementById('act-modal-close').addEventListener('click', () => toggleActivityModal(false));
+            document.getElementById('act-modal-cancel').addEventListener('click', () => toggleActivityModal(false));
+
+            document.getElementById('act-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const activeStop = tripData.stops[activeStopIndex];
+                const title = document.getElementById('act-title').value.trim();
+                const timeVal = document.getElementById('act-time').value;
+                const cost = parseFloat(document.getElementById('act-cost').value) || 0.0;
+                const category = document.getElementById('act-category').value;
+
+                const activityTimeISO = `${activeStop.start_date}T${timeVal}:00`;
+
+                const payload = {
+                    title: title,
+                    activity_time: activityTimeISO,
+                    cost: cost,
+                    category: category
+                };
+
+                const saveBtn = modal.querySelector('button[type="submit"]');
+                saveBtn.disabled = true;
+                saveBtn.textContent = 'Saving...';
+
+                try {
+                    const res = await fetch(`http://127.0.0.1:8000/api/stops/${activeStop.id}/activities`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!res.ok) throw new Error("Failed to save activity");
+                    
+                    const savedActivity = await res.json();
+                    
+                    if (!activeStop.activities) activeStop.activities = [];
+                    activeStop.activities.push(savedActivity);
+                    
+                    renderActivities();
+                    updateBudget();
+                    toggleActivityModal(false);
+                    document.getElementById('act-form').reset();
+                } catch (err) {
+                    alert("Error saving activity: make sure your backend is running.");
+                } finally {
+                    saveBtn.disabled = false;
+                    saveBtn.textContent = 'Save Activity';
+                }
+            });
+        }
+
+        if (open) {
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        } else {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+    }
+
+    function updateBudget() {
+        let totalSpent = 0;
+        tripData.stops.forEach(stop => {
+            if (stop.activities) {
+                stop.activities.forEach(act => {
+                    totalSpent += act.cost;
+                });
+            }
+        });
+        const budgetLimit = tripData.total_budget || 75000;
+        const pct = budgetLimit > 0 ? Math.min(Math.round((totalSpent / budgetLimit) * 100), 100) : 0;
+        budgetProgressText.textContent = `₹${totalSpent.toLocaleString()} / ₹${budgetLimit.toLocaleString()}`;
+        budgetProgressBar.style.width = `${pct}%`;
     }
 });
 </script>

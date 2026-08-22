@@ -59,10 +59,10 @@ def trip_from_create(payload: TripCreate) -> Trip:
 def generate_ai_trip(prompt: str) -> Trip:
     client = get_genai_client()
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-3.6-flash",
         contents=(
             "You are a travel planner. Build a complete trip itinerary from the "
-            "user prompt. Use realistic dates, budgets in USD, and unique share_code "
+            "user prompt. Use realistic dates, budgets in INR (Indian Rupees), and unique share_code "
             "(short alphanumeric). Include at least one stop and activities with "
             "ISO datetimes.\n\nUser prompt:\n"
             f"{prompt}"

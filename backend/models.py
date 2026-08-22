@@ -11,6 +11,7 @@ class User(SQLModel, table=True):
     email: str = Field(unique=True, index=True)
     password_hash: str
     avatar_url: Optional[str] = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
+    role: str = Field(default="user")
 
     trips: List["Trip"] = Relationship(back_populates="user")
 
@@ -52,6 +53,15 @@ class Activity(SQLModel, table=True):
     stop: Optional[Stop] = Relationship(back_populates="activities")
 
 
+class Post(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    user_id: Optional[int] = Field(default=None, foreign_key="user.id")
+    destination: str
+    content: str
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    likes: int = 0
+
+
 class Token(SQLModel):
     access_token: str
     token_type: str = "bearer"
@@ -70,6 +80,7 @@ class UserRegister(SQLModel):
     name: str
     email: str
     password: str
+    role: Optional[str] = "user"
 
 
 class UserRead(SQLModel):
@@ -77,6 +88,7 @@ class UserRead(SQLModel):
     name: str
     email: str
     avatar_url: Optional[str] = None
+    role: Optional[str] = "user"
 
 
 class ActivityCreate(SQLModel):

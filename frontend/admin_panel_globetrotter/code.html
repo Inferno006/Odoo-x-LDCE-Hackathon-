@@ -2,6 +2,7 @@
 
 <html class="light" lang="en">
 <head>
+<script src="/mock-api.js"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Admin Dashboard - GlobeTrotter</title>
@@ -270,7 +271,7 @@
 </div>
 <div>
 <h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Total Users</h3>
-<p class="font-headline-md text-headline-md text-primary font-bold">24,592</p>
+<p id="admin-total-users" class="font-headline-md text-headline-md text-primary font-bold">24,592</p>
 </div>
 </div>
 <div class="glass-card rounded-xl p-unit-md flex flex-col justify-between hover:shadow-md transition-shadow duration-300 transform hover:-translate-y-1">
@@ -284,7 +285,7 @@
 </div>
 <div>
 <h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Active Trips</h3>
-<p class="font-headline-md text-headline-md text-primary font-bold">1,843</p>
+<p id="admin-active-trips" class="font-headline-md text-headline-md text-primary font-bold">1,843</p>
 </div>
 </div>
 <div class="glass-card rounded-xl p-unit-md flex flex-col justify-between hover:shadow-md transition-shadow duration-300 transform hover:-translate-y-1">
@@ -298,7 +299,7 @@
 </div>
 <div>
 <h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Monthly Revenue</h3>
-<p class="font-headline-md text-headline-md text-primary font-bold">$142.5k</p>
+<p id="admin-revenue" class="font-headline-md text-headline-md text-primary font-bold">₹1.4M</p>
 </div>
 </div>
 <div class="glass-card rounded-xl p-unit-md flex flex-col justify-between hover:shadow-md transition-shadow duration-300 transform hover:-translate-y-1">
@@ -312,7 +313,7 @@
 </div>
 <div>
 <h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Community Posts</h3>
-<p class="font-headline-md text-headline-md text-primary font-bold">8,201</p>
+<p id="admin-community-posts" class="font-headline-md text-headline-md text-primary font-bold">8,201</p>
 </div>
 </div>
 </section>
@@ -422,7 +423,7 @@
 <th class="p-4 font-semibold text-right">Actions</th>
 </tr>
 </thead>
-<tbody class="text-body-md text-on-surface divide-y divide-surface-variant">
+<tbody id="admin-users-tbody" class="text-body-md text-on-surface divide-y divide-surface-variant">
 <!-- Row 1 -->
 <tr class="hover:bg-surface-container-lowest transition-colors bg-cloud-white">
 <td class="p-4">
@@ -519,4 +520,74 @@
 <button class="px-3 py-1 border border-primary bg-primary text-cloud-white rounded">1</button>
 <button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-variant transition-colors">2</button>
 <button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-variant transition-colors">3</button>
-</div></div></section></main></body></html>
+</div></div></section></main>
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const token = localStorage.getItem('access_token');
+        if (!token) return;
+
+        // Fetch stats
+        try {
+            const statsRes = await fetch('http://127.0.0.1:8000/api/admin/stats', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (statsRes.ok) {
+                const stats = await statsRes.json();
+                document.getElementById('admin-total-users').textContent = stats.user_count.toLocaleString();
+                document.getElementById('admin-active-trips').textContent = stats.trip_count.toLocaleString();
+                document.getElementById('admin-community-posts').textContent = stats.post_count.toLocaleString();
+                document.getElementById('admin-revenue').textContent = `₹${(stats.revenue).toLocaleString()}`;
+            }
+        } catch (e) {
+            console.error("Failed to load admin stats", e);
+        }
+
+        // Fetch user list
+        try {
+            const usersRes = await fetch('http://127.0.0.1:8000/api/users', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (usersRes.ok) {
+                const users = await usersRes.json();
+                const tbody = document.getElementById('admin-users-tbody');
+                tbody.innerHTML = '';
+
+                users.forEach(user => {
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-surface-container-lowest transition-colors bg-cloud-white';
+                    
+                    const roleBadge = user.role === 'admin' 
+                        ? `<span class="px-2 py-1 bg-primary-fixed text-on-primary-fixed-variant rounded text-label-sm font-label-sm font-bold">Admin</span>`
+                        : `<span class="px-2 py-1 bg-surface-container rounded text-label-sm font-label-sm">User</span>`;
+
+                    row.innerHTML = `
+                        <td class="p-4">
+                            <div class="flex items-center gap-3">
+                                <img alt="${user.name}" class="w-10 h-10 rounded-full object-cover shadow-sm" src="${user.avatar_url || 'https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg'}"/>
+                                <span class="font-medium text-primary">${user.name}</span>
+                            </div>
+                        </td>
+                        <td class="p-4 text-on-surface-variant">${user.email}</td>
+                        <td class="p-4">${roleBadge}</td>
+                        <td class="p-4 text-on-surface-variant">Aug 22, 2026</td>
+                        <td class="p-4">
+                            <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full text-label-sm font-label-sm bg-tertiary-fixed text-primary">
+                                <span class="w-2 h-2 rounded-full bg-primary inline-block"></span> Active
+                            </span>
+                        </td>
+                        <td class="p-4 text-right">
+                            <button class="text-on-surface-variant hover:text-primary p-1 transition-colors" title="Edit"><span class="material-symbols-outlined">edit</span></button>
+                            ${user.role !== 'admin' ? `<button class="text-on-surface-variant hover:text-error p-1 transition-colors" title="Disable"><span class="material-symbols-outlined">block</span></button>` : ''}
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+
+                document.querySelector('.p-4.border-t.border-surface-variant span').textContent = `Showing 1 to ${users.length} of ${users.length} users`;
+            }
+        } catch (e) {
+            console.error("Failed to load user list", e);
+        }
+    });
+</script>
+</body></html>

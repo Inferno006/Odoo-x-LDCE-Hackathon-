@@ -5,6 +5,7 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Annotated, Optional
 from urllib.parse import quote_plus
+from pydantic import BaseModel
 
 from dotenv import load_dotenv
 
@@ -37,6 +38,7 @@ from database import create_db_and_tables, engine, get_session
 from models import (
     AIGenerateTripRequest,
     Activity,
+    ActivityCreate,
     ActivityRead,
     Stop,
     StopRead,
@@ -49,6 +51,7 @@ from models import (
     UserLogin,
     UserRead,
     UserRegister,
+    Post,
 )
 
 SessionDep = Annotated[Session, Depends(get_session)]
@@ -255,6 +258,7 @@ def migrate_schema() -> None:
     _add_column_if_missing("trip", "user_id", "user_id INTEGER REFERENCES user(id)")
     _add_column_if_missing("trip", "cover_image", "cover_image VARCHAR")
     _add_column_if_missing("stop", "city_image", "city_image VARCHAR")
+    _add_column_if_missing("user", "role", "role VARCHAR DEFAULT 'user'")
 
 
 def seed_sample_trips() -> None:
@@ -263,106 +267,119 @@ def seed_sample_trips() -> None:
         if existing is not None:
             return
 
-        demo_user = session.exec(select(User).where(User.email == "maya@globetrotter.dev")).first()
+        demo_user = session.exec(select(User).where(User.email == "aarav@globetrotter.dev")).first()
         if demo_user is None:
             demo_user = User(
-                name="Maya Chen",
-                email="maya@globetrotter.dev",
+                name="Aarav Sharma",
+                email="aarav@globetrotter.dev",
                 password_hash=hash_password("password123"),
                 avatar_url=DEFAULT_AVATAR,
+                role="user"
             )
             session.add(demo_user)
             session.commit()
             session.refresh(demo_user)
 
-        kyoto = Trip(
+        admin_user = session.exec(select(User).where(User.email == "admin@globetrotter.dev")).first()
+        if admin_user is None:
+            admin_user = User(
+                name="System Administrator",
+                email="admin@globetrotter.dev",
+                password_hash=hash_password("adminpassword"),
+                avatar_url="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150",
+                role="admin"
+            )
+            session.add(admin_user)
+            session.commit()
+
+        golden_triangle = Trip(
             user_id=demo_user.id,
-            title="Cherry Blossoms in Japan",
-            share_code="JP-SAKURA",
-            cover_image="https://images.unsplash.com/photo-1493976040376-45c5d0c05882?w=800",
-            transport_budget=850.0,
-            stay_budget=1200.0,
-            meals_budget=450.0,
+            title="Golden Triangle Tour",
+            share_code="IN-GOLDEN",
+            cover_image="https://images.unsplash.com/photo-1548013146-72479768bada?w=800",
+            transport_budget=25000.0,
+            stay_budget=35000.0,
+            meals_budget=15000.0,
             stops=[
                 Stop(
-                    city="Tokyo",
-                    city_image="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400",
+                    city="Delhi",
+                    city_image="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400",
                     start_date=date(2026, 4, 2),
                     end_date=date(2026, 4, 5),
                     activities=[
                         Activity(
-                            title="Senso-ji Temple & Asakusa walk",
+                            title="Red Fort & Chandni Chowk Walk",
                             activity_time=datetime(2026, 4, 2, 9, 30),
                             cost=0.0,
                             category="sightseeing",
                         ),
                         Activity(
-                            title="Tsukiji outer market breakfast",
+                            title="Paranthe Wali Gali Breakfast",
                             activity_time=datetime(2026, 4, 3, 7, 0),
-                            cost=35.0,
+                            cost=1200.0,
                             category="food",
                         ),
                     ],
                 ),
                 Stop(
-                    city="Kyoto",
-                    city_image="https://images.unsplash.com/photo-1493976040376-45c5d0c05882?w=400",
+                    city="Agra",
+                    city_image="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=400",
                     start_date=date(2026, 4, 5),
                     end_date=date(2026, 4, 8),
                     activities=[
                         Activity(
-                            title="Fushimi Inari sunrise hike",
+                            title="Taj Mahal Sunrise View",
                             activity_time=datetime(2026, 4, 6, 5, 45),
-                            cost=0.0,
-                            category="outdoors",
+                            cost=500.0,
+                            category="sightseeing",
                         ),
                         Activity(
-                            title="Kaiseki dinner in Gion",
+                            title="Mughlai Feast in Agra",
                             activity_time=datetime(2026, 4, 7, 19, 0),
-                            cost=120.0,
+                            cost=4500.0,
                             category="food",
                         ),
                     ],
                 ),
             ],
         )
-        iceland = Trip(
+        kerala = Trip(
             user_id=demo_user.id,
-            title="Iceland Ring Road Highlights",
-            share_code="IS-RING",
-            cover_image="https://images.unsplash.com/photo-1504829857797-ddff23c279e4?w=800",
-            transport_budget=600.0,
-            stay_budget=900.0,
-            meals_budget=320.0,
+            title="Kerala Backwaters Tour",
+            share_code="IN-KERALA",
+            cover_image="https://images.unsplash.com/photo-1593693397690-362cb9666fc2?w=800",
+            transport_budget=18000.0,
+            stay_budget=28000.0,
+            meals_budget=12000.0,
             stops=[
                 Stop(
-                    city="Reykjavik",
-                    city_image="https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=400",
+                    city="Kochi",
+                    city_image="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=400",
                     start_date=date(2026, 7, 10),
                     end_date=date(2026, 7, 12),
                     activities=[
                         Activity(
-                            title="Hallgrimskirkja & harbor stroll",
+                            title="Fort Kochi & Chinese Fishing Nets Stroll",
                             activity_time=datetime(2026, 7, 10, 14, 0),
-                            cost=10.0,
+                            cost=500.0,
                             category="sightseeing",
                         ),
                     ],
                 ),
                 Stop(
-                    city="Vik",
-                    city_image="https://images.unsplash.com/photo-1531366936337-7d223312f64d?w=400",
+                    city="Munnar",
+                    city_image="https://images.unsplash.com/photo-1542856391-010fb87dcfed?w=400",
                     start_date=date(2026, 7, 12),
                     end_date=date(2026, 7, 15),
                     activities=[
                         Activity(
-                            title="Reynisfjara black sand beach",
+                            title="Tea Garden Safari in Munnar",
                             activity_time=datetime(2026, 7, 13, 11, 0),
-                            cost=0.0,
+                            cost=1500.0,
                             category="outdoors",
                         ),
                         Activity(
-                            title="Skogafoss photography stop",
+                            title="Athirappilly Waterfalls Stop",
                             activity_time=datetime(2026, 7, 14, 9, 0),
                             cost=0.0,
                             category="outdoors",
@@ -371,8 +388,24 @@ def seed_sample_trips() -> None:
                 ),
             ],
         )
-        session.add(kyoto)
-        session.add(iceland)
+        session.add(golden_triangle)
+        session.add(kerala)
+        
+        # Seed posts
+        p1 = Post(
+            user_id=demo_user.id,
+            destination="Delhi",
+            content="Spent the day exploring the historical lanes of Chandni Chowk! The Paranthe Wali Gali breakfast was incredible. Definitely recommend visiting the Red Fort at sunset.",
+            likes=24
+        )
+        p2 = Post(
+            user_id=demo_user.id,
+            destination="Munnar",
+            content="Mist-covered tea gardens and pleasant weather! Munnar is absolute bliss in the morning. Stayed in a lovely local homestay.",
+            likes=42
+        )
+        session.add(p1)
+        session.add(p2)
         session.commit()
 
 
@@ -525,3 +558,105 @@ def ai_generate_trip(payload: AIGenerateTripRequest, session: SessionDep) -> Tri
     apply_destination_images(trip)
     saved = persist_trip(session, trip)
     return trip_to_read(saved)
+
+
+class PostCreate(BaseModel):
+    destination: str
+    content: str
+
+
+class PostRead(BaseModel):
+    id: int
+    user_id: int
+    user_name: str
+    user_avatar: str
+    destination: str
+    content: str
+    created_at: datetime
+    likes: int
+
+
+@app.get("/api/users", response_model=list[UserRead])
+def list_users(current_user: Annotated[User, Depends(get_current_user)], session: SessionDep) -> list[UserRead]:
+    if current_user.role != "admin":
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not authorized")
+    users = session.exec(select(User)).all()
+    return [user_to_read(u) for u in users]
+
+
+@app.get("/api/admin/stats")
+def get_admin_stats(current_user: Annotated[User, Depends(get_current_user)], session: SessionDep):
+    if current_user.role != "admin":
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not authorized")
+    user_count = len(session.exec(select(User)).all())
+    trip_count = len(session.exec(select(Trip)).all())
+    post_count = len(session.exec(select(Post)).all())
+    return {
+        "user_count": user_count,
+        "trip_count": trip_count,
+        "post_count": post_count,
+        "revenue": user_count * 1500
+    }
+
+
+@app.get("/api/posts", response_model=list[PostRead])
+def get_posts(session: SessionDep, destination: Optional[str] = None) -> list[PostRead]:
+    stmt = select(Post)
+    if destination:
+        stmt = stmt.where(Post.destination == destination)
+    posts = session.exec(stmt).all()
+    res = []
+    for p in posts:
+        u = session.get(User, p.user_id)
+        res.append(PostRead(
+            id=p.id,
+            user_id=p.user_id,
+            user_name=u.name if u else "Anonymous",
+            user_avatar=u.avatar_url if u else DEFAULT_AVATAR,
+            destination=p.destination,
+            content=p.content,
+            created_at=p.created_at,
+            likes=p.likes
+        ))
+    return res
+
+
+@app.post("/api/posts", response_model=PostRead, status_code=status.HTTP_201_CREATED)
+def create_post(payload: PostCreate, current_user: Annotated[User, Depends(get_current_user)], session: SessionDep) -> PostRead:
+    p = Post(
+        user_id=current_user.id,
+        destination=payload.destination,
+        content=payload.content
+    )
+    session.add(p)
+    session.commit()
+    session.refresh(p)
+    return PostRead(
+        id=p.id,
+        user_id=p.user_id,
+        user_name=current_user.name,
+        user_avatar=current_user.avatar_url or DEFAULT_AVATAR,
+        destination=p.destination,
+        content=p.content,
+        created_at=p.created_at,
+        likes=p.likes
+    )
+
+
+@app.post("/api/stops/{stop_id}/activities", response_model=ActivityRead, status_code=status.HTTP_201_CREATED)
+def add_activity_to_stop(stop_id: int, payload: ActivityCreate, session: SessionDep) -> ActivityRead:
+    stop = session.get(Stop, stop_id)
+    if stop is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Stop not found")
+    activity = Activity(
+        stop_id=stop_id,
+        title=payload.title,
+        activity_time=payload.activity_time,
+        cost=payload.cost,
+        category=payload.category
+    )
+    session.add(activity)
+    session.commit()
+    session.refresh(activity)
+    return activity
+

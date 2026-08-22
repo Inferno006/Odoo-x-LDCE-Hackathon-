@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en"><head>
+<script src="/mock-api.js"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>GlobeTrotter - Login</title>
@@ -227,7 +228,7 @@
                 const email = document.getElementById('email').value;
                 const password = document.getElementById('password').value;
 
-                fetch('http://localhost:8000/api/auth/login', {
+                fetch('http://127.0.0.1:8000/api/auth/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -245,7 +246,7 @@
                     localStorage.setItem('access_token', data.access_token);
                     
                     // Fetch user info
-                    return fetch('http://localhost:8000/api/auth/me', {
+                    return fetch('http://127.0.0.1:8000/api/auth/me', {
                         headers: {
                             'Authorization': `Bearer ${data.access_token}`
                         }

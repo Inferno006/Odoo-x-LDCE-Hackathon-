@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html class="light" lang="en"><head>
+<script src="/mock-api.js"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>GlobeTrotter - Create New Trip</title>
@@ -156,7 +157,7 @@
 <!-- Trip Name -->
 <div>
 <label class="block font-label-sm text-label-sm text-on-surface-variant mb-unit-xs uppercase tracking-wider">Trip Name</label>
-<input id="tripName" class="w-full bg-surface-bright border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface transition-colors placeholder-on-surface-variant/50" placeholder="e.g., Summer in Kyoto" type="text" required/>
+<input id="tripName" class="w-full bg-surface-bright border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface transition-colors placeholder-on-surface-variant/50" placeholder="e.g., Week in Goa" type="text" required/>
 </div>
 <!-- Destination Select -->
 <div>
@@ -165,10 +166,10 @@
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">location_on</span>
 <select class="w-full bg-surface-bright border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary rounded-lg pl-10 pr-4 py-3 font-body-md text-body-md text-on-surface transition-colors appearance-none cursor-pointer" id="destination-select" required>
 <option disabled="" selected="" value="">Select a destination...</option>
-<option value="tokyo">Tokyo, Japan</option>
-<option value="paris">Paris, France</option>
-<option value="rome">Rome, Italy</option>
-<option value="newyork">New York, USA</option>
+<option value="delhi">Agra, India</option>
+<option value="goa">Goa, India</option>
+<option value="munnar">Munnar, India</option>
+<option value="delhi">Delhi, India</option>
 </select>
 <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
 </div>
@@ -186,10 +187,10 @@
 </div>
 <!-- Budget -->
 <div>
-<label class="block font-label-sm text-label-sm text-on-surface-variant mb-unit-xs uppercase tracking-wider">Total Budget (USD)</label>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-unit-xs uppercase tracking-wider">Total Budget (INR)</label>
 <div class="relative">
-<span class="absolute left-4 top-1/2 -translate-y-1/2 font-body-md text-on-surface-variant">$</span>
-<input id="totalBudget" class="w-full bg-surface-bright border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary rounded-lg pl-8 pr-4 py-3 font-body-md text-body-md text-on-surface transition-colors" placeholder="5000" type="number" required/>
+<span class="absolute left-4 top-1/2 -translate-y-1/2 font-body-md text-on-surface-variant">₹</span>
+<input id="totalBudget" class="w-full bg-surface-bright border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary rounded-lg pl-8 pr-4 py-3 font-body-md text-body-md text-on-surface transition-colors" placeholder="75000" type="number" required/>
 </div>
 </div>
 <!-- Travel Preferences -->
@@ -230,55 +231,12 @@
 <div class="flex items-center justify-between mb-unit-sm">
 <h2 class="font-title-lg text-title-lg text-primary flex items-center gap-2">
 <span class="material-symbols-outlined text-secondary">star</span>
-                            Recommended in Tokyo
+                            <span id="recommendations-title">Recommended in Delhi</span>
                         </h2>
 <span class="font-label-sm text-label-sm bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full uppercase tracking-wider">Curated for you</span>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
-<!-- Activity Card 1 -->
-<div class="bg-cloud-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden group hover:-translate-y-1 hover:shadow-lg transition-all duration-300 relative flex flex-col">
-<div class="relative h-48 w-full overflow-hidden">
-<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" data-alt="High-end photography of two massive sumo wrestlers engaged in a dynamic match in a traditional wooden dohyo arena in Tokyo. The scene is brightly lit with dramatic overhead spotlights emphasizing the physical strain and traditional mawashi belts. The atmosphere captures the intense, culturally rich, and luxurious premium travel aesthetic with high contrast and sharp details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQz2HiBXUChylcjbANaqebnxdeQNQb1i4S6ol-a5n4DbKH_uzL2bVOmwqX2v2boA1KGSVzLooqgH9Hm0lW0qVE65U8nL6tbsVs9BUmNuZyYhLf82_8YReUpV9JwL65Q-5q_kjEmUhVm6hwphizERA4rN7V9xOiLYUbQs99D7aghZ0riAlaFVVZnBMCquSARLw8RE2Et8ZzYxqwIULKjZH5orcSlaX1ig8lqJkz0zkfpc36pAnhJOyC"/>
-<div class="absolute top-3 right-3 bg-cloud-white/80 backdrop-blur-md px-2 py-1 rounded-md shadow-sm">
-<span class="font-label-md text-label-md text-primary font-bold">$120</span>
-</div>
-<div class="absolute top-3 left-3 bg-tertiary-container text-cloud-white font-label-sm text-label-sm px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
-<span class="material-symbols-outlined text-[14px]">museum</span> Culture
-                                </div>
-</div>
-<div class="p-unit-md flex-grow flex flex-col">
-<h3 class="font-title-lg text-title-lg text-primary mb-1">Morning Sumo Practice</h3>
-<p class="font-body-md text-body-md text-on-surface-variant text-sm mb-4 line-clamp-2">Witness the incredible power and discipline of professional sumo wrestlers in an exclusive stable visit.</p>
-<div class="mt-auto">
-<button class="activity-add-btn w-full py-2 px-4 rounded-lg border border-primary text-primary font-label-md text-label-md hover:bg-primary hover:text-cloud-white transition-all flex items-center justify-center gap-2 group-active:scale-95">
-<span class="btn-text">Add to Trip</span>
-<span class="material-symbols-outlined btn-icon text-[18px]">add</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Activity Card 2 -->
-<div class="bg-cloud-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden group hover:-translate-y-1 hover:shadow-lg transition-all duration-300 relative flex flex-col">
-<div class="relative h-48 w-full overflow-hidden">
-<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" data-alt="A pristine, minimalist sushi counter in a high-end Tokyo omakase restaurant. A master chef is delicately placing a piece of fatty tuna nigiri on a sleek ceramic plate. Warm, focused lighting highlights the freshness of the fish and the clean lines of the wooden counter. The aesthetic is extremely luxurious, modern, and perfectly composed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN3Sbk4HXaahkeo2-t-OW3XG6PZy9XJj1EUeAZceFEZwOd1cVbNrsx_vKskVCDcPEie8ySvz7TpomeGJiPYWL4v2EDVFqZWe44pzGvjW8NQZlApvO4Ov5j33hALz4ioZN6hTLMD8RvcIx3xepTXOO0vmV7MRtx0lBk-d_L5JwShAaCAmqllAhuMIup0eyBjJK-V5NMcfKD1V2oJQwWbffoxpJnnfC51ws9PagfEvTtn9qfvngMDPDG"/>
-<div class="absolute top-3 right-3 bg-cloud-white/80 backdrop-blur-md px-2 py-1 rounded-md shadow-sm">
-<span class="font-label-md text-label-md text-primary font-bold">$250</span>
-</div>
-<div class="absolute top-3 left-3 bg-tertiary-container text-cloud-white font-label-sm text-label-sm px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
-<span class="material-symbols-outlined text-[14px]">restaurant</span> Luxury
-                                </div>
-</div>
-<div class="p-unit-md flex-grow flex flex-col">
-<h3 class="font-title-lg text-title-lg text-primary mb-1">Ginza Omakase Dinner</h3>
-<p class="font-body-md text-body-md text-on-surface-variant text-sm mb-4 line-clamp-2">A multi-course premium sushi experience guided by a Michelin-starred master chef in a private setting.</p>
-<div class="mt-auto">
-<button class="activity-add-btn w-full py-2 px-4 rounded-lg border border-primary text-primary font-label-md text-label-md hover:bg-primary hover:text-cloud-white transition-all flex items-center justify-center gap-2 group-active:scale-95">
-<span class="btn-text">Add to Trip</span>
-<span class="material-symbols-outlined btn-icon text-[18px]">add</span>
-</button>
-</div>
-</div>
-</div>
+<div id="recommendations-grid" class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Cards will be populated dynamically -->
 </div>
 </div>
 </div>
@@ -300,47 +258,166 @@
             const destinationSelect = document.getElementById('destination-select');
             const emptyState = document.getElementById('recommendations-empty');
             const activeState = document.getElementById('recommendations-active');
+            const recsGrid = document.getElementById('recommendations-grid');
+            const recsTitle = document.getElementById('recommendations-title');
+            const selectedCountEl = document.getElementById('selected-count');
             
+            let count = 0;
+
+            const recommendations = {
+                delhi: [
+                    {
+                        title: "Red Fort & Chandni Chowk Walk",
+                        desc: "Explore the majestic Mughal architecture and taste the street foods of Old Delhi.",
+                        cost: "₹500",
+                        category: "Culture",
+                        icon: "museum",
+                        image: "/red_fort.jpg"
+                    },
+                    {
+                        title: "Paranthe Wali Gali Breakfast",
+                        desc: "Famous heritage street breakfast. Taste the delicious traditional paranthas.",
+                        cost: "₹1,200",
+                        category: "Food",
+                        icon: "restaurant",
+                        image: "/rajasthani_feast.jpg"
+                    }
+                ],
+                agra: [
+                    {
+                        title: "Taj Mahal Sunrise View",
+                        desc: "Breathtaking sunrise view of the Taj Mahal. Guided tour of the Mughal architecture.",
+                        cost: "₹500",
+                        category: "Culture",
+                        icon: "museum",
+                        image: "/red_fort.jpg"
+                    },
+                    {
+                        title: "Mughlai Feast in Agra",
+                        desc: "Experience luxury Mughlai fine dining at a local heritage restaurant.",
+                        cost: "₹4,500",
+                        category: "Luxury",
+                        icon: "restaurant",
+                        image: "/rajasthani_feast.jpg"
+                    }
+                ],
+                goa: [
+                    {
+                        title: "Baga Beach Water Sports",
+                        desc: "Jet skiing, parasailing, and banana boat rides on the popular beaches of North Goa.",
+                        cost: "₹3,500",
+                        category: "Adventure",
+                        icon: "surfing",
+                        image: "/goa_beach.jpg"
+                    },
+                    {
+                        title: "Spice Plantation Tour & Lunch",
+                        desc: "Guided walk through organic spice farms with a traditional Goan buffet lunch.",
+                        cost: "₹1,800",
+                        category: "Culture",
+                        icon: "nature_people",
+                        image: "/munnar_tea.jpg"
+                    }
+                ],
+                munnar: [
+                    {
+                        title: "Tea Garden Safari in Munnar",
+                        desc: "Stunning morning walk through lush green tea estates with local tea tasting.",
+                        cost: "₹1,500",
+                        category: "Outdoors",
+                        icon: "forest",
+                        image: "/munnar_tea.jpg"
+                    },
+                    {
+                        title: "Athirappilly Waterfalls Stop",
+                        desc: "Visit the Niagara of India, a scenic waterfalls photo stop and light trek.",
+                        cost: "₹600",
+                        category: "Adventure",
+                        icon: "water_drop",
+                        image: "/goa_beach.jpg"
+                    }
+                ]
+            };
+
+            function updateRecommendations() {
+                const val = destinationSelect.value;
+                if (!val) return;
+
+                const items = recommendations[val] || recommendations['delhi'];
+                const displayNames = {
+                    delhi: "Delhi",
+                    agra: "Agra",
+                    goa: "Goa",
+                    munnar: "Munnar"
+                };
+                recsTitle.textContent = `Recommended in ${displayNames[val]}`;
+                
+                recsGrid.innerHTML = '';
+                count = 0;
+                selectedCountEl.textContent = count;
+
+                items.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-cloud-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden group hover:-translate-y-1 hover:shadow-lg transition-all duration-300 relative flex flex-col';
+                    card.innerHTML = `
+                        <div class="relative h-48 w-full overflow-hidden">
+                            <img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" src="${item.image}"/>
+                            <div class="absolute top-3 right-3 bg-cloud-white/80 backdrop-blur-md px-2 py-1 rounded-md shadow-sm">
+                                <span class="font-label-md text-label-md text-primary font-bold">${item.cost}</span>
+                            </div>
+                            <div class="absolute top-3 left-3 bg-tertiary-container text-cloud-white font-label-sm text-label-sm px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
+                                <span class="material-symbols-outlined text-[14px]">${item.icon}</span> ${item.category}
+                            </div>
+                        </div>
+                        <div class="p-unit-md flex-grow flex flex-col text-left">
+                            <h3 class="font-title-lg text-title-lg text-primary mb-1 font-bold">${item.title}</h3>
+                            <p class="font-body-md text-body-md text-on-surface-variant text-sm mb-4 line-clamp-2">${item.desc}</p>
+                            <div class="mt-auto">
+                                <button class="activity-add-btn w-full py-2 px-4 rounded-lg border border-primary text-primary font-label-md text-label-md hover:bg-primary hover:text-cloud-white transition-all flex items-center justify-center gap-2">
+                                    <span class="btn-text">Add to Trip</span>
+                                    <span class="material-symbols-outlined btn-icon text-[18px]">add</span>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+
+                    const btn = card.querySelector('.activity-add-btn');
+                    btn.addEventListener('click', () => {
+                        const isAdded = btn.classList.contains('bg-tertiary-container');
+                        const textSpan = btn.querySelector('.btn-text');
+                        const iconSpan = btn.querySelector('.btn-icon');
+
+                        if (!isAdded) {
+                            btn.classList.remove('border-primary', 'text-primary', 'hover:bg-primary', 'hover:text-cloud-white');
+                            btn.classList.add('bg-tertiary-container', 'text-cloud-white', 'border-transparent');
+                            textSpan.textContent = 'Added';
+                            iconSpan.textContent = 'check';
+                            count++;
+                        } else {
+                            btn.classList.add('border-primary', 'text-primary', 'hover:bg-primary', 'hover:text-cloud-white');
+                            btn.classList.remove('bg-tertiary-container', 'text-cloud-white', 'border-transparent');
+                            textSpan.textContent = 'Add to Trip';
+                            iconSpan.textContent = 'add';
+                            count--;
+                        }
+                        selectedCountEl.textContent = count;
+                    });
+
+                    recsGrid.appendChild(card);
+                });
+            }
+
             // Simulate loading recommendations when destination changes
             destinationSelect.addEventListener('change', (e) => {
-                if(e.target.value) {
+                if (e.target.value) {
                     emptyState.style.display = 'none';
                     activeState.classList.remove('hidden');
                     // Small delay for fade in effect
                     setTimeout(() => {
                         activeState.classList.remove('opacity-0');
                     }, 50);
+                    updateRecommendations();
                 }
-            });
-
-            // Handle Add Activity Buttons
-            const addButtons = document.querySelectorAll('.activity-add-btn');
-            const selectedCountEl = document.getElementById('selected-count');
-            let count = 0;
-
-            addButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const isSelected = this.classList.contains('bg-primary');
-                    const textSpan = this.querySelector('.btn-text');
-                    const iconSpan = this.querySelector('.btn-icon');
-
-                    if (!isSelected) {
-                        // Select
-                        this.classList.remove('border-primary', 'text-primary', 'hover:bg-primary', 'hover:text-cloud-white');
-                        this.classList.add('bg-tertiary-container', 'text-cloud-white', 'border-transparent', 'hover:bg-opacity-90');
-                        textSpan.textContent = 'Added';
-                        iconSpan.textContent = 'check';
-                        count++;
-                    } else {
-                        // Deselect
-                        this.classList.add('border-primary', 'text-primary', 'hover:bg-primary', 'hover:text-cloud-white');
-                        this.classList.remove('bg-tertiary-container', 'text-cloud-white', 'border-transparent', 'hover:bg-opacity-90');
-                        textSpan.textContent = 'Add to Trip';
-                        iconSpan.textContent = 'add';
-                        count--;
-                    }
-                    selectedCountEl.textContent = count;
-                });
             });
 
             // Handle form submission and AI itinerary generation
@@ -367,18 +444,20 @@
 
                 // Get selected activities
                 const selectedActivities = [];
-                document.querySelectorAll('.activity-add-btn.bg-tertiary-container').forEach(btn => {
-                    const card = btn.closest('.group') || btn.parentElement.parentElement;
-                    if (card) {
-                        const titleEl = card.querySelector('h3');
-                        if (titleEl) {
-                            selectedActivities.push(titleEl.textContent.trim());
+                document.querySelectorAll('.activity-add-btn').forEach(btn => {
+                    if (btn.classList.contains('bg-tertiary-container')) {
+                        const card = btn.closest('.group') || btn.parentElement.parentElement.parentElement;
+                        if (card) {
+                            const titleEl = card.querySelector('h3');
+                            if (titleEl) {
+                                selectedActivities.push(titleEl.textContent.trim());
+                            }
                         }
                     }
                 });
 
                 // Construct prompt
-                let prompt = `Create a trip named "${tripName}" to ${destination} from ${startDate} to ${endDate} with a total budget of ${budget} USD.`;
+                let prompt = `Create a trip named "${tripName}" to ${destination} from ${startDate} to ${endDate} with a total budget of ${budget} INR.`;
                 if (selectedPrefs.length > 0) {
                     prompt += ` The travel preferences are: ${selectedPrefs.join(', ')}.`;
                 }
@@ -393,7 +472,7 @@
                 const user = JSON.parse(localStorage.getItem('user') || 'null');
                 const userId = user ? user.id : 1; // Fallback to user id 1
 
-                fetch('http://localhost:8000/api/ai-generate-trip', {
+                fetch('http://127.0.0.1:8000/api/ai-generate-trip', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -407,13 +486,12 @@
                     return response.json();
                 })
                 .then(trip => {
-                    // Redirect to itinerary budget page
                     window.location.href = `/itinerary-budget?trip_id=${trip.id}`;
                 })
                 .catch(err => {
                     createTripBtn.disabled = false;
                     createTripBtn.innerHTML = `Create My Trip <span class="material-symbols-outlined" data-weight="fill">arrow_forward</span>`;
-                    alert(err.message || 'Error generating AI itinerary. Make sure backend is running and GEMINI_API_KEY is set.');
+                    alert(err.message || 'Error generating AI itinerary. Make sure backend is running.');
                 });
             });
         });

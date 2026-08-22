@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html class="light" lang="en"><head>
+<script src="/mock-api.js"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>GlobeTrotter - Itinerary &amp; Budget</title>
@@ -171,17 +172,17 @@
 <header class="mb-unit-xl">
 <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-unit-md">
 <div>
-<h1 id="trip-title" class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-unit-xs">Parisian Escape</h1>
+<h1 id="trip-title" class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-unit-xs">Golden Triangle Tour</h1>
 <div class="flex flex-wrap items-center gap-unit-sm text-on-surface-variant font-body-md text-body-md">
-<span id="trip-location" class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">location_on</span> Paris, France</span>
+<span id="trip-location" class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">location_on</span> Delhi, India</span>
 <span class="hidden md:inline text-tertiary-fixed-dim">•</span>
-<span id="trip-dates" class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">calendar_month</span> Oct 12 - Oct 18, 2024</span>
+<span id="trip-dates" class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">calendar_month</span> Apr 2 - Apr 8, 2026</span>
 </div>
 </div>
 <div class="flex items-center gap-unit-md">
 <div class="bg-surface-container-low px-4 py-2 rounded-lg border border-outline-variant flex items-center gap-2">
 <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Share Code</span>
-<span id="trip-share-code" class="font-label-md text-label-md text-primary tracking-widest">PAR24X</span>
+<span id="trip-share-code" class="font-label-md text-label-md text-primary tracking-widest">IN-GOLDEN</span>
 <button class="text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">content_copy</span></button>
 </div>
 </div>
@@ -209,9 +210,9 @@
 <!-- Total Summary -->
 <div class="text-center mb-unit-lg pb-unit-md border-b border-surface-variant">
 <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Total Budget</p>
-<div id="budget-total" class="font-display-lg text-display-lg text-primary leading-none">$0</div>
+<div id="budget-total" class="font-display-lg text-display-lg text-primary leading-none">₹0</div>
 <p id="budget-spent-summary" class="font-body-md text-body-md text-secondary mt-2 flex items-center justify-center gap-1">
-<span class="material-symbols-outlined text-[18px]">account_balance_wallet</span> $0 Spent (0%)
+<span class="material-symbols-outlined text-[18px]">account_balance_wallet</span> ₹0 Spent (0%)
                             </p>
 </div>
 <!-- Category Progress Bars -->
@@ -290,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const categoriesContainer = document.getElementById('budget-categories-container');
 
     // Fetch Trip details
-    fetch(`http://localhost:8000/api/trips/${tripId}`)
+    fetch(`http://127.0.0.1:8000/api/trips/${tripId}`)
         .then(response => {
             if (!response.ok) throw new Error('Trip not found');
             return response.json();
@@ -325,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('trip-share-code').textContent = trip.share_code;
 
             // Render Budget Summary
-            document.getElementById('budget-total').textContent = `$${trip.total_budget.toLocaleString()}`;
+            document.getElementById('budget-total').textContent = `₹${trip.total_budget.toLocaleString()}`;
 
             // Calculate spent amount based on activities
             let totalSpent = 0;
@@ -355,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const spentPercentage = trip.total_budget > 0 ? Math.round((totalSpent / trip.total_budget) * 100) : 0;
             document.getElementById('budget-spent-summary').innerHTML = `
                 <span class="material-symbols-outlined text-[18px]">account_balance_wallet</span> 
-                $${totalSpent.toLocaleString()} Spent (${spentPercentage}%)
+                ₹${totalSpent.toLocaleString()} Spent (${spentPercentage}%)
             `;
 
             // Render Category Progress Bars
@@ -381,13 +382,13 @@ document.addEventListener('DOMContentLoaded', () => {
                             ${cat.name}
                         </span>
                         <span class="${exceeded ? 'text-error font-bold' : 'text-on-surface-variant'}">
-                            $${cat.spent.toLocaleString()} / $${targetBudget.toLocaleString()}
+                            ₹${cat.spent.toLocaleString()} / ₹${targetBudget.toLocaleString()}
                         </span>
                     </div>
                     <div class="w-full ${exceeded ? 'bg-error-container' : 'bg-surface-container'} h-2 rounded-full overflow-hidden">
                         <div class="${exceeded ? 'bg-error' : 'bg-primary'} h-full" style="width: ${pct}%"></div>
                     </div>
-                    ${exceeded ? `<p class="font-label-sm text-label-sm text-error mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">warning</span> Exceeded by $${(cat.spent - targetBudget).toLocaleString()}</p>` : ''}
+                    ${exceeded ? `<p class="font-label-sm text-label-sm text-error mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">warning</span> Exceeded by ₹${(cat.spent - targetBudget).toLocaleString()}</p>` : ''}
                 `;
                 categoriesContainer.appendChild(cardDiv);
             });
@@ -442,7 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                             ${catName.charAt(0).toUpperCase() + catName.slice(1)}
                                         </span>
                                         <span class="font-label-md text-label-md font-bold text-secondary">
-                                            $${act.cost.toLocaleString()}
+                                            ₹${act.cost.toLocaleString()}
                                         </span>
                                     </div>
                                 </div>

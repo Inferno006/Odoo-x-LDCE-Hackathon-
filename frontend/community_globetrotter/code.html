@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en"><head>
+<script src="/mock-api.js"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>GlobeTrotter Community</title>
@@ -195,9 +196,9 @@
 <div class="flex items-center gap-unit-lg">
 <span class="font-display-lg text-title-lg font-bold text-primary">GlobeTrotter</span>
 <div class="hidden md:flex gap-unit-md items-center h-full pt-1">
-<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-md text-label-md" href="#">Discover</a>
-<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-md text-label-md" href="#">My Trips</a>
-<a class="text-primary border-b-2 border-secondary font-bold pb-1 font-label-md text-label-md" href="#">Community</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-md text-label-md" href="/explore">Discover</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-md text-label-md" href="/my-journeys">My Trips</a>
+<a class="text-primary border-b-2 border-secondary font-bold pb-1 font-label-md text-label-md" href="/community">Community</a>
 <a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-md text-label-md" href="#">Calendar</a>
 </div>
 </div>
@@ -230,89 +231,20 @@
 <span class="material-symbols-outlined">add_photo_alternate</span>
 </button>
 </div>
-<!-- Experience Post 1 -->
-<article class="bg-cloud-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 relative group">
-<div class="p-unit-md flex justify-between items-start">
-<div class="flex gap-unit-sm items-center">
-<img alt="User avatar" class="w-10 h-10 rounded-full object-cover" data-alt="A vibrant headshot of a female traveler with short dark hair, wearing a sun hat, smiling broadly in bright daylight, suitable for a lifestyle social media avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1FB8uQc_kR504PNNfi3ekVmoGKKaqXjuuwFsSmKX7J-ynWqRE1PFouguEuStmVtUr85DuSfkFKq3oICAf00zXILGbiSDgDyaNRtM1w0RYKT_38PuJ8f5wdmMU81jrXZZdn5naz6emqyJRPvyJNcJrjhY8qxN5E20GSvjDaIuGQ1fNsNiznvz_py2zsjM_M5cn1hJsVc87e7CyLZHy_hPKFtjJMukY7ev2vneVTsbZ-Ygdq7nPS-q5"/>
-<div>
-<p class="font-label-md text-label-md text-on-surface">Elena Rodriguez</p>
-<div class="flex items-center gap-1 text-on-surface-variant text-label-sm font-label-sm">
-<span>2 hours ago</span>
-<span>•</span>
-<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
-<span class="material-symbols-outlined text-[14px]">location_on</span> Kyoto, Japan
-                                </a>
+<!-- Destination Filter Tabs -->
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none mb-unit-sm">
+    <button class="dest-tab px-4 py-2 rounded-full font-label-md text-label-md bg-primary text-cloud-white transition-all shadow-sm" data-dest="all">All</button>
+    <button class="dest-tab px-4 py-2 rounded-full font-label-md text-label-md bg-cloud-white border border-outline-variant hover:border-primary text-primary transition-all shadow-sm" data-dest="Delhi">Delhi</button>
+    <button class="dest-tab px-4 py-2 rounded-full font-label-md text-label-md bg-cloud-white border border-outline-variant hover:border-primary text-primary transition-all shadow-sm" data-dest="Goa">Goa</button>
+    <button class="dest-tab px-4 py-2 rounded-full font-label-md text-label-md bg-cloud-white border border-outline-variant hover:border-primary text-primary transition-all shadow-sm" data-dest="Munnar">Munnar</button>
+    <button class="dest-tab px-4 py-2 rounded-full font-label-md text-label-md bg-cloud-white border border-outline-variant hover:border-primary text-primary transition-all shadow-sm" data-dest="Amalfi">Amalfi</button>
+    <button class="dest-tab px-4 py-2 rounded-full font-label-md text-label-md bg-cloud-white border border-outline-variant hover:border-primary text-primary transition-all shadow-sm" data-dest="Kyoto">Kyoto</button>
 </div>
+
+<!-- Dynamic Feed Container -->
+<div id="feed-container" class="flex flex-col gap-unit-lg">
+    <!-- Posts will be loaded dynamically -->
 </div>
-</div>
-<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">more_horiz</span></button>
-</div>
-<div class="px-unit-md pb-unit-sm">
-<p class="font-body-md text-body-md text-on-surface mb-2">Lost in the mesmerizing Arashiyama Bamboo Grove. The light filtering through these towering green stalks feels like stepping into another world. Highly recommend arriving before 7 AM to beat the crowds! 🎋✨ #Kyoto #BambooForest</p>
-</div>
-<div class="relative w-full aspect-[4/3] bg-surface-variant">
-<img class="w-full h-full object-cover" data-alt="A stunning, high-contrast travel photograph of the Arashiyama Bamboo Grove in Kyoto. Towering, vibrant green bamboo stalks frame a narrow path, with golden morning sunlight piercing through the canopy, creating a serene, majestic, and aspirational mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCQPRx2U-6JoCm4VnQZkmiXNgZqoggNeMULK4OE48zuf_5zSittVJlnrZNP46yzHKI88oVIkD2P6exRLA8WswUcSRZDsNMjRNMzCj-LDhBwJScLIXpNe__xnhr5afyDrVreiZR4DdbYmNtHMxRNkD4PqN82wMjjdmcr1-dYCw3_wMZMI6XNQpDJ2ptWvsGnsge56A7Om75wMRKHuhGtucCJFznqt9hCz1Ea65meDUbFtsXRrX29McN"/>
-<div class="absolute top-4 right-4 bg-cloud-white/80 backdrop-blur-md px-3 py-1 rounded-full text-label-sm font-label-sm text-primary shadow-sm">
-                         Guided Tour
-                     </div>
-</div>
-<div class="p-unit-md flex justify-between items-center border-t border-surface-container">
-<div class="flex gap-unit-md">
-<button class="flex items-center gap-1 text-on-surface-variant hover:text-secondary transition-colors group">
-<span class="material-symbols-outlined group-hover:fill-current">favorite</span>
-<span class="font-label-md text-label-md">245</span>
-</button>
-<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined">chat_bubble</span>
-<span class="font-label-md text-label-md">18</span>
-</button>
-</div>
-<button class="text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined">share</span>
-</button>
-</div>
-</article>
-<!-- Experience Post 2 -->
-<article class="bg-cloud-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 relative group">
-<div class="p-unit-md flex justify-between items-start">
-<div class="flex gap-unit-sm items-center">
-<img alt="User avatar" class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a male backpacker with a beard and sunglasses, leaning against a rustic stone wall in a sunlit European town, looking relaxed and adventurous." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAFMi8Uod-k6ABO6zqkzkReUCxo8BO6YK-Uff1QPynY5KYnbretLuUHrhAFXThRtIYe03K4WM_DFZfpZHYW--bjreLRiU9oVWsZIH9Q4C_REQH6aUZjUtoOCQSNZOEbUBo760nIt6TgQbRBhQTzmlKrTYirR5q9uIqixZME6J5R70MbLkbCCyuIT400tMmy2HKXkyYc6dCfaPd8hq9v-kTMc4X1njQQGNAokcQNJ_WylGpX-n27qPX"/>
-<div>
-<p class="font-label-md text-label-md text-on-surface">Marcus Chen</p>
-<div class="flex items-center gap-1 text-on-surface-variant text-label-sm font-label-sm">
-<span>Yesterday</span>
-<span>•</span>
-<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
-<span class="material-symbols-outlined text-[14px]">location_on</span> Amalfi Coast, Italy
-                                </a>
-</div>
-</div>
-</div>
-<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">more_horiz</span></button>
-</div>
-<div class="px-unit-md pb-unit-sm">
-<p class="font-body-md text-body-md text-on-surface mb-2">The coastal drive from Positano to Amalfi is just breathtaking. Every turn reveals another postcard view of pastel houses clinging to the cliffs above the azure sea.</p>
-</div>
-<div class="relative w-full aspect-video bg-surface-variant">
-<img class="w-full h-full object-cover" data-alt="A panoramic, sun-drenched shot of the Amalfi Coast in Italy. Pastel-colored houses cascade down steep cliffs into the deep blue Mediterranean sea. The scene is vibrant, luxurious, and evokes a strong sense of wanderlust under a clear summer sky." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACMGRluFFmESEwlrZA99wdc6ocw5O4JnXNvcuMk4zcgRwIqtcvAVf6SkfM2tyCh6gz13fZuwbtenSVJZAVy6ZD5Sdbvv_BCYHi-tToqMUqqUVHAAQZOq1u2x1R79nRNRCjSe2p-BX-pQ5ogVJAnU0Hom9Xg1zQxyHjl2GAVy_crpYsPCHTDhlbXBfBkg5Mw8ICKTetBrGlgyo3zBoGZ3v-RBpmXZsvMZNCXxXIH8I6XYE_6yPvN6ww"/>
-</div>
-<div class="p-unit-md flex justify-between items-center border-t border-surface-container">
-<div class="flex gap-unit-md">
-<button class="flex items-center gap-1 text-on-surface-variant hover:text-secondary transition-colors group">
-<span class="material-symbols-outlined group-hover:fill-current">favorite</span>
-<span class="font-label-md text-label-md">892</span>
-</button>
-<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined">chat_bubble</span>
-<span class="font-label-md text-label-md">45</span>
-</button>
-</div>
-<button class="text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined">share</span>
-</button>
-</div>
-</article>
 </div>
 </main>
 <!-- Create Post Modal -->
@@ -333,14 +265,14 @@
 </div>
 <!-- Inputs -->
 <div>
-<input class="w-full border-0 border-b border-tertiary-fixed-dim focus:ring-0 focus:border-primary bg-transparent text-title-lg font-title-lg px-0 py-2 placeholder:text-on-surface-variant/50" placeholder="Title your experience..." type="text"/>
+<input id="post-title" class="w-full border-0 border-b border-tertiary-fixed-dim focus:ring-0 focus:border-primary bg-transparent text-title-lg font-title-lg px-0 py-2 placeholder:text-on-surface-variant/50" placeholder="Title your experience..." type="text"/>
 </div>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-0 top-1/2 -translate-y-1/2 text-on-surface-variant">location_on</span>
-<input class="w-full pl-8 border-0 border-b border-tertiary-fixed-dim focus:ring-0 focus:border-primary bg-transparent font-body-md text-body-md py-2" placeholder="Add destination..." type="text"/>
+<input id="post-destination" class="w-full pl-8 border-0 border-b border-tertiary-fixed-dim focus:ring-0 focus:border-primary bg-transparent font-body-md text-body-md py-2" placeholder="Add destination..." type="text"/>
 </div>
 <div>
-<textarea class="w-full border border-tertiary-fixed-dim rounded-lg focus:ring-primary focus:border-primary p-3 font-body-md text-body-md resize-none" placeholder="Share the details of your adventure..." rows="4"></textarea>
+<textarea id="post-content" class="w-full border border-tertiary-fixed-dim rounded-lg focus:ring-primary focus:border-primary p-3 font-body-md text-body-md resize-none" placeholder="Share the details of your adventure..." rows="4"></textarea>
 </div>
 <!-- Image Upload Area -->
 <div class="border-2 border-dashed border-tertiary-fixed-dim rounded-xl p-8 flex flex-col items-center justify-center gap-2 hover:bg-surface transition-colors cursor-pointer group">
@@ -362,8 +294,166 @@
 <!-- Footer -->
 <div class="p-4 border-t border-surface-container flex justify-end gap-3 bg-surface-bright">
 <button class="px-4 py-2 font-label-md text-label-md text-primary border border-primary rounded-full hover:bg-primary-fixed/20 transition-colors" onclick="document.getElementById('createModal').classList.add('hidden')">Cancel</button>
-<button class="px-6 py-2 font-label-md text-label-md text-cloud-white bg-primary rounded-full hover:bg-deep-ocean transition-colors shadow-sm">Post Experience</button>
+<button id="post-submit-btn" class="px-6 py-2 font-label-md text-label-md text-cloud-white bg-primary rounded-full hover:bg-deep-ocean transition-colors shadow-sm">Post Experience</button>
 </div>
 </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const feedContainer = document.getElementById('feed-container');
+        const destTabs = document.querySelectorAll('.dest-tab');
+        const postSubmitBtn = document.getElementById('post-submit-btn');
+        const postDestination = document.getElementById('post-destination');
+        const postContent = document.getElementById('post-content');
+        const createModal = document.getElementById('createModal');
+        
+        let activeDest = 'all';
+
+        async function loadFeed() {
+            let url = 'http://127.0.0.1:8000/api/posts';
+            if (activeDest !== 'all') {
+                url += `?destination=${activeDest}`;
+            }
+            
+            try {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error();
+                const posts = await res.json();
+                renderFeed(posts);
+            } catch (e) {
+                feedContainer.innerHTML = `<p class="text-on-surface-variant text-center py-8">Failed to load community posts.</p>`;
+            }
+        }
+
+        function renderFeed(posts) {
+            feedContainer.innerHTML = '';
+            if (posts.length === 0) {
+                feedContainer.innerHTML = `<p class="text-on-surface-variant text-center py-8">No posts found for this destination. Be the first to share!</p>`;
+                return;
+            }
+
+            posts.forEach(post => {
+                const dateStr = new Date(post.created_at).toLocaleDateString('en-IN', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                });
+                
+                let postImg = "/goa_beach.jpg";
+                if (post.destination.toLowerCase().includes("delhi")) postImg = "/red_fort.jpg";
+                else if (post.destination.toLowerCase().includes("munnar")) postImg = "/munnar_tea.jpg";
+                else if (post.destination.toLowerCase().includes("agra")) postImg = "/rajasthani_feast.jpg";
+                else if (post.destination.toLowerCase().includes("kyoto")) postImg = "https://lh3.googleusercontent.com/aida-public/AB6AXuCCQPRx2U-6JoCm4VnQZkmiXNgZqoggNeMULK4OE48zuf_5zSittVJlnrZNP46yzHKI88oVIkD2P6exRLA8WswUcSRZDsNMjRNMzCj-LDhBwJScLIXpNe__xnhr5afyDrVreiZR4DdbYmNtHMxRNkD4PqN82wMjjdmcr1-dYCw3_wMZMI6XNQpDJ2ptWvsGnsge56A7Om75wMRKHuhGtucCJFznqt9hCz1Ea65meDUbFtsXRrX29McN";
+                else if (post.destination.toLowerCase().includes("amalfi")) postImg = "https://lh3.googleusercontent.com/aida-public/AB6AXuACMGRluFFmESEwlrZA99wdc6ocw5O4JnXNvcuMk4zcgRwIqtcvAVf6SkfM2tyCh6gz13fZuwbtenSVJZAVy6ZD5Sdbvv_BCYHi-tToqMUqqUVHAAQZOq1u2x1R79nRNRCjSe2p-BX-pQ5ogVJAnU0Hom9Xg1zQxyHjl2GAVy_crpYsPCHTDhlbXBfBkg5Mw8ICKTetBrGlgyo3zBoGZ3v-RBpmXZsvMZNCXxXIH8I6XYE_6yPvN6ww";
+
+                const article = document.createElement('article');
+                article.className = 'bg-cloud-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 relative group text-left';
+                article.innerHTML = `
+                    <div class="p-unit-md flex justify-between items-start">
+                        <div class="flex gap-unit-sm items-center">
+                            <img alt="User avatar" class="w-10 h-10 rounded-full object-cover" src="${post.user_avatar}"/>
+                            <div>
+                                <p class="font-label-md text-label-md text-on-surface font-semibold">${post.user_name}</p>
+                                <div class="flex items-center gap-1 text-on-surface-variant text-label-sm font-label-sm">
+                                    <span>${dateStr}</span>
+                                    <span>•</span>
+                                    <a class="hover:text-primary transition-colors flex items-center gap-1 font-semibold" href="#">
+                                        <span class="material-symbols-outlined text-[14px]">location_on</span> ${post.destination}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">more_horiz</span></button>
+                    </div>
+                    <div class="px-unit-md pb-unit-sm">
+                        <p class="font-body-md text-body-md text-on-surface mb-2">${post.content}</p>
+                    </div>
+                    <div class="relative w-full aspect-[4/3] bg-surface-variant">
+                        <img class="w-full h-full object-cover" src="${postImg}"/>
+                    </div>
+                    <div class="p-unit-md flex justify-between items-center border-t border-surface-container">
+                        <div class="flex gap-unit-md">
+                            <button class="flex items-center gap-1 text-on-surface-variant hover:text-secondary transition-colors group">
+                                <span class="material-symbols-outlined group-hover:fill-current">favorite</span>
+                                <span class="font-label-md text-label-md">${post.likes || 0}</span>
+                            </button>
+                            <button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined">chat_bubble</span>
+                                <span class="font-label-md text-label-md">0</span>
+                            </button>
+                        </div>
+                        <button class="text-on-surface-variant hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined">share</span>
+                        </button>
+                    </div>
+                `;
+                feedContainer.appendChild(article);
+            });
+        }
+
+        destTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                destTabs.forEach(t => {
+                    t.classList.remove('bg-primary', 'text-cloud-white');
+                    t.classList.add('bg-cloud-white', 'border', 'border-outline-variant', 'text-primary');
+                });
+                tab.classList.remove('bg-cloud-white', 'border', 'border-outline-variant', 'text-primary');
+                tab.classList.add('bg-primary', 'text-cloud-white');
+                
+                activeDest = tab.getAttribute('data-dest');
+                loadFeed();
+            });
+        });
+
+        postSubmitBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const dest = postDestination.value.trim();
+            const content = postContent.value.trim();
+
+            if (!dest || !content) {
+                alert("Please fill in both the destination and description fields.");
+                return;
+            }
+
+            const user = JSON.parse(localStorage.getItem('user') || 'null');
+            const token = localStorage.getItem('access_token');
+            if (!user || !token) {
+                alert("You must be logged in to post.");
+                return;
+            }
+
+            postSubmitBtn.disabled = true;
+            postSubmitBtn.textContent = 'Posting...';
+
+            try {
+                const res = await fetch('http://127.0.0.1:8000/api/posts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ destination: dest, content: content })
+                });
+
+                if (!res.ok) throw new Error("Failed to post");
+                
+                postDestination.value = '';
+                postContent.value = '';
+                const postTitleInput = document.getElementById('post-title');
+                if (postTitleInput) postTitleInput.value = '';
+                
+                createModal.classList.add('hidden');
+                
+                loadFeed();
+            } catch (err) {
+                alert("Error sharing experience. Make sure backend is running.");
+            } finally {
+                postSubmitBtn.disabled = false;
+                postSubmitBtn.textContent = 'Post Experience';
+            }
+        });
+
+        loadFeed();
+    });
+</script>
 </body></html>

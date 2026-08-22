@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html class="light" lang="en"><head>
+<script src="/mock-api.js"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Activity Search - GlobeTrotter</title>
@@ -125,9 +126,9 @@
 <span>GlobeTrotter</span>
 </div>
 <nav class="hidden md:flex gap-6">
-<a class="text-primary border-b-2 border-secondary font-bold pb-1 font-label-md text-label-md hover:text-secondary transition-colors duration-200" href="#">Discover</a>
-<a class="text-on-surface-variant font-label-md text-label-md hover:text-secondary transition-colors duration-200" href="#">My Trips</a>
-<a class="text-on-surface-variant font-label-md text-label-md hover:text-secondary transition-colors duration-200" href="#">Community</a>
+<a class="text-primary border-b-2 border-secondary font-bold pb-1 font-label-md text-label-md hover:text-secondary transition-colors duration-200" href="/explore">Discover</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-secondary transition-colors duration-200" href="/my-journeys">My Trips</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-secondary transition-colors duration-200" href="/community">Community</a>
 <a class="text-on-surface-variant font-label-md text-label-md hover:text-secondary transition-colors duration-200" href="#">Calendar</a>
 </nav>
 <div class="flex items-center gap-4">
@@ -175,10 +176,10 @@
 <div class="relative min-w-[120px]">
 <select class="w-full appearance-none border border-tertiary rounded-lg bg-cloud-white px-4 py-3 pr-10 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary cursor-pointer">
 <option value="">Price</option>
-<option value="1">$</option>
-<option value="2">$$</option>
-<option value="3">$$$</option>
-<option value="4">$$$$</option>
+<option value="1">₹</option>
+<option value="2">₹₹</option>
+<option value="3">₹₹₹</option>
+<option value="4">₹₹₹₹</option>
 </select>
 <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="expand_more">expand_more</span>
 </div>
@@ -225,7 +226,7 @@
 <div class="mt-auto flex justify-between items-center pt-unit-sm border-t border-surface-variant">
 <div class="flex flex-col">
 <span class="font-label-sm text-label-sm text-on-surface-variant">Est. Cost</span>
-<span class="font-label-md text-label-md font-bold text-primary">$$$</span>
+<span class="font-label-md text-label-md font-bold text-primary">₹₹₹</span>
 </div>
 <button class="text-secondary font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1">
                             View Details <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
@@ -253,7 +254,7 @@
 <div class="mt-auto flex justify-between items-center pt-unit-sm border-t border-surface-variant">
 <div class="flex flex-col">
 <span class="font-label-sm text-label-sm text-on-surface-variant">Est. Cost</span>
-<span class="font-label-md text-label-md font-bold text-primary">$</span>
+<span class="font-label-md text-label-md font-bold text-primary">₹</span>
 </div>
 <button class="text-secondary font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1">
                             View Details <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
@@ -281,7 +282,7 @@
 <div class="mt-auto flex justify-between items-center pt-unit-sm border-t border-surface-variant">
 <div class="flex flex-col">
 <span class="font-label-sm text-label-sm text-on-surface-variant">Est. Cost</span>
-<span class="font-label-md text-label-md font-bold text-primary">$$</span>
+<span class="font-label-md text-label-md font-bold text-primary">₹₹</span>
 </div>
 <button class="text-secondary font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1">
                             View Details <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
@@ -309,7 +310,7 @@
 <div class="mt-auto flex justify-between items-center pt-unit-sm border-t border-surface-variant">
 <div class="flex flex-col">
 <span class="font-label-sm text-label-sm text-on-surface-variant">Est. Cost</span>
-<span class="font-label-md text-label-md font-bold text-primary">$$$$</span>
+<span class="font-label-md text-label-md font-bold text-primary">₹₹₹₹</span>
 </div>
 <button class="text-secondary font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1">
                             View Details <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
