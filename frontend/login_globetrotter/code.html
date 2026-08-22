@@ -180,7 +180,7 @@
 <div class="text-center mt-unit-sm">
 <p class="font-body-md text-body-md text-on-surface-variant">
                     Don't have an account? 
-                    <a class="font-label-md text-label-md text-primary hover:text-secondary transition-colors ml-1" href="#">Register</a>
+                    <a class="font-label-md text-label-md text-primary hover:text-secondary transition-colors ml-1" href="/register">Register</a>
 </p>
 </div>
 </div>
@@ -211,7 +211,7 @@
                 visibilityIcon.setAttribute('data-icon', type === 'password' ? 'visibility' : 'visibility_off');
             });
 
-            // Simulate Form Submission
+            // Real Form Submission
             loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 
@@ -224,28 +224,58 @@
                 submitBtn.disabled = true;
                 submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
 
-                // Simulate API call
-                setTimeout(() => {
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                fetch('http://localhost:8000/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(err => { throw new Error(err.detail || 'Invalid email or password') });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Login success
+                    localStorage.setItem('access_token', data.access_token);
+                    
+                    // Fetch user info
+                    return fetch('http://localhost:8000/api/auth/me', {
+                        headers: {
+                            'Authorization': `Bearer ${data.access_token}`
+                        }
+                    });
+                })
+                .then(response => {
+                    if (response && response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Could not validate user credentials after login.');
+                })
+                .then(user => {
+                    localStorage.setItem('user', JSON.stringify(user));
+                    showToast('Login successful! Redirecting...', 'success');
+                    setTimeout(() => {
+                        window.location.href = '/my-journeys';
+                    }, 1000);
+                })
+                .catch(err => {
                     // Reset loading state
                     btnText.textContent = 'Sign In';
                     loadingIcon.classList.add('hidden');
                     submitBtn.disabled = false;
                     submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
 
-                    // Simulate error for demonstration
-                    const isError = Math.random() > 0.5;
-
-                    if (isError) {
-                        // Show inline error
-                        errorMessage.classList.remove('hidden');
-                        
-                        // Show toast
-                        showToast('Unable to connect to the server. Please try again later.');
-                    } else {
-                        // Success (in a real app, you'd redirect)
-                        showToast('Login successful! Redirecting...', 'success');
-                    }
-                }, 1500);
+                    // Show inline error
+                    errorMessage.querySelector('span:last-child').textContent = err.message || 'Invalid email or password.';
+                    errorMessage.classList.remove('hidden');
+                    showToast(err.message || 'Unable to connect to the server. Please try again later.');
+                });
             });
 
             function showToast(message, type = 'error') {

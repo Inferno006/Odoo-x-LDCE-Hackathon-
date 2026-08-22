@@ -129,24 +129,24 @@
 </head>
 <body class="bg-background text-on-background min-h-screen flex flex-col">
 <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 max-w-container-max mx-auto bg-cloud-white/70 backdrop-blur-md shadow-sm">
-<div class="font-display-lg text-title-lg font-bold text-primary">
+<div class="font-display-lg text-title-lg font-bold text-primary cursor-pointer" onclick="window.location.href='/'">
             GlobeTrotter
         </div>
 <div class="hidden md:flex items-center gap-gutter">
-<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors duration-200 scale-95 active:scale-90 transition-transform" href="#">Discover</a>
-<a class="font-label-md text-label-md text-primary border-b-2 border-secondary font-bold pb-1 scale-95 active:scale-90 transition-transform" href="#">My Trips</a>
-<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors duration-200 scale-95 active:scale-90 transition-transform" href="#">Community</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors duration-200 scale-95 active:scale-90 transition-transform" href="/">Discover</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-secondary font-bold pb-1 scale-95 active:scale-90 transition-transform" href="/my-journeys">My Trips</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors duration-200 scale-95 active:scale-90 transition-transform" href="/community">Community</a>
 <a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors duration-200 scale-95 active:scale-90 transition-transform" href="#">Calendar</a>
 </div>
 <div class="flex items-center gap-unit-md">
-<button class="font-label-md text-label-md bg-primary text-cloud-white px-4 py-2 rounded-full hover:bg-primary-container transition-colors">
+<button onclick="window.location.href='/plan-trip'" class="font-label-md text-label-md bg-primary text-cloud-white px-4 py-2 rounded-full hover:bg-primary-container transition-colors">
                 Create Trip
             </button>
 <div class="flex items-center gap-unit-sm text-primary">
 <span class="material-symbols-outlined cursor-pointer hover:text-secondary transition-colors" data-icon="notifications">notifications</span>
 <span class="material-symbols-outlined cursor-pointer hover:text-secondary transition-colors" data-icon="settings">settings</span>
 </div>
-<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant cursor-pointer" onclick="window.location.href='/profile'">
 <img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A portrait photograph of a young professional user in a bright, modern setting, wearing casual chic travel attire, smiling slightly. The lighting is soft and natural, emphasizing a clean, premium lifestyle aesthetic consistent with luxury travel branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC14MUNXzEw3AImwrRDdXcFRf0BGiVj8Eubg8BRp0SE4F_3YnnqBy0FFAWI4C7O8aMXcBqYObh3hbUwZDT9v3epCADTY0h8Ppa3xedcep03FQFr5srvLCMBvU98Vd02Tf_gWH4up5r9vZ-noau7Diob-TSAhswmaypCKTbG4dblNyG2pg43PytiT3bRtAaBrcPrCEux_kPYlg60lRL7TvchdSs8To_jbsgQjgOV37KeewhBmvy91MpP"/>
 </div>
 </div>
@@ -157,7 +157,7 @@
 <h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-unit-xs">My Trips</h1>
 <p class="font-body-md text-body-md text-on-surface-variant">Manage your upcoming adventures and past memories.</p>
 </div>
-<button class="bg-secondary text-on-secondary font-label-md text-label-md px-6 py-3 rounded-full hover:bg-on-secondary-fixed-variant transition-colors shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-md flex items-center gap-2">
+<button onclick="window.location.href='/plan-trip'" class="bg-secondary text-on-secondary font-label-md text-label-md px-6 py-3 rounded-full hover:bg-on-secondary-fixed-variant transition-colors shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-md flex items-center gap-2">
 <span class="material-symbols-outlined" data-icon="add">add</span>
                 Plan a New Trip
             </button>
@@ -193,39 +193,8 @@
 <span class="material-symbols-outlined text-surface-tint" data-icon="flight_takeoff">flight_takeoff</span>
                     Ongoing
                 </h2>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-<article class="group relative bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full border border-surface-container-high">
-<div class="relative h-64 w-full">
-<div class="absolute inset-0 bg-cover bg-center w-full h-full transition-transform duration-500 group-hover:scale-105" data-alt="A breathtaking, high-resolution landscape photograph of the Swiss Alps in summer. Lush green valleys contrast with jagged, snow-capped peaks under a brilliant blue sky. The lighting is crisp and bright, establishing a premium, vibrant aesthetic perfect for a luxury travel brand's inspiring itinerary cover photo." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAhyLGI1wuxediPFeJsxbyG8Bj7wZX74oj9J_O_PwSX44XzdHEuksDBNZ1fssl50Qb2IQ2WhO1vFlTHQHGOAvrn5fiigWV73G7ZQv0dcXRxXlbNQ9uLodWyRsEAC4sT180IJEgWA9oVYOlFT6-m3KPHuU8IgYjcHyq_QbhPZCV2zSO8zDg18GwsLXwMLCw-shJkxuXCkmgziVh480mLiM47MTswbIIg6ClW2C99XPB-azMUvaja-SGX')"></div>
-<div class="absolute inset-0 bg-gradient-to-t from-deep-ocean/80 via-deep-ocean/20 to-transparent"></div>
-<div class="absolute top-4 right-4 bg-cloud-white/80 backdrop-blur-md rounded-lg px-3 py-1 font-label-sm text-label-sm text-primary shadow-sm flex items-center gap-1">
-<span class="w-2 h-2 rounded-full bg-surface-tint animate-pulse"></span>
-                                In Progress
-                            </div>
-<div class="absolute bottom-4 left-4 right-4 text-cloud-white">
-<h3 class="font-title-lg text-title-lg mb-1 drop-shadow-md">Alpine Expedition</h3>
-<p class="font-body-md text-body-md text-cloud-white/90 flex items-center gap-1">
-<span class="material-symbols-outlined text-[16px]" data-icon="calendar_month">calendar_month</span>
-                                    Oct 12 - Oct 20, 2024
-                                </p>
-</div>
-</div>
-<div class="p-unit-md flex-grow flex flex-col justify-between bg-surface-container-lowest">
-<div class="flex flex-wrap gap-2 mb-4">
-<span class="bg-tertiary-fixed text-primary px-2 py-1 rounded font-label-sm text-label-sm">Hiking</span>
-<span class="bg-tertiary-fixed text-primary px-2 py-1 rounded font-label-sm text-label-sm">Nature</span>
-</div>
-<div class="flex justify-between items-center mt-auto border-t border-surface-container pt-4">
-<span class="font-label-md text-label-md text-surface-tint flex items-center gap-1">
-<span class="material-symbols-outlined text-[18px]" data-icon="location_on">location_on</span>
-                                    Interlaken, CH
-                                </span>
-<button class="font-label-md text-label-md text-primary hover:text-secondary transition-colors flex items-center gap-1">
-                                    View Details <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
-</button>
-</div>
-</div>
-</article>
+<div id="ongoing-trips-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Dynamic Ongoing Trips loaded here -->
 </div>
 </section>
 <section>
@@ -233,55 +202,8 @@
 <span class="material-symbols-outlined text-outline" data-icon="schedule">schedule</span>
                     Upcoming
                 </h2>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-<article class="group relative bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full border border-surface-container-high">
-<div class="relative h-48 w-full">
-<div class="absolute inset-0 bg-cover bg-center w-full h-full transition-transform duration-500 group-hover:scale-105" data-alt="A pristine, sun-drenched coastal scene of the Amalfi Coast, Italy. Pastel-colored buildings cascade down steep cliffs toward the sparkling azure Mediterranean sea. The image is captured with high clarity and vibrant but natural colors, conveying a sense of relaxed luxury and premium Mediterranean summer vacation." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCb5XoOPkTbk4MA-Y2vd0AY_Jx0KuvEERYN85C5dNft3tSyiU7bdwGaF58pERQHLxYyPbFrpDquznDQdAtke2PBDZwxL0Pmmq5mT_KrYKhC59lY3Fo2r-YsZ8bRpobMvLeRobe0J7FGqRbMpahNiotg6Bc-GhVhUSB6RYUaDQQIhKcaZbe07xx4Wic1bwQT3miOGsW6OQTmUr2p55Mag0eFdZlJoML1X2R9ljQZ4fN_c8VjMcEqsNLq')"></div>
-<div class="absolute inset-0 bg-gradient-to-t from-deep-ocean/70 to-transparent"></div>
-<div class="absolute top-4 right-4 bg-cloud-white/80 backdrop-blur-md rounded-lg px-3 py-1 font-label-sm text-label-sm text-on-surface-variant shadow-sm">
-                                In 3 Weeks
-                            </div>
-<div class="absolute bottom-4 left-4 right-4 text-cloud-white">
-<h3 class="font-title-lg text-title-lg mb-1 drop-shadow-md">Amalfi Coastal Retreat</h3>
-<p class="font-body-md text-body-md text-cloud-white/90">Nov 05 - Nov 12, 2024</p>
-</div>
-</div>
-<div class="p-unit-md flex-grow flex flex-col justify-between bg-surface-container-lowest">
-<div class="flex justify-between items-center mt-auto">
-<div class="flex -space-x-2">
-<img class="w-8 h-8 rounded-full border-2 border-cloud-white object-cover" data-alt="A tiny headshot of a smiling travel companion, casually dressed, bright lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkW1tl3lLpyU7OSGYxXisJhBJb8djatF4LrphXgoiMW0WVnSiG_QnMNmDR1nIeWrTXFSE-A2kf5FOZ6ub7kNfcBvUJYQAn2ggEhbzliN4wkQIY4IXW2TFS36fKfabFQfrNsx85Pah-si4txLmE-8wa-8Bdt_r8on-X-Akbe1sYcgILNMlvihqnLRQWZYVfBlwBg61Y3d4XMV2xKgfu2PoURoTJld9_3F4FIxixx7EJ9RYDYbcnKbms"/>
-<img class="w-8 h-8 rounded-full border-2 border-cloud-white object-cover" data-alt="A tiny headshot of another travel companion, wearing sunglasses, bright lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqoiQhUEld9wVlJO2xyThq2z2XgSPZGzEfBt7aHWKp3o9Rr2PNcVq8u7k8nxHjpZAWnALpPmq8zOXJ-AO8X0OmShh0Rd70gyZuRi9ZLDmFkU6XNlbvj1QSnI9UxEi1E2_EyWBRWlOfirChxXLFCegTB81Rqu61SoilCZkUo2lOd_mC92hFnuhTdzxsVFv4cEsBwERDaWKgaTSMwqdxF6b4CmkB0Eg9UnVtHYjA4I-s0-6Kvj9GEXwc"/>
-<div class="w-8 h-8 rounded-full border-2 border-cloud-white bg-surface-variant flex items-center justify-center font-label-sm text-label-sm text-on-surface-variant">+1</div>
-</div>
-<button class="font-label-md text-label-md text-primary border border-primary px-4 py-2 rounded hover:bg-primary-fixed transition-colors">
-                                    Manage
-                                </button>
-</div>
-</div>
-</article>
-<article class="group relative bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full border border-surface-container-high">
-<div class="relative h-48 w-full">
-<div class="absolute inset-0 bg-cover bg-center w-full h-full transition-transform duration-500 group-hover:scale-105" data-alt="A serene, minimalist photograph of a traditional Japanese rock garden in Kyoto during early autumn. A few red maple leaves contrast against carefully raked white gravel and ancient stones. The lighting is soft and diffused, creating a peaceful, contemplative atmosphere suitable for a luxury wellness retreat." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAR_m8Jv2bDdt4bDfzlNR__-q0yh4dOL7gQ1DB2C91t2t96PTpqdaRjuJEk0wJfruphmFWXp3pK_OAr7RubpSvJ0McUhsNpU-e3IP1XMRZeA3q4T4sLiikB6UKQ5ZSFhQ4Wy39Xx5Oa2zIg1JvdEgbVETwWfrijZwewNo7lfY_zryQS5hkGEI5HESxYCnMeRiWyWxQiMb5F8htK-I93LhAoOlKt4wocV5J_WxMvnRknnve8Oua-vhVw')"></div>
-<div class="absolute inset-0 bg-gradient-to-t from-deep-ocean/70 to-transparent"></div>
-<div class="absolute top-4 right-4 bg-cloud-white/80 backdrop-blur-md rounded-lg px-3 py-1 font-label-sm text-label-sm text-on-surface-variant shadow-sm">
-                                In 2 Months
-                            </div>
-<div class="absolute bottom-4 left-4 right-4 text-cloud-white">
-<h3 class="font-title-lg text-title-lg mb-1 drop-shadow-md">Kyoto Zen Awakening</h3>
-<p class="font-body-md text-body-md text-cloud-white/90">Dec 14 - Dec 21, 2024</p>
-</div>
-</div>
-<div class="p-unit-md flex-grow flex flex-col justify-between bg-surface-container-lowest">
-<div class="flex justify-between items-center mt-auto">
-<span class="font-label-md text-label-md text-outline-variant flex items-center gap-1">
-                                    Solo Trip
-                                </span>
-<button class="font-label-md text-label-md text-primary border border-primary px-4 py-2 rounded hover:bg-primary-fixed transition-colors">
-                                    Manage
-                                </button>
-</div>
-</div>
-</article>
+<div id="upcoming-trips-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Dynamic Upcoming Trips loaded here -->
 </div>
 </section>
 </div>
@@ -303,4 +225,153 @@
             </div>
 </div>
 </footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('access_token');
+    const user = JSON.parse(localStorage.getItem('user') || 'null');
+
+    // If logged in, update profile avatar in navbar
+    if (user) {
+        const avatar = document.querySelector('nav img');
+        if (avatar) {
+            avatar.src = user.avatar_url || avatar.src;
+            avatar.classList.add('cursor-pointer');
+            avatar.addEventListener('click', () => { window.location.href = '/profile'; });
+        }
+    }
+
+    const ongoingContainer = document.getElementById('ongoing-trips-container');
+    const upcomingContainer = document.getElementById('upcoming-trips-container');
+
+    // Fetch trips
+    const userIdParam = user ? `?user_id=${user.id}` : '';
+    fetch(`http://localhost:8000/api/trips${userIdParam}`)
+        .then(response => response.json())
+        .then(trips => {
+            // Clear containers
+            ongoingContainer.innerHTML = '';
+            upcomingContainer.innerHTML = '';
+
+            if (trips.length === 0) {
+                ongoingContainer.innerHTML = '<p class="text-on-surface-variant col-span-3 text-center py-8">No journeys planned yet. Click "Plan a New Trip" to start!</p>';
+                upcomingContainer.parentNode.style.display = 'none'; // hide upcoming section header
+                return;
+            }
+
+            const today = new Date();
+
+            trips.forEach(trip => {
+                // Calculate dates
+                let startDateStr = 'TBD';
+                let endDateStr = 'TBD';
+                let isOngoing = false;
+                let dateLabel = 'Upcoming';
+
+                if (trip.stops && trip.stops.length > 0) {
+                    let minDate = null;
+                    let maxDate = null;
+                    trip.stops.forEach(stop => {
+                        const sD = new Date(stop.start_date);
+                        const eD = new Date(stop.end_date);
+                        if (!minDate || sD < minDate) minDate = sD;
+                        if (!maxDate || eD > maxDate) maxDate = eD;
+                    });
+
+                    if (minDate && maxDate) {
+                        startDateStr = minDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                        endDateStr = maxDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                        
+                        if (today >= minDate && today <= maxDate) {
+                            isOngoing = true;
+                            dateLabel = 'In Progress';
+                        } else if (today < minDate) {
+                            const diffTime = Math.abs(minDate - today);
+                            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                            if (diffDays <= 7) {
+                                dateLabel = 'In 1 Week';
+                            } else {
+                                dateLabel = `In ${Math.ceil(diffDays / 7)} Weeks`;
+                            }
+                        } else {
+                            dateLabel = 'Completed';
+                        }
+                    }
+                }
+
+                // Get destination city name
+                const destination = trip.stops && trip.stops.length > 0 ? trip.stops[0].city : 'Travel';
+                
+                // Collect category tags
+                const tagsSet = new Set();
+                trip.stops.forEach(stop => {
+                    stop.activities.forEach(act => {
+                        if (act.category) {
+                            tagsSet.add(act.category.charAt(0).toUpperCase() + act.category.slice(1));
+                        }
+                    });
+                });
+                const tags = Array.from(tagsSet).slice(0, 2);
+                if (tags.length === 0) tags.push('Adventure', 'Leisure');
+
+                // Build card HTML
+                const card = document.createElement('article');
+                card.className = 'group relative bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full border border-surface-container-high cursor-pointer';
+                card.addEventListener('click', () => {
+                    window.location.href = `/itinerary-budget?trip_id=${trip.id}`;
+                });
+
+                card.innerHTML = `
+                    <div class="relative h-64 w-full">
+                        <div class="absolute inset-0 bg-cover bg-center w-full h-full transition-transform duration-500 group-hover:scale-105" style="background-image: url('${trip.cover_image || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800'}')"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-deep-ocean/80 via-deep-ocean/20 to-transparent"></div>
+                        <div class="absolute top-4 right-4 bg-cloud-white/80 backdrop-blur-md rounded-lg px-3 py-1 font-label-sm text-label-sm ${isOngoing ? 'text-primary' : 'text-on-surface-variant'} shadow-sm flex items-center gap-1">
+                            ${isOngoing ? '<span class="w-2 h-2 rounded-full bg-surface-tint animate-pulse"></span>' : ''}
+                            ${dateLabel}
+                        </div>
+                        <div class="absolute bottom-4 left-4 right-4 text-cloud-white">
+                            <h3 class="font-title-lg text-title-lg mb-1 drop-shadow-md">${trip.title}</h3>
+                            <p class="font-body-md text-body-md text-cloud-white/90 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">calendar_month</span>
+                                ${startDateStr} - ${endDateStr}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-unit-md flex-grow flex flex-col justify-between bg-surface-container-lowest">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            ${tags.map(t => `<span class="bg-tertiary-fixed text-primary px-2 py-1 rounded font-label-sm text-label-sm">${t}</span>`).join('')}
+                        </div>
+                        <div class="flex justify-between items-center mt-auto border-t border-surface-container pt-4">
+                            <span class="font-label-md text-label-md text-surface-tint flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[18px]">location_on</span>
+                                ${destination}
+                            </span>
+                            <button class="font-label-md text-label-md text-primary hover:text-secondary transition-colors flex items-center gap-1">
+                                Manage <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                if (isOngoing) {
+                    ongoingContainer.appendChild(card);
+                } else {
+                    upcomingContainer.appendChild(card);
+                }
+            });
+
+            // If no ongoing trips, show placeholder
+            if (ongoingContainer.children.length === 0) {
+                ongoingContainer.innerHTML = '<p class="text-on-surface-variant col-span-3 text-center py-4">No ongoing trips currently.</p>';
+            }
+            // If no upcoming trips, hide the section
+            if (upcomingContainer.children.length === 0) {
+                upcomingContainer.parentNode.style.display = 'none';
+            }
+        })
+        .catch(err => {
+            console.error('Error fetching trips:', err);
+            ongoingContainer.innerHTML = '<p class="text-error col-span-3 text-center py-8">Failed to fetch journeys. Please try logging in again.</p>';
+        });
+});
+</script>
 </body></html>

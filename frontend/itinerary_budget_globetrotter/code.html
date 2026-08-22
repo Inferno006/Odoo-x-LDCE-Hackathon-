@@ -136,14 +136,14 @@
 <!-- TopNavBar (Shared Component) -->
 <nav aria-label="Main Navigation" class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 max-w-container-max mx-auto bg-cloud-white/70 backdrop-blur-md dark:bg-primary/70 shadow-sm">
 <!-- Brand Logo -->
-<a class="font-display-lg text-title-lg font-bold text-primary dark:text-primary-fixed-dim shrink-0" href="#">
+<a class="font-display-lg text-title-lg font-bold text-primary dark:text-primary-fixed-dim shrink-0" href="/">
             GlobeTrotter
         </a>
 <!-- Navigation Links (Web) -->
 <ul class="hidden md:flex gap-gutter items-center">
-<li><a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-200" href="#">Discover</a></li>
-<li><a aria-current="page" class="font-label-md text-label-md text-primary dark:text-primary-fixed-dim border-b-2 border-secondary font-bold pb-1" href="#">My Trips</a></li>
-<li><a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-200" href="#">Community</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-200" href="/">Discover</a></li>
+<li><a aria-current="page" class="font-label-md text-label-md text-primary dark:text-primary-fixed-dim border-b-2 border-secondary font-bold pb-1" href="/my-journeys">My Trips</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-200" href="/community">Community</a></li>
 <li><a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-200" href="#">Calendar</a></li>
 </ul>
 <!-- Trailing Actions -->
@@ -156,11 +156,11 @@
 <span class="material-symbols-outlined">settings</span>
 </button>
 <!-- Primary Action -->
-<button class="hidden md:block bg-primary text-on-primary rounded-full px-unit-md py-unit-sm font-label-md text-label-md hover:bg-primary-container transition-colors scale-95 active:scale-90 transition-transform">
+<button onclick="window.location.href='/plan-trip'" class="hidden md:block bg-primary text-on-primary rounded-full px-unit-md py-unit-sm font-label-md text-label-md hover:bg-primary-container transition-colors scale-95 active:scale-90 transition-transform">
                 Create Trip
             </button>
 <!-- Profile Avatar -->
-<button class="shrink-0 scale-95 active:scale-90 transition-transform">
+<button onclick="window.location.href='/profile'" class="shrink-0 scale-95 active:scale-90 transition-transform">
 <img alt="User profile avatar" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A small, circular profile picture of a young professional smiling against a clean, light studio background, high quality, well lit." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNFPO1f0fCDF5Y1-ZBZUll7lErGHBqvqOEKD5K13EQnjgA40eCeZqFg25YOMttUJRyNUr8tHco61gM-zaw5rrQx9QJWlsfC-4qZnZlXGjFVOQYHX9WFaKF3VIfSydVTwy6DnKE5KjxNuHqGSOYFFFeNmTQgjnKjdHiQByp0htnus7lJW_OGWG1d6Jskn-rPgbQyru-IO0-Civ-gHpnKtcTSiiIwE1G5G4VaeBOthunruTivGuCoHvw"/>
 </button>
 </div>
@@ -171,17 +171,17 @@
 <header class="mb-unit-xl">
 <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-unit-md">
 <div>
-<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-unit-xs">Parisian Escape</h1>
+<h1 id="trip-title" class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-unit-xs">Parisian Escape</h1>
 <div class="flex flex-wrap items-center gap-unit-sm text-on-surface-variant font-body-md text-body-md">
-<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">location_on</span> Paris, France</span>
+<span id="trip-location" class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">location_on</span> Paris, France</span>
 <span class="hidden md:inline text-tertiary-fixed-dim">•</span>
-<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">calendar_month</span> Oct 12 - Oct 18, 2024</span>
+<span id="trip-dates" class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">calendar_month</span> Oct 12 - Oct 18, 2024</span>
 </div>
 </div>
 <div class="flex items-center gap-unit-md">
 <div class="bg-surface-container-low px-4 py-2 rounded-lg border border-outline-variant flex items-center gap-2">
 <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Share Code</span>
-<span class="font-label-md text-label-md text-primary tracking-widest">PAR24X</span>
+<span id="trip-share-code" class="font-label-md text-label-md text-primary tracking-widest">PAR24X</span>
 <button class="text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">content_copy</span></button>
 </div>
 </div>
@@ -193,28 +193,12 @@
 <section class="w-full lg:w-[60%] flex flex-col gap-unit-lg">
 <div class="flex justify-between items-center mb-unit-sm">
 <h2 class="font-headline-md text-headline-md text-primary">Itinerary</h2>
-<button class="font-label-md text-label-md text-secondary hover:text-primary transition-colors flex items-center gap-1">
+<button id="edit-itinerary-btn" class="font-label-md text-label-md text-secondary hover:text-primary transition-colors flex items-center gap-1">
 <span class="material-symbols-outlined text-[18px]">edit</span> Edit
                     </button>
 </div>
-<!-- Day 1 -->
-<div class="relative timeline-item z-10">
-<h3 class="font-title-lg text-title-lg text-primary mb-unit-md pl-12">Day 1: Arrival &amp; Exploration</h3>
-<div class="timeline-line relative flex gap-unit-md mb-unit-md">
-<div class="w-12 h-12 shrink-0 rounded-full bg-primary-fixed flex items-center justify-center text-primary z-10 shadow-sm border-2 border-cloud-white">
-<span class="material-symbols-outlined">flight_land</span>
-</div>
-<div class="bg-cloud-white rounded-xl p-unit-md soft-shadow w-full border border-surface-variant hover-lift">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-title-lg text-title-lg text-primary text-lg">Charles de Gaulle Arrival</h4>
-<span class="font-label-sm text-label-sm bg-tertiary text-cloud-white px-2 py-1 rounded">10:00 AM</span>
-</div>
-<p class="font-body-md text-body-md text-on-surface-variant mb-3">Transfer to hotel via pre-booked private car.</p>
-<div class="flex gap-2">
-<span class="bg-tertiary-fixed text-primary px-2 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">directions_car</span> Transport</span>
-</div>
-</div>
-</div>
+<div id="itinerary-timeline" class="flex flex-col gap-unit-md">
+<!-- Stops and activities dynamic list loaded here -->
 </div>
 </section>
 <!-- Right Column: Budget Analysis (40%) -->
@@ -225,34 +209,14 @@
 <!-- Total Summary -->
 <div class="text-center mb-unit-lg pb-unit-md border-b border-surface-variant">
 <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Total Budget</p>
-<div class="font-display-lg text-display-lg text-primary leading-none">$4,500</div>
-<p class="font-body-md text-body-md text-secondary mt-2 flex items-center justify-center gap-1">
-<span class="material-symbols-outlined text-[18px]">account_balance_wallet</span> $3,250 Spent (72%)
+<div id="budget-total" class="font-display-lg text-display-lg text-primary leading-none">$0</div>
+<p id="budget-spent-summary" class="font-body-md text-body-md text-secondary mt-2 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[18px]">account_balance_wallet</span> $0 Spent (0%)
                             </p>
 </div>
 <!-- Category Progress Bars -->
-<div class="flex flex-col gap-unit-md">
-<!-- Accommodation -->
-<div>
-<div class="flex justify-between font-label-md text-label-md mb-1">
-<span class="text-primary flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">hotel</span> Accommodation</span>
-<span class="text-on-surface-variant">$1,500 / $1,500</span>
-</div>
-<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
-<div class="bg-primary h-full" style="width: 100%"></div>
-</div>
-</div>
-<!-- Food (Alert State) -->
-<div>
-<div class="flex justify-between font-label-md text-label-md mb-1">
-<span class="text-error flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">restaurant</span> Food &amp; Dining</span>
-<span class="text-error font-bold">$950 / $800</span>
-</div>
-<div class="w-full bg-error-container h-2 rounded-full overflow-hidden">
-<div class="bg-error h-full" style="width: 100%"></div>
-</div>
-<p class="font-label-sm text-label-sm text-error mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">warning</span> Exceeded by $150</p>
-</div>
+<div id="budget-categories-container" class="flex flex-col gap-unit-md">
+<!-- Dynamic progress bars populated here -->
 </div>
 <div class="mt-unit-lg pt-unit-md border-t border-surface-variant text-center">
 <button class="w-full bg-secondary text-on-secondary rounded-full px-unit-md py-3 font-label-md text-label-md hover:bg-secondary-container transition-colors shadow-sm">
@@ -280,4 +244,235 @@
             © 2024 GlobeTrotter Luxury Travel. All rights reserved.
         </div>
 </footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Navbar profile photo update if logged in
+    const user = JSON.parse(localStorage.getItem('user') || 'null');
+    if (user) {
+        const avatar = document.querySelector('nav img');
+        if (avatar) {
+            avatar.src = user.avatar_url || avatar.src;
+            avatar.parentElement.classList.add('cursor-pointer');
+            avatar.parentElement.addEventListener('click', () => { window.location.href = '/profile'; });
+        }
+    }
+
+    // Extract trip_id from query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const tripId = urlParams.get('trip_id');
+
+    if (!tripId) {
+        alert('No Trip ID provided. Redirecting to My Journeys...');
+        window.location.href = '/my-journeys';
+        return;
+    }
+
+    // Edit itinerary button mapping
+    const editBtn = document.getElementById('edit-itinerary-btn');
+    if (editBtn) {
+        editBtn.addEventListener('click', () => {
+            window.location.href = `/itinerary-builder?trip_id=${tripId}`;
+        });
+    }
+
+    // Copy share code functionality
+    const shareCodeBtn = document.querySelector('.bg-surface-container-low button');
+    if (shareCodeBtn) {
+        shareCodeBtn.addEventListener('click', () => {
+            const shareCode = document.getElementById('trip-share-code').textContent;
+            navigator.clipboard.writeText(shareCode).then(() => {
+                alert('Share code copied to clipboard!');
+            });
+        });
+    }
+
+    const timelineContainer = document.getElementById('itinerary-timeline');
+    const categoriesContainer = document.getElementById('budget-categories-container');
+
+    // Fetch Trip details
+    fetch(`http://localhost:8000/api/trips/${tripId}`)
+        .then(response => {
+            if (!response.ok) throw new Error('Trip not found');
+            return response.json();
+        })
+        .then(trip => {
+            // Update Headers
+            document.getElementById('trip-title').textContent = trip.title;
+            
+            let destinationStr = 'Travel';
+            let dateStr = 'Dates TBD';
+
+            if (trip.stops && trip.stops.length > 0) {
+                destinationStr = trip.stops.map(s => s.city).join(', ');
+                
+                let minDate = null;
+                let maxDate = null;
+                trip.stops.forEach(stop => {
+                    const sD = new Date(stop.start_date);
+                    const eD = new Date(stop.end_date);
+                    if (!minDate || sD < minDate) minDate = sD;
+                    if (!maxDate || eD > maxDate) maxDate = eD;
+                });
+
+                if (minDate && maxDate) {
+                    const opt = { month: 'short', day: 'numeric', year: 'numeric' };
+                    dateStr = `${minDate.toLocaleDateString('en-US', opt)} - ${maxDate.toLocaleDateString('en-US', opt)}`;
+                }
+            }
+
+            document.getElementById('trip-location').innerHTML = `<span class="material-symbols-outlined text-sm">location_on</span> ${destinationStr}`;
+            document.getElementById('trip-dates').innerHTML = `<span class="material-symbols-outlined text-sm">calendar_month</span> ${dateStr}`;
+            document.getElementById('trip-share-code').textContent = trip.share_code;
+
+            // Render Budget Summary
+            document.getElementById('budget-total').textContent = `$${trip.total_budget.toLocaleString()}`;
+
+            // Calculate spent amount based on activities
+            let totalSpent = 0;
+            const categorySpend = {
+                accommodation: trip.stay_budget || 0,
+                food: trip.meals_budget || 0,
+                transport: trip.transport_budget || 0,
+                activities: 0
+            };
+
+            trip.stops.forEach(stop => {
+                stop.activities.forEach(act => {
+                    totalSpent += act.cost;
+                    const cat = (act.category || '').toLowerCase();
+                    if (cat.includes('food') || cat.includes('din')) {
+                        categorySpend.food += act.cost;
+                    } else if (cat.includes('lodg') || cat.includes('hotel') || cat.includes('stay')) {
+                        categorySpend.accommodation += act.cost;
+                    } else if (cat.includes('trans') || cat.includes('flight') || cat.includes('car')) {
+                        categorySpend.transport += act.cost;
+                    } else {
+                        categorySpend.activities += act.cost;
+                    }
+                });
+            });
+
+            const spentPercentage = trip.total_budget > 0 ? Math.round((totalSpent / trip.total_budget) * 100) : 0;
+            document.getElementById('budget-spent-summary').innerHTML = `
+                <span class="material-symbols-outlined text-[18px]">account_balance_wallet</span> 
+                $${totalSpent.toLocaleString()} Spent (${spentPercentage}%)
+            `;
+
+            // Render Category Progress Bars
+            categoriesContainer.innerHTML = '';
+            
+            const categories = [
+                { name: 'Accommodation', icon: 'hotel', budget: trip.stay_budget, spent: categorySpend.accommodation },
+                { name: 'Food & Dining', icon: 'restaurant', budget: trip.meals_budget, spent: categorySpend.food },
+                { name: 'Transport', icon: 'directions_car', budget: trip.transport_budget, spent: categorySpend.transport },
+                { name: 'Activities & Sightseeing', icon: 'local_activity', budget: 0, spent: categorySpend.activities, isActivity: true }
+            ];
+
+            categories.forEach(cat => {
+                const targetBudget = cat.isActivity ? cat.spent : cat.budget;
+                const exceeded = cat.spent > targetBudget;
+                const pct = targetBudget > 0 ? Math.min(Math.round((cat.spent / targetBudget) * 100), 100) : 0;
+                
+                const cardDiv = document.createElement('div');
+                cardDiv.innerHTML = `
+                    <div class="flex justify-between font-label-md text-label-md mb-1">
+                        <span class="${exceeded ? 'text-error' : 'text-primary'} flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[16px]">${cat.icon}</span> 
+                            ${cat.name}
+                        </span>
+                        <span class="${exceeded ? 'text-error font-bold' : 'text-on-surface-variant'}">
+                            $${cat.spent.toLocaleString()} / $${targetBudget.toLocaleString()}
+                        </span>
+                    </div>
+                    <div class="w-full ${exceeded ? 'bg-error-container' : 'bg-surface-container'} h-2 rounded-full overflow-hidden">
+                        <div class="${exceeded ? 'bg-error' : 'bg-primary'} h-full" style="width: ${pct}%"></div>
+                    </div>
+                    ${exceeded ? `<p class="font-label-sm text-label-sm text-error mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">warning</span> Exceeded by $${(cat.spent - targetBudget).toLocaleString()}</p>` : ''}
+                `;
+                categoriesContainer.appendChild(cardDiv);
+            });
+
+            // Render Timeline Stops & Activities
+            timelineContainer.innerHTML = '';
+
+            if (!trip.stops || trip.stops.length === 0) {
+                timelineContainer.innerHTML = '<p class="text-on-surface-variant text-center py-8">No stops added to this itinerary yet.</p>';
+                return;
+            }
+
+            trip.stops.forEach((stop, index) => {
+                const stopDate = new Date(stop.start_date);
+                const dateOptions = { weekday: 'long', month: 'short', day: 'numeric' };
+                const dayHeader = `Day ${index + 1}: ${stop.city} (${stopDate.toLocaleDateString('en-US', dateOptions)})`;
+
+                const stopSection = document.createElement('div');
+                stopSection.className = 'relative timeline-item z-10 mb-8';
+                
+                let activitiesHTML = '';
+                if (stop.activities && stop.activities.length > 0) {
+                    stop.activities.forEach(act => {
+                        const time = new Date(act.activity_time);
+                        const timeStr = time.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+                        
+                        let icon = 'explore';
+                        let catName = act.category || 'Sightseeing';
+                        if (catName.toLowerCase().includes('food') || catName.toLowerCase().includes('dining') || catName.toLowerCase().includes('rest')) {
+                            icon = 'restaurant';
+                        } else if (catName.toLowerCase().includes('transport') || catName.toLowerCase().includes('car') || catName.toLowerCase().includes('flight')) {
+                            icon = 'directions_car';
+                        } else if (catName.toLowerCase().includes('lodg') || catName.toLowerCase().includes('stay') || catName.toLowerCase().includes('hotel')) {
+                            icon = 'hotel';
+                        } else if (catName.toLowerCase().includes('cult') || catName.toLowerCase().includes('museum') || catName.toLowerCase().includes('temp')) {
+                            icon = 'museum';
+                        }
+
+                        activitiesHTML += `
+                            <div class="timeline-line relative flex gap-unit-md mb-unit-md mt-4">
+                                <div class="w-12 h-12 shrink-0 rounded-full bg-primary-fixed flex items-center justify-center text-primary z-10 shadow-sm border-2 border-cloud-white">
+                                    <span class="material-symbols-outlined">${icon}</span>
+                                </div>
+                                <div class="bg-cloud-white rounded-xl p-unit-md soft-shadow w-full border border-surface-variant hover-lift">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="font-title-lg text-title-lg text-primary text-lg font-bold">${act.title}</h4>
+                                        <span class="font-label-sm text-label-sm bg-tertiary text-cloud-white px-2 py-1 rounded">${timeStr}</span>
+                                    </div>
+                                    <div class="flex justify-between items-center mt-3 border-t border-surface-container pt-3">
+                                        <span class="bg-tertiary-fixed text-primary px-2 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">${icon}</span> 
+                                            ${catName.charAt(0).toUpperCase() + catName.slice(1)}
+                                        </span>
+                                        <span class="font-label-md text-label-md font-bold text-secondary">
+                                            $${act.cost.toLocaleString()}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                } else {
+                    activitiesHTML = `
+                        <div class="timeline-line relative flex gap-unit-md mb-unit-md mt-4">
+                            <div class="w-12 h-12 shrink-0 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant z-10 shadow-sm border-2 border-cloud-white">
+                                <span class="material-symbols-outlined">info</span>
+                            </div>
+                            <div class="bg-cloud-white rounded-xl p-unit-md soft-shadow w-full border border-surface-variant">
+                                <p class="text-on-surface-variant">No activities scheduled for this day yet.</p>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                stopSection.innerHTML = `
+                    <h3 class="font-title-lg text-title-lg text-primary mb-unit-md pl-12 font-bold">${dayHeader}</h3>
+                    ${activitiesHTML}
+                `;
+                timelineContainer.appendChild(stopSection);
+            });
+        })
+        .catch(err => {
+            console.error('Error rendering itinerary budget:', err);
+            timelineContainer.innerHTML = `<p class="text-error text-center py-8">Failed to load trip details: ${err.message}</p>`;
+        });
+});
+</script>
 </body></html>

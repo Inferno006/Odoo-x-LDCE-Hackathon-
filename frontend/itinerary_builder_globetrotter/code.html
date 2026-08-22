@@ -201,22 +201,22 @@
 <body class="bg-background text-on-background font-body-md text-body-md min-h-screen flex flex-col">
 <!-- TopNavBar (Shared Component) -->
 <nav class="bg-cloud-white/70 backdrop-blur-md shadow-sm fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 max-w-container-max mx-auto left-1/2 -translate-x-1/2">
-<div class="font-display-lg text-title-lg font-bold text-primary">
+<div class="font-display-lg text-title-lg font-bold text-primary cursor-pointer" onclick="window.location.href='/'">
             GlobeTrotter
         </div>
 <div class="hidden md:flex gap-gutter items-center">
-<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Discover</a>
-<a class="font-label-md text-label-md text-primary border-b-2 border-secondary font-bold pb-1 hover:text-secondary transition-colors duration-200" href="#">My Trips</a>
-<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Community</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors duration-200" href="/">Discover</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-secondary font-bold pb-1 hover:text-secondary transition-colors duration-200" href="/my-journeys">My Trips</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors duration-200" href="/community">Community</a>
 <a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Calendar</a>
 </div>
 <div class="flex items-center gap-unit-md">
 <span class="material-symbols-outlined text-primary cursor-pointer hover:text-secondary transition-colors duration-200">notifications</span>
 <span class="material-symbols-outlined text-primary cursor-pointer hover:text-secondary transition-colors duration-200">settings</span>
-<button class="hidden md:block bg-primary text-cloud-white font-label-md text-label-md px-4 py-2 rounded-full scale-95 active:scale-90 transition-transform">
+<button onclick="window.location.href='/plan-trip'" class="hidden md:block bg-primary text-cloud-white font-label-md text-label-md px-4 py-2 rounded-full scale-95 active:scale-90 transition-transform">
                 Create Trip
             </button>
-<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-surface-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzZ1U99hZJWP9vDQGlPrxGRzLjLI_mjhPKkfkdbpq-uhDu10irCw5OuGafnOesISeFdhc1XBrmjum28EE3ac9yAZCN-Sim75AhQWKvavex8260t9sqpQVvHAcLRTYQHHiwGzzVum6YyLhC82qXa2eLd9osRBv0Iz8Fnur1NU0FjMSMW9rFw--0EsEIb5Uu7tMF_1AeLvZZs0z0fSlnVhaZ6VfsiVGlXvg-5oUo4-yedUbqzqJihGJ6"/>
+<img onclick="window.location.href='/profile'" alt="User profile avatar" class="w-8 h-8 rounded-full border border-surface-variant cursor-pointer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzZ1U99hZJWP9vDQGlPrxGRzLjLI_mjhPKkfkdbpq-uhDu10irCw5OuGafnOesISeFdhc1XBrmjum28EE3ac9yAZCN-Sim75AhQWKvavex8260t9sqpQVvHAcLRTYQHHiwGzzVum6YyLhC82qXa2eLd9osRBv0Iz8Fnur1NU0FjMSMW9rFw--0EsEIb5Uu7tMF_1AeLvZZs0z0fSlnVhaZ6VfsiVGlXvg-5oUo4-yedUbqzqJihGJ6"/>
 </div>
 </nav>
 <!-- Main Content Area -->
@@ -224,60 +224,36 @@
 <!-- Header & Budget Summary -->
 <header class="flex flex-col md:flex-row justify-between items-start md:items-end gap-unit-md pb-unit-sm border-b border-surface-variant">
 <div>
-<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Parisian Escape</h1>
-<p class="font-body-md text-body-md text-on-surface-variant mt-1 flex items-center gap-2">
+<h1 id="trip-title" class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Parisian Escape</h1>
+<p id="trip-dates" class="font-body-md text-body-md text-on-surface-variant mt-1 flex items-center gap-2">
 <span class="material-symbols-outlined text-[18px]">calendar_today</span> Oct 12 - Oct 18, 2024
                 </p>
 </div>
-<div class="bg-cloud-white p-unit-md rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-surface-container w-full md:w-80">
+<div class="bg-cloud-white p-unit-md rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-surface-container w-full md:w-80 cursor-pointer" onclick="window.location.href='/itinerary-budget?trip_id=' + new URLSearchParams(window.location.search).get('trip_id')">
 <div class="flex justify-between items-center mb-2">
 <span class="font-label-md text-label-md text-on-surface-variant">Budget Progress</span>
-<span class="font-label-md text-label-md text-primary">$1,250 / $5,000</span>
+<span id="budget-progress-text" class="font-label-md text-label-md text-primary">$0 / $5,000</span>
 </div>
 <div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
-<div class="h-full bg-secondary w-1/4 rounded-full"></div>
+<div id="budget-progress-bar" class="h-full bg-secondary w-0 rounded-full"></div>
 </div>
 </div>
 </header>
 <!-- Builder Grid Layout -->
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-start">
 <!-- Left Sidebar (Days) -->
-<aside class="md:col-span-3 flex flex-row md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-4 md:pb-0 sticky top-24">
-<button class="flex-shrink-0 w-full text-left px-4 py-3 bg-primary-fixed text-on-primary-fixed-variant rounded-lg font-label-md text-label-md border border-primary-fixed-dim transition-colors flex justify-between items-center group">
-<span>Day 1 • Oct 12</span>
-<span class="material-symbols-outlined text-[18px] opacity-100">chevron_right</span>
-</button>
-<button class="flex-shrink-0 w-full text-left px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-lg font-label-md text-label-md transition-colors flex justify-between items-center group">
-<span>Day 2 • Oct 13</span>
-<span class="material-symbols-outlined text-[18px] opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
-</button>
-<button class="flex-shrink-0 w-full text-left px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-lg font-label-md text-label-md transition-colors flex justify-between items-center group">
-<span>Day 3 • Oct 14</span>
-<span class="material-symbols-outlined text-[18px] opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
-</button>
-<button class="mt-unit-sm flex-shrink-0 w-full flex items-center justify-center gap-2 px-4 py-3 border border-dashed border-outline-variant text-primary rounded-lg font-label-md text-label-md hover:bg-surface-container transition-colors">
-<span class="material-symbols-outlined">add</span>
-                    Add Day
-                </button>
+<aside id="sidebar-days" class="md:col-span-3 flex flex-row md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-4 md:pb-0 sticky top-24">
+<!-- Dynamic Day-by-Day Stops loaded here -->
 </aside>
 <!-- Main Timeline Area -->
 <section class="md:col-span-9 flex flex-col gap-unit-md">
 <div class="flex justify-between items-center mb-unit-sm">
-<h2 class="font-headline-md text-headline-md text-primary">Day 1 Itinerary</h2>
-<button class="bg-primary text-cloud-white font-label-md text-label-md px-4 py-2 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity">
+<h2 id="current-day-title" class="font-headline-md text-headline-md text-primary">Day 1 Itinerary</h2>
+<button id="add-activity-btn" class="bg-primary text-cloud-white font-label-md text-label-md px-4 py-2 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity">
 <span class="material-symbols-outlined text-[18px]">add</span> Add Activity
                     </button>
 </div>
 <!-- Timeline Container -->
-<div class="flex flex-col relative w-full">
-<!-- Activity Node 1: Breakfast -->
-<div class="group relative flex gap-unit-sm md:gap-unit-md items-stretch mb-unit-md">
-<!-- Time Column -->
-<div class="w-16 md:w-24 flex-shrink-0 text-right pt-4">
-<span class="font-label-md text-label-md text-on-surface">09:00 AM</span>
-</div>
-<!-- Timeline Line & Icon -->
-<div class="relative flex flex-col items-center">
 <div class="z-10 w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center mt-3 bg-cloud-white shadow-sm">
 <span class="material-symbols-outlined text-[16px] text-tertiary">restaurant</span>
 </div>
@@ -413,4 +389,219 @@
             </div>
 </div>
 </footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Navbar profile photo update if logged in
+    const user = JSON.parse(localStorage.getItem('user') || 'null');
+    if (user) {
+        const avatar = document.querySelector('nav img');
+        if (avatar) {
+            avatar.src = user.avatar_url || avatar.src;
+            avatar.classList.add('cursor-pointer');
+            avatar.addEventListener('click', () => { window.location.href = '/profile'; });
+        }
+    }
+
+    // Extract trip_id from query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const tripId = urlParams.get('trip_id');
+
+    if (!tripId) {
+        alert('No Trip ID provided. Redirecting to My Journeys...');
+        window.location.href = '/my-journeys';
+        return;
+    }
+
+    const tripTitleEl = document.getElementById('trip-title');
+    const tripDatesEl = document.getElementById('trip-dates');
+    const budgetProgressText = document.getElementById('budget-progress-text');
+    const budgetProgressBar = document.getElementById('budget-progress-bar');
+    const sidebarDays = document.getElementById('sidebar-days');
+    const currentDayTitle = document.getElementById('current-day-title');
+    const timelineActivities = document.getElementById('timeline-activities');
+
+    let tripData = null;
+    let activeStopIndex = 0;
+
+    // Fetch Trip details
+    fetch(`http://localhost:8000/api/trips/${tripId}`)
+        .then(response => {
+            if (!response.ok) throw new Error('Trip not found');
+            return response.json();
+        })
+        .then(trip => {
+            tripData = trip;
+
+            // Update Header Information
+            tripTitleEl.textContent = trip.title;
+            
+            let dateStr = 'Dates TBD';
+            if (trip.stops && trip.stops.length > 0) {
+                let minDate = null;
+                let maxDate = null;
+                trip.stops.forEach(stop => {
+                    const sD = new Date(stop.start_date);
+                    const eD = new Date(stop.end_date);
+                    if (!minDate || sD < minDate) minDate = sD;
+                    if (!maxDate || eD > maxDate) maxDate = eD;
+                });
+
+                if (minDate && maxDate) {
+                    const opt = { month: 'short', day: 'numeric', year: 'numeric' };
+                    dateStr = `${minDate.toLocaleDateString('en-US', opt)} - ${maxDate.toLocaleDateString('en-US', opt)}`;
+                }
+            }
+            tripDatesEl.innerHTML = `<span class="material-symbols-outlined text-[18px]">calendar_today</span> ${dateStr}`;
+
+            // Calculate spent amount vs total budget
+            let totalSpent = 0;
+            trip.stops.forEach(stop => {
+                stop.activities.forEach(act => {
+                    totalSpent += act.cost;
+                });
+            });
+            const budgetLimit = trip.total_budget || 5000;
+            const pct = budgetLimit > 0 ? Math.min(Math.round((totalSpent / budgetLimit) * 100), 100) : 0;
+
+            budgetProgressText.textContent = `$${totalSpent.toLocaleString()} / $${budgetLimit.toLocaleString()}`;
+            budgetProgressBar.style.width = `${pct}%`;
+
+            // Render Sidebar Stops (Days)
+            renderSidebar();
+
+            // Render initial active day activities
+            renderActivities();
+        })
+        .catch(err => {
+            console.error('Error rendering itinerary builder:', err);
+            timelineActivities.innerHTML = `<p class="text-error text-center py-8">Failed to load trip details: ${err.message}</p>`;
+        });
+
+    function renderSidebar() {
+        sidebarDays.innerHTML = '';
+        
+        if (!tripData.stops || tripData.stops.length === 0) {
+            sidebarDays.innerHTML = '<p class="text-on-surface-variant text-sm p-3">No stops added.</p>';
+            return;
+        }
+
+        tripData.stops.forEach((stop, index) => {
+            const stopDate = new Date(stop.start_date);
+            const dateStr = stopDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            
+            const isActive = index === activeStopIndex;
+            
+            const btn = document.createElement('button');
+            btn.className = `flex-shrink-0 w-full text-left px-4 py-3 rounded-lg font-label-md text-label-md transition-colors flex justify-between items-center group ${
+                isActive 
+                ? 'bg-primary-fixed text-on-primary-fixed-variant border border-primary-fixed-dim' 
+                : 'text-on-surface-variant hover:bg-surface-container'
+            }`;
+            
+            btn.innerHTML = `
+                <span>Day ${index + 1} • ${stop.city} (${dateStr})</span>
+                <span class="material-symbols-outlined text-[18px] ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100 transition-opacity'}">chevron_right</span>
+            `;
+
+            btn.addEventListener('click', () => {
+                activeStopIndex = index;
+                renderSidebar();
+                renderActivities();
+            });
+
+            sidebarDays.appendChild(btn);
+        });
+
+        // Add Day Button
+        const addDayBtn = document.createElement('button');
+        addDayBtn.className = 'mt-unit-sm flex-shrink-0 w-full flex items-center justify-center gap-2 px-4 py-3 border border-dashed border-outline-variant text-primary rounded-lg font-label-md text-label-md hover:bg-surface-container transition-colors';
+        addDayBtn.innerHTML = `<span class="material-symbols-outlined">add</span> Add Day`;
+        addDayBtn.addEventListener('click', () => {
+            alert('Adding extra days is available in the Premium planner. Customize your trip using our AI builder.');
+        });
+        sidebarDays.appendChild(addDayBtn);
+    }
+
+    function renderActivities() {
+        timelineActivities.innerHTML = '';
+        
+        if (!tripData.stops || tripData.stops.length === 0) {
+            currentDayTitle.textContent = 'No Days Scheduled';
+            timelineActivities.innerHTML = '<p class="text-on-surface-variant text-center py-8">Please add a destination stop to start building your itinerary.</p>';
+            return;
+        }
+
+        const activeStop = tripData.stops[activeStopIndex];
+        currentDayTitle.textContent = `${activeStop.city} Itinerary`;
+
+        if (!activeStop.activities || activeStop.activities.length === 0) {
+            timelineActivities.innerHTML = `
+                <div class="text-center py-12 bg-surface-container-low rounded-xl border border-dashed border-outline-variant/30 p-8 w-full">
+                    <span class="material-symbols-outlined text-4xl text-on-surface-variant mb-2">event_busy</span>
+                    <p class="text-on-surface-variant">No activities scheduled for this day yet.</p>
+                </div>
+            `;
+            return;
+        }
+
+        activeStop.activities.forEach((act, index) => {
+            const time = new Date(act.activity_time);
+            const timeStr = time.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+            
+            let icon = 'explore';
+            let catName = act.category || 'Sightseeing';
+            if (catName.toLowerCase().includes('food') || catName.toLowerCase().includes('dining') || catName.toLowerCase().includes('rest')) {
+                icon = 'restaurant';
+            } else if (catName.toLowerCase().includes('transport') || catName.toLowerCase().includes('car') || catName.toLowerCase().includes('flight')) {
+                icon = 'directions_car';
+            } else if (catName.toLowerCase().includes('lodg') || catName.toLowerCase().includes('stay') || catName.toLowerCase().includes('hotel')) {
+                icon = 'hotel';
+            } else if (catName.toLowerCase().includes('cult') || catName.toLowerCase().includes('museum') || catName.toLowerCase().includes('temp')) {
+                icon = 'museum';
+            }
+
+            const isLast = index === activeStop.activities.length - 1;
+
+            const node = document.createElement('div');
+            node.className = 'group relative flex gap-unit-sm md:gap-unit-md items-stretch mb-unit-md w-full';
+            node.innerHTML = `
+                <!-- Time Column -->
+                <div class="w-16 md:w-24 flex-shrink-0 text-right pt-4">
+                    <span class="font-label-md text-label-md text-on-surface font-semibold">${timeStr}</span>
+                </div>
+                <!-- Timeline Line & Icon -->
+                <div class="relative flex flex-col items-center">
+                    <div class="z-10 w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center mt-3 bg-cloud-white shadow-sm">
+                        <span class="material-symbols-outlined text-[16px] text-tertiary">${icon}</span>
+                    </div>
+                    ${!isLast ? '<div class="absolute top-11 bottom-[-16px] w-0 border-l-2 border-dashed border-tertiary-fixed-dim"></div>' : ''}
+                </div>
+                <!-- Card Content -->
+                <div class="flex-grow relative bg-cloud-white rounded-xl p-unit-md shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-surface-container-highest transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 ml-2">
+                    <h3 class="font-title-lg text-title-lg text-primary font-bold pr-16">${act.title}</h3>
+                    <p class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1 mt-1">
+                        <span class="material-symbols-outlined text-[14px]">location_on</span> ${activeStop.city} stop details
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-2 items-center justify-between">
+                        <div class="flex gap-2">
+                            <span class="bg-surface-container-high text-on-surface px-2 py-1 rounded font-label-sm text-label-sm border border-outline-variant/30">${catName.charAt(0).toUpperCase() + catName.slice(1)}</span>
+                        </div>
+                        <span class="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full font-label-md text-label-md border border-secondary-fixed-dim">
+                            $${act.cost.toLocaleString()}
+                        </span>
+                    </div>
+                </div>
+            `;
+            timelineActivities.appendChild(node);
+        });
+    }
+
+    const addActivityBtn = document.getElementById('add-activity-btn');
+    if (addActivityBtn) {
+        addActivityBtn.addEventListener('click', () => {
+            alert('Custom activity planning is available in Premium. Design your travel plans with our AI assistant!');
+        });
+    }
+});
+</script>
 </body></html>

@@ -213,7 +213,7 @@
 <!-- Left Side: Branding & Info -->
 <div class="md:w-5/12 bg-primary text-cloud-white p-unit-lg flex flex-col justify-between">
 <div>
-<a class="inline-block mb-unit-xl" href="#">
+<a class="inline-block mb-unit-xl" href="/">
 <h1 class="font-display-lg text-headline-md md:text-headline-lg font-bold">GlobeTrotter</h1>
 </a>
 <h2 class="font-headline-md text-headline-md mb-unit-md text-primary-fixed">Begin Your Journey</h2>
@@ -313,7 +313,7 @@
 <div class="text-center pt-unit-sm">
 <p class="font-body-md text-body-md text-on-surface-variant">
                                 Already have an account? 
-                                <a class="text-secondary font-label-md text-label-md hover:text-on-secondary-fixed-variant transition-colors" href="#">Log In</a>
+                                <a class="text-secondary font-label-md text-label-md hover:text-on-secondary-fixed-variant transition-colors" href="/login">Log In</a>
 </p>
 </div>
 </form>
@@ -332,17 +332,46 @@
 <script>
         document.getElementById('registrationForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            // Basic simulation of success
+            
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const name = `${firstName} ${lastName}`;
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+
             this.style.opacity = '0.5';
             this.style.pointerEvents = 'none';
-            document.getElementById('successNotification').classList.remove('hidden');
-            setTimeout(() => {
-                // Reset for demo purposes
+            
+            fetch('http://localhost:8000/api/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, email, password })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => { throw new Error(err.detail || 'Registration failed') });
+                }
+                return response.json();
+            })
+            .then(user => {
+                document.getElementById('successNotification').classList.remove('hidden');
+                setTimeout(() => {
+                    window.location.href = '/login';
+                }, 2000);
+            })
+            .catch(err => {
                 this.style.opacity = '1';
                 this.style.pointerEvents = 'auto';
-                this.reset();
-                document.getElementById('successNotification').classList.add('hidden');
-            }, 3000);
+                alert(err.message || 'An error occurred during registration.');
+            });
         });
     </script>
 </body></html>

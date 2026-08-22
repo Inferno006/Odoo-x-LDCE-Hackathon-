@@ -130,23 +130,23 @@
 <!-- TopNavBar -->
 <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 max-w-container-max mx-auto bg-cloud-white/70 backdrop-blur-md shadow-sm">
 <div class="flex items-center gap-gutter">
-<a class="font-display-lg text-title-lg font-bold text-primary" href="#">GlobeTrotter</a>
+<a class="font-display-lg text-title-lg font-bold text-primary" href="/">GlobeTrotter</a>
 </div>
 <nav class="hidden md:flex items-center gap-gutter">
-<a class="text-primary border-b-2 border-secondary font-bold pb-1 hover:text-secondary transition-colors duration-200" href="#">Discover</a>
-<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">My Trips</a>
-<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Community</a>
+<a class="text-primary border-b-2 border-secondary font-bold pb-1 hover:text-secondary transition-colors duration-200" href="/">Discover</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200" href="/my-journeys">My Trips</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200" href="/community">Community</a>
 <a class="text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Calendar</a>
 </nav>
 <div class="flex items-center gap-unit-md">
-<button class="hidden md:flex bg-primary text-cloud-white font-label-md text-label-md px-4 py-2 rounded-full hover:opacity-90 scale-95 active:scale-90 transition-transform">Create Trip</button>
+<button onclick="window.location.href='/plan-trip'" class="hidden md:flex bg-primary text-cloud-white font-label-md text-label-md px-4 py-2 rounded-full hover:opacity-90 scale-95 active:scale-90 transition-transform">Create Trip</button>
 <button class="text-primary hover:text-secondary transition-colors duration-200 scale-95 active:scale-90 transition-transform">
 <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
 </button>
 <button class="text-primary hover:text-secondary transition-colors duration-200 scale-95 active:scale-90 transition-transform">
 <span class="material-symbols-outlined" data-icon="settings">settings</span>
 </button>
-<img alt="User profile avatar" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A detailed close-up of a diverse young woman with a warm smile, wearing a stylish minimalist white shirt. The lighting is soft and natural, emphasizing high-quality luxury travel lifestyle aesthetics. The background is slightly blurred but suggests a bright, airy coastal setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLlhSGxLDprFaTqec0GRCwSAbqUh4l945ap4aVe5WnBs7ynAu77ADssEI1ocLYAshm7wW_k37ynQKHZ3NBY2TyTaBdOnjIv0qHiZ_zuxlzNJOS9OH0FZQqWZuLMQEik1IwlMolFiOthy1RO91dgeTiu8oF-5IRGvh4HSN2o81OQjQ8-XukaKjgFbVhOOCF3QcByREikLOaVe6ffX_QFRfOjnPZuiYtznvzUZSUN9WuW3z2wUMgpf0f"/>
+<img onclick="window.location.href='/profile'" alt="User profile avatar" class="w-8 h-8 rounded-full object-cover border border-outline-variant cursor-pointer scale-95 active:scale-90 transition-transform" data-alt="A detailed close-up of a diverse young woman with a warm smile, wearing a stylish minimalist white shirt. The lighting is soft and natural, emphasizing high-quality luxury travel lifestyle aesthetics. The background is slightly blurred but suggests a bright, airy coastal setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLlhSGxLDprFaTqec0GRCwSAbqUh4l945ap4aVe5WnBs7ynAu77ADssEI1ocLYAshm7wW_k37ynQKHZ3NBY2TyTaBdOnjIv0qHiZ_zuxlzNJOS9OH0FZQqWZuLMQEik1IwlMolFiOthy1RO91dgeTiu8oF-5IRGvh4HSN2o81OQjQ8-XukaKjgFbVhOOCF3QcByREikLOaVe6ffX_QFRfOjnPZuiYtznvzUZSUN9WuW3z2wUMgpf0f"/>
 </div>
 </header>
 <main class="pt-16 pb-unit-xl">
@@ -182,7 +182,7 @@
 <span class="font-body-md text-on-surface">Add guests</span>
 </div>
 </div>
-<button class="bg-secondary text-cloud-white font-label-md text-label-md px-6 py-4 rounded-lg md:rounded-r-lg md:rounded-l-none hover:opacity-90 w-full md:w-auto mt-2 md:mt-0 transition-opacity">
+<button onclick="window.location.href='/plan-trip'" class="bg-secondary text-cloud-white font-label-md text-label-md px-6 py-4 rounded-lg md:rounded-r-lg md:rounded-l-none hover:opacity-90 w-full md:w-auto mt-2 md:mt-0 transition-opacity">
                         Plan a Trip
                     </button>
 </div>
@@ -206,7 +206,7 @@
 <h3 class="font-title-lg text-title-lg mb-1">Tokyo, Japan</h3>
 <div class="flex items-center justify-between">
 <span class="font-body-md text-sm text-cloud-white/80">Cultural &amp; Urban</span>
-<button class="bg-cloud-white/20 hover:bg-cloud-white/30 backdrop-blur-sm text-cloud-white font-label-md text-label-md px-4 py-2 rounded-full transition-colors border border-cloud-white/30">Explore</button>
+<button onclick="window.location.href='/search'" class="bg-cloud-white/20 hover:bg-cloud-white/30 backdrop-blur-sm text-cloud-white font-label-md text-label-md px-4 py-2 rounded-full transition-colors border border-cloud-white/30">Explore</button>
 </div>
 </div>
 </div>
@@ -224,7 +224,7 @@
 <h3 class="font-title-lg text-title-lg mb-1">Paris, France</h3>
 <div class="flex items-center justify-between">
 <span class="font-body-md text-sm text-cloud-white/80">Romance &amp; History</span>
-<button class="bg-cloud-white/20 hover:bg-cloud-white/30 backdrop-blur-sm text-cloud-white font-label-md text-label-md px-4 py-2 rounded-full transition-colors border border-cloud-white/30">Explore</button>
+<button onclick="window.location.href='/search'" class="bg-cloud-white/20 hover:bg-cloud-white/30 backdrop-blur-sm text-cloud-white font-label-md text-label-md px-4 py-2 rounded-full transition-colors border border-cloud-white/30">Explore</button>
 </div>
 </div>
 </div>
@@ -242,7 +242,7 @@
 <h3 class="font-title-lg text-title-lg mb-1">Santorini, Greece</h3>
 <div class="flex items-center justify-between">
 <span class="font-body-md text-sm text-cloud-white/80">Relaxation &amp; Views</span>
-<button class="bg-cloud-white/20 hover:bg-cloud-white/30 backdrop-blur-sm text-cloud-white font-label-md text-label-md px-4 py-2 rounded-full transition-colors border border-cloud-white/30">Explore</button>
+<button onclick="window.location.href='/search'" class="bg-cloud-white/20 hover:bg-cloud-white/30 backdrop-blur-sm text-cloud-white font-label-md text-label-md px-4 py-2 rounded-full transition-colors border border-cloud-white/30">Explore</button>
 </div>
 </div>
 </div>

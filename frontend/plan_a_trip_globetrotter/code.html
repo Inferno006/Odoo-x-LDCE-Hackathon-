@@ -152,18 +152,18 @@
 <span class="material-symbols-outlined text-secondary">flight_takeoff</span>
                         Trip Details
                     </h2>
-<form class="space-y-unit-md">
+<form class="space-y-unit-md" id="tripForm">
 <!-- Trip Name -->
 <div>
 <label class="block font-label-sm text-label-sm text-on-surface-variant mb-unit-xs uppercase tracking-wider">Trip Name</label>
-<input class="w-full bg-surface-bright border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface transition-colors placeholder-on-surface-variant/50" placeholder="e.g., Summer in Kyoto" type="text"/>
+<input id="tripName" class="w-full bg-surface-bright border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface transition-colors placeholder-on-surface-variant/50" placeholder="e.g., Summer in Kyoto" type="text" required/>
 </div>
 <!-- Destination Select -->
 <div>
 <label class="block font-label-sm text-label-sm text-on-surface-variant mb-unit-xs uppercase tracking-wider">Destination</label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">location_on</span>
-<select class="w-full bg-surface-bright border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary rounded-lg pl-10 pr-4 py-3 font-body-md text-body-md text-on-surface transition-colors appearance-none cursor-pointer" id="destination-select">
+<select class="w-full bg-surface-bright border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary rounded-lg pl-10 pr-4 py-3 font-body-md text-body-md text-on-surface transition-colors appearance-none cursor-pointer" id="destination-select" required>
 <option disabled="" selected="" value="">Select a destination...</option>
 <option value="tokyo">Tokyo, Japan</option>
 <option value="paris">Paris, France</option>
@@ -177,11 +177,11 @@
 <div class="grid grid-cols-2 gap-unit-md">
 <div>
 <label class="block font-label-sm text-label-sm text-on-surface-variant mb-unit-xs uppercase tracking-wider">Start Date</label>
-<input class="w-full bg-surface-bright border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface transition-colors" type="date"/>
+<input id="startDate" class="w-full bg-surface-bright border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface transition-colors" type="date" required/>
 </div>
 <div>
 <label class="block font-label-sm text-label-sm text-on-surface-variant mb-unit-xs uppercase tracking-wider">End Date</label>
-<input class="w-full bg-surface-bright border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface transition-colors" type="date"/>
+<input id="endDate" class="w-full bg-surface-bright border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface transition-colors" type="date" required/>
 </div>
 </div>
 <!-- Budget -->
@@ -189,7 +189,7 @@
 <label class="block font-label-sm text-label-sm text-on-surface-variant mb-unit-xs uppercase tracking-wider">Total Budget (USD)</label>
 <div class="relative">
 <span class="absolute left-4 top-1/2 -translate-y-1/2 font-body-md text-on-surface-variant">$</span>
-<input class="w-full bg-surface-bright border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary rounded-lg pl-8 pr-4 py-3 font-body-md text-body-md text-on-surface transition-colors" placeholder="5000" type="number"/>
+<input id="totalBudget" class="w-full bg-surface-bright border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary rounded-lg pl-8 pr-4 py-3 font-body-md text-body-md text-on-surface transition-colors" placeholder="5000" type="number" required/>
 </div>
 </div>
 <!-- Travel Preferences -->
@@ -197,19 +197,19 @@
 <label class="block font-label-sm text-label-sm text-on-surface-variant mb-unit-sm uppercase tracking-wider">Travel Preferences</label>
 <div class="grid grid-cols-2 gap-3">
 <label class="flex items-center gap-3 p-3 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary-fixed/10">
-<input class="w-4 h-4 text-primary focus:ring-primary border-outline-variant rounded" type="checkbox"/>
+<input name="preferences" value="Luxury" class="w-4 h-4 text-primary focus:ring-primary border-outline-variant rounded" type="checkbox"/>
 <span class="font-body-md text-body-md text-on-surface">Luxury</span>
 </label>
 <label class="flex items-center gap-3 p-3 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary-fixed/10">
-<input class="w-4 h-4 text-primary focus:ring-primary border-outline-variant rounded" type="checkbox"/>
+<input name="preferences" value="Budget" class="w-4 h-4 text-primary focus:ring-primary border-outline-variant rounded" type="checkbox"/>
 <span class="font-body-md text-body-md text-on-surface">Budget</span>
 </label>
 <label class="flex items-center gap-3 p-3 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary-fixed/10">
-<input class="w-4 h-4 text-primary focus:ring-primary border-outline-variant rounded" type="checkbox"/>
+<input name="preferences" value="Adventure" class="w-4 h-4 text-primary focus:ring-primary border-outline-variant rounded" type="checkbox"/>
 <span class="font-body-md text-body-md text-on-surface">Adventure</span>
 </label>
 <label class="flex items-center gap-3 p-3 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary-fixed/10">
-<input class="w-4 h-4 text-primary focus:ring-primary border-outline-variant rounded" type="checkbox"/>
+<input name="preferences" value="Culture" class="w-4 h-4 text-primary focus:ring-primary border-outline-variant rounded" type="checkbox"/>
 <span class="font-body-md text-body-md text-on-surface">Culture</span>
 </label>
 </div>
@@ -289,7 +289,7 @@
 <div class="hidden md:block">
 <p class="font-body-md text-body-md text-on-surface-variant"><span class="font-bold text-primary" id="selected-count">0</span> activities selected</p>
 </div>
-<button class="w-full md:w-auto bg-secondary text-cloud-white font-label-md text-label-md py-3 px-8 rounded-full hover:bg-secondary-container hover:text-on-secondary-container transition-colors shadow-md active:scale-95 flex items-center justify-center gap-2">
+<button id="create-trip-btn" class="w-full md:w-auto bg-secondary text-cloud-white font-label-md text-label-md py-3 px-8 rounded-full hover:bg-secondary-container hover:text-on-secondary-container transition-colors shadow-md active:scale-95 flex items-center justify-center gap-2">
             Create My Trip
             <span class="material-symbols-outlined" data-weight="fill">arrow_forward</span>
 </button>
@@ -340,6 +340,80 @@
                         count--;
                     }
                     selectedCountEl.textContent = count;
+                });
+            });
+
+            // Handle form submission and AI itinerary generation
+            const createTripBtn = document.getElementById('create-trip-btn');
+            const tripForm = document.getElementById('tripForm');
+            
+            createTripBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!tripForm.reportValidity()) {
+                    return;
+                }
+
+                const tripName = document.getElementById('tripName').value;
+                const destination = destinationSelect.options[destinationSelect.selectedIndex].text;
+                const startDate = document.getElementById('startDate').value;
+                const endDate = document.getElementById('endDate').value;
+                const budget = document.getElementById('totalBudget').value;
+
+                // Preferences
+                const selectedPrefs = [];
+                document.querySelectorAll('input[name="preferences"]:checked').forEach(cb => {
+                    selectedPrefs.push(cb.value);
+                });
+
+                // Get selected activities
+                const selectedActivities = [];
+                document.querySelectorAll('.activity-add-btn.bg-tertiary-container').forEach(btn => {
+                    const card = btn.closest('.group') || btn.parentElement.parentElement;
+                    if (card) {
+                        const titleEl = card.querySelector('h3');
+                        if (titleEl) {
+                            selectedActivities.push(titleEl.textContent.trim());
+                        }
+                    }
+                });
+
+                // Construct prompt
+                let prompt = `Create a trip named "${tripName}" to ${destination} from ${startDate} to ${endDate} with a total budget of ${budget} USD.`;
+                if (selectedPrefs.length > 0) {
+                    prompt += ` The travel preferences are: ${selectedPrefs.join(', ')}.`;
+                }
+                if (selectedActivities.length > 0) {
+                    prompt += ` Please include the following specific activities: ${selectedActivities.join(', ')}.`;
+                }
+
+                // Show loading state
+                createTripBtn.disabled = true;
+                createTripBtn.innerHTML = `Generating... <span class="material-symbols-outlined animate-spin" style="font-variation-settings: 'FILL' 0;">progress_activity</span>`;
+
+                const user = JSON.parse(localStorage.getItem('user') || 'null');
+                const userId = user ? user.id : 1; // Fallback to user id 1
+
+                fetch('http://localhost:8000/api/ai-generate-trip', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ prompt, user_id: userId })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(err => { throw new Error(err.detail || 'Failed to generate itinerary') });
+                    }
+                    return response.json();
+                })
+                .then(trip => {
+                    // Redirect to itinerary budget page
+                    window.location.href = `/itinerary-budget?trip_id=${trip.id}`;
+                })
+                .catch(err => {
+                    createTripBtn.disabled = false;
+                    createTripBtn.innerHTML = `Create My Trip <span class="material-symbols-outlined" data-weight="fill">arrow_forward</span>`;
+                    alert(err.message || 'Error generating AI itinerary. Make sure backend is running and GEMINI_API_KEY is set.');
                 });
             });
         });
