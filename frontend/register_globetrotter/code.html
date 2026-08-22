@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Register - GlobeTrotter Luxury Travel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed-dim": "#b8cac9",
+                      "surface-variant": "#e1e3e4",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-fixed": "#d5e3ff",
+                      "on-primary-fixed-variant": "#1f477b",
+                      "surface-tint": "#3a5f94",
+                      "tertiary-container": "#263636",
+                      "secondary-container": "#fe7e4f",
+                      "secondary-fixed-dim": "#ffb59c",
+                      "on-secondary-fixed-variant": "#822800",
+                      "primary": "#001e40",
+                      "on-tertiary-container": "#8e9f9e",
+                      "inverse-primary": "#a7c8ff",
+                      "surface-container-low": "#f3f4f5",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed": "#001b3c",
+                      "cloud-white": "#FFFFFF",
+                      "primary-fixed-dim": "#a7c8ff",
+                      "surface-bright": "#f8f9fa",
+                      "primary-container": "#003366",
+                      "outline-variant": "#c3c6d1",
+                      "inverse-on-surface": "#f0f1f2",
+                      "on-primary": "#ffffff",
+                      "surface-dim": "#d9dadb",
+                      "on-background": "#191c1d",
+                      "on-surface": "#191c1d",
+                      "on-tertiary-fixed-variant": "#3a4a49",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed": "#380c00",
+                      "on-secondary": "#ffffff",
+                      "surface": "#f8f9fa",
+                      "error-container": "#ffdad6",
+                      "background": "#f8f9fa",
+                      "deep-ocean": "#001F3F",
+                      "inverse-surface": "#2e3132",
+                      "surface-container-high": "#e7e8e9",
+                      "surface-container-highest": "#e1e3e4",
+                      "on-tertiary": "#ffffff",
+                      "on-surface-variant": "#43474f",
+                      "on-error": "#ffffff",
+                      "surface-container": "#edeeef",
+                      "on-primary-container": "#799dd6",
+                      "tertiary-fixed": "#d4e6e5",
+                      "slate-gray": "#333333",
+                      "on-secondary-container": "#6b1f00",
+                      "secondary-fixed": "#ffdbcf",
+                      "on-tertiary-fixed": "#0e1e1e",
+                      "sunset-accent": "#FF4500",
+                      "secondary": "#a43c12",
+                      "tertiary": "#112121",
+                      "outline": "#737780"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit-md": "16px",
+                      "gutter": "24px",
+                      "unit-lg": "32px",
+                      "unit-sm": "8px",
+                      "unit-xs": "4px",
+                      "margin-desktop": "64px",
+                      "margin-mobile": "20px",
+                      "unit-xl": "64px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Hanken Grotesk", "sans-serif"
+                      ],
+                      "label-md": [
+                              "Hanken Grotesk", "sans-serif"
+                      ],
+                      "body-lg": [
+                              "Hanken Grotesk", "sans-serif"
+                      ],
+                      "display-lg": [
+                              "EB Garamond", "serif"
+                      ],
+                      "headline-md": [
+                              "EB Garamond", "serif"
+                      ],
+                      "label-sm": [
+                              "Hanken Grotesk", "sans-serif"
+                      ],
+                      "title-lg": [
+                              "Hanken Grotesk", "sans-serif"
+                      ],
+                      "headline-lg": [
+                              "EB Garamond", "serif"
+                      ],
+                      "headline-lg-mobile": [
+                              "EB Garamond", "serif"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.03em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "title-lg": [
+                              "22px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+          font-variation-settings: 'FILL' 1;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background min-h-screen flex items-center justify-center font-body-md text-on-background p-margin-mobile md:p-margin-desktop relative overflow-x-hidden">
+<!-- Background Image -->
+<div class="absolute inset-0 z-0">
+<div class="bg-cover bg-center w-full h-full" data-alt="A breathtaking, expansive landscape of a serene luxury resort in the Maldives at dawn. The scene features crystal clear turquoise water, a pristine white sand beach, and elegant overwater villas with thatched roofs. Soft, warm morning sunlight bathes the scene in a high-key, airy, modern light-mode aesthetic, emphasizing pristine whites, deep ocean blues, and subtle sunset orange accents. The mood is tranquil, aspirational, and perfectly suited for a premium travel brand." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCiRw7rckUWFKNkuCINGaVTvnMuB4aAHnLKMlVXTwwo_z_t8h-oQaN3R75jPHnIcqwNcYozynPJJQ_UdNWYnydASTjLXTdwnslQWWPBfiKCBZeha8V778qz6Ge0VWuCrD3xjJvMdvyDbZs82Ss09XSRrzT3QLUhXbfzu0migsf6YPIs7YB09lTqY0UeH6jdFeM0EtsWc-HJx6rzgBGnK_ZldcTh-O2zwFmirI53uhJielQwCZydazT5')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-background/90 to-background/50 backdrop-blur-sm"></div>
+</div>
+<!-- Registration Container -->
+<div class="relative z-10 w-full max-w-4xl mx-auto">
+<div class="glass-panel shadow-[0_4px_20px_rgba(0,0,0,0.05)] rounded-xl overflow-hidden border border-cloud-white">
+<div class="flex flex-col md:flex-row">
+<!-- Left Side: Branding & Info -->
+<div class="md:w-5/12 bg-primary text-cloud-white p-unit-lg flex flex-col justify-between">
+<div>
+<a class="inline-block mb-unit-xl" href="#">
+<h1 class="font-display-lg text-headline-md md:text-headline-lg font-bold">GlobeTrotter</h1>
+</a>
+<h2 class="font-headline-md text-headline-md mb-unit-md text-primary-fixed">Begin Your Journey</h2>
+<p class="font-body-md text-body-md text-tertiary-fixed-dim mb-unit-xl">
+                            Join our exclusive community of travelers and gain access to curated itineraries, expert guides, and unforgettable experiences.
+                        </p>
+</div>
+<div class="hidden md:block">
+<div class="flex items-center gap-unit-sm text-primary-fixed-dim font-label-md text-label-md mb-unit-sm">
+<span class="material-symbols-outlined" data-weight="fill">verified_user</span>
+                            Secure Registration
+                        </div>
+<div class="flex items-center gap-unit-sm text-primary-fixed-dim font-label-md text-label-md">
+<span class="material-symbols-outlined" data-weight="fill">flight_takeoff</span>
+                            Exclusive Access
+                        </div>
+</div>
+</div>
+<!-- Right Side: Form -->
+<div class="md:w-7/12 p-unit-lg bg-cloud-white/90">
+<form class="space-y-unit-md" id="registrationForm">
+<!-- Profile Image Upload Placeholder -->
+<div class="flex items-center gap-unit-md mb-unit-md">
+<div class="w-16 h-16 rounded-full bg-surface-container-high border-2 border-dashed border-tertiary flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-2xl">add_a_photo</span>
+</div>
+<div class="flex-1">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1">Profile Photo (Optional)</label>
+<button class="font-label-md text-label-md text-primary hover:text-secondary transition-colors" type="button">Upload Image</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-unit-md">
+<!-- First Name -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-unit-xs" for="firstName">First Name</label>
+<input class="w-full px-4 py-2 border border-tertiary rounded-lg bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface transition-colors" id="firstName" name="firstName" placeholder="Jane" required="" type="text"/>
+</div>
+<!-- Last Name -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-unit-xs" for="lastName">Last Name</label>
+<input class="w-full px-4 py-2 border border-tertiary rounded-lg bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface transition-colors" id="lastName" name="lastName" placeholder="Doe" required="" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-unit-md">
+<!-- Email -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-unit-xs" for="email">Email Address</label>
+<input class="w-full px-4 py-2 border border-tertiary rounded-lg bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface transition-colors" id="email" name="email" placeholder="jane@example.com" required="" type="email"/>
+</div>
+<!-- Phone -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-unit-xs" for="phone">Phone Number</label>
+<input class="w-full px-4 py-2 border border-tertiary rounded-lg bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface transition-colors" id="phone" name="phone" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-unit-md">
+<!-- City -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-unit-xs" for="city">City</label>
+<input class="w-full px-4 py-2 border border-tertiary rounded-lg bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface transition-colors" id="city" name="city" placeholder="New York" required="" type="text"/>
+</div>
+<!-- Country -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-unit-xs" for="country">Country</label>
+<select class="w-full px-4 py-2 border border-tertiary rounded-lg bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface transition-colors appearance-none" id="country" name="country" required="">
+<option disabled="" selected="" value="">Select Country</option>
+<option value="us">United States</option>
+<option value="uk">United Kingdom</option>
+<option value="ca">Canada</option>
+<option value="au">Australia</option>
+</select>
+</div>
+</div>
+<!-- Password Fields -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-unit-md">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-unit-xs" for="password">Password</label>
+<input class="w-full px-4 py-2 border border-tertiary rounded-lg bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface transition-colors" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-unit-xs" for="confirmPassword">Confirm Password</label>
+<input class="w-full px-4 py-2 border border-tertiary rounded-lg bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface transition-colors" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Travel Interests -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-unit-xs" for="interests">Additional Travel Interests</label>
+<textarea class="w-full px-4 py-2 border border-tertiary rounded-lg bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface transition-colors resize-none" id="interests" name="interests" placeholder="E.g., Wine tasting, Hiking, Historical sites..." rows="3"></textarea>
+</div>
+<!-- Submit Button -->
+<div class="pt-unit-sm">
+<button class="w-full bg-primary text-cloud-white font-label-md text-label-md py-3 px-6 rounded-full hover:bg-primary-container transition-colors shadow-sm hover:shadow-md" type="submit">
+                                Create Account
+                            </button>
+</div>
+<!-- Login Link -->
+<div class="text-center pt-unit-sm">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                                Already have an account? 
+                                <a class="text-secondary font-label-md text-label-md hover:text-on-secondary-fixed-variant transition-colors" href="#">Log In</a>
+</p>
+</div>
+</form>
+<!-- Success Notification (Hidden by default) -->
+<div class="hidden mt-unit-md p-4 bg-tertiary-fixed border border-tertiary-fixed-dim rounded-lg flex items-start gap-3" id="successNotification">
+<span class="material-symbols-outlined text-tertiary" data-weight="fill">check_circle</span>
+<div>
+<h4 class="font-label-md text-label-md text-tertiary">Registration Successful!</h4>
+<p class="font-body-md text-body-md text-on-tertiary-fixed-variant mt-1 text-sm">Welcome to GlobeTrotter. Please check your email to verify your account.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Basic simulation of success
+            this.style.opacity = '0.5';
+            this.style.pointerEvents = 'none';
+            document.getElementById('successNotification').classList.remove('hidden');
+            setTimeout(() => {
+                // Reset for demo purposes
+                this.style.opacity = '1';
+                this.style.pointerEvents = 'auto';
+                this.reset();
+                document.getElementById('successNotification').classList.add('hidden');
+            }, 3000);
+        });
+    </script>
+</body></html>

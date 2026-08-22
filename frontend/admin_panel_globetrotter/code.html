@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Dashboard - GlobeTrotter</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed-dim": "#b8cac9",
+                      "surface-variant": "#e1e3e4",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-fixed": "#d5e3ff",
+                      "on-primary-fixed-variant": "#1f477b",
+                      "surface-tint": "#3a5f94",
+                      "tertiary-container": "#263636",
+                      "secondary-container": "#fe7e4f",
+                      "secondary-fixed-dim": "#ffb59c",
+                      "on-secondary-fixed-variant": "#822800",
+                      "primary": "#001e40",
+                      "on-tertiary-container": "#8e9f9e",
+                      "inverse-primary": "#a7c8ff",
+                      "surface-container-low": "#f3f4f5",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed": "#001b3c",
+                      "cloud-white": "#FFFFFF",
+                      "primary-fixed-dim": "#a7c8ff",
+                      "surface-bright": "#f8f9fa",
+                      "primary-container": "#003366",
+                      "outline-variant": "#c3c6d1",
+                      "inverse-on-surface": "#f0f1f2",
+                      "on-primary": "#ffffff",
+                      "surface-dim": "#d9dadb",
+                      "on-background": "#191c1d",
+                      "on-surface": "#191c1d",
+                      "on-tertiary-fixed-variant": "#3a4a49",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed": "#380c00",
+                      "on-secondary": "#ffffff",
+                      "surface": "#f8f9fa",
+                      "error-container": "#ffdad6",
+                      "background": "#f8f9fa",
+                      "deep-ocean": "#001F3F",
+                      "inverse-surface": "#2e3132",
+                      "surface-container-high": "#e7e8e9",
+                      "surface-container-highest": "#e1e3e4",
+                      "on-tertiary": "#ffffff",
+                      "on-surface-variant": "#43474f",
+                      "on-error": "#ffffff",
+                      "surface-container": "#edeeef",
+                      "on-primary-container": "#799dd6",
+                      "tertiary-fixed": "#d4e6e5",
+                      "slate-gray": "#333333",
+                      "on-secondary-container": "#6b1f00",
+                      "secondary-fixed": "#ffdbcf",
+                      "on-tertiary-fixed": "#0e1e1e",
+                      "sunset-accent": "#FF4500",
+                      "secondary": "#a43c12",
+                      "tertiary": "#112121",
+                      "outline": "#737780"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit-md": "16px",
+                      "gutter": "24px",
+                      "unit-lg": "32px",
+                      "unit-sm": "8px",
+                      "unit-xs": "4px",
+                      "margin-desktop": "64px",
+                      "margin-mobile": "20px",
+                      "unit-xl": "64px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Hanken Grotesk", "sans-serif"
+                      ],
+                      "label-md": [
+                              "Hanken Grotesk", "sans-serif"
+                      ],
+                      "body-lg": [
+                              "Hanken Grotesk", "sans-serif"
+                      ],
+                      "display-lg": [
+                              "EB Garamond", "serif"
+                      ],
+                      "headline-md": [
+                              "EB Garamond", "serif"
+                      ],
+                      "label-sm": [
+                              "Hanken Grotesk", "sans-serif"
+                      ],
+                      "title-lg": [
+                              "Hanken Grotesk", "sans-serif"
+                      ],
+                      "headline-lg": [
+                              "EB Garamond", "serif"
+                      ],
+                      "headline-lg-mobile": [
+                              "EB Garamond", "serif"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.03em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "title-lg": [
+                              "22px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="bg-surface-container-low dark:bg-tertiary-container text-primary dark:text-primary-fixed-dim h-screen w-64 fixed left-0 top-0 shadow-md hidden lg:flex flex-col h-full py-unit-md z-50">
+<div class="px-6 pb-unit-md border-b border-surface-variant mb-unit-sm">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-3xl">admin_panel_settings</span>
+<div>
+<h1 class="font-display-lg text-title-lg font-bold">Admin Panel</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">System Management</p>
+</div>
+</div>
+<img alt="Admin user" class="w-10 h-10 rounded-full object-cover mt-4" data-alt="A small circular profile picture of an administrative user in a modern office setting. The image is brightly lit, evoking a clean, professional, light-mode startup aesthetic. The focus is sharp on the person's friendly yet authoritative face." src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+</div>
+<div class="flex-1 overflow-y-auto">
+<a class="bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined font-label-md text-label-md" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-md text-label-md">Overview</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-variant dark:hover:bg-tertiary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-surface-variant dark:hover:bg-tertiary transition-all active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined font-label-md text-label-md">group</span>
+<span class="font-label-md text-label-md">Users</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-variant dark:hover:bg-tertiary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-surface-variant dark:hover:bg-tertiary transition-all active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined font-label-md text-label-md">explore</span>
+<span class="font-label-md text-label-md">Trips</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-variant dark:hover:bg-tertiary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-surface-variant dark:hover:bg-tertiary transition-all active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined font-label-md text-label-md">event_available</span>
+<span class="font-label-md text-label-md">Activities</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-variant dark:hover:bg-tertiary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-surface-variant dark:hover:bg-tertiary transition-all active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined font-label-md text-label-md">analytics</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+</div>
+<div class="p-4 mt-auto">
+<button class="w-full bg-primary text-cloud-white font-label-md text-label-md py-2 rounded-full hover:bg-primary-container transition-colors shadow-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">health_and_safety</span>
+                System Status
+            </button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 lg:ml-64 p-margin-mobile md:p-margin-desktop max-w-container-max mx-auto w-full">
+<!-- Header -->
+<header class="flex justify-between items-end mb-unit-lg pb-unit-sm border-b border-surface-variant">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary font-bold">Dashboard Overview</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Welcome back. Here is the latest system performance.</p>
+</div>
+<div class="hidden md:flex gap-3">
+<button class="p-2 bg-surface-container rounded-full hover:bg-surface-variant transition-colors text-primary flex items-center justify-center shadow-sm hover:shadow-md">
+<span class="material-symbols-outlined">refresh</span>
+</button>
+<button class="bg-primary text-cloud-white px-4 py-2 rounded-full font-label-md text-label-md hover:opacity-90 transition-opacity shadow-sm hover:shadow-md">
+                    Generate Report
+                </button>
+</div>
+</header>
+<!-- Global Stats Bento Grid -->
+<section class="bento-grid mb-unit-lg">
+<div class="glass-card rounded-xl p-unit-md flex flex-col justify-between hover:shadow-md transition-shadow duration-300 transform hover:-translate-y-1">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary-fixed rounded-lg text-on-primary-fixed-variant">
+<span class="material-symbols-outlined text-3xl">group</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary px-2 py-1 bg-tertiary-fixed rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +12%
+                    </span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Total Users</h3>
+<p class="font-headline-md text-headline-md text-primary font-bold">24,592</p>
+</div>
+</div>
+<div class="glass-card rounded-xl p-unit-md flex flex-col justify-between hover:shadow-md transition-shadow duration-300 transform hover:-translate-y-1">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-secondary-fixed rounded-lg text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined text-3xl">explore</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary px-2 py-1 bg-tertiary-fixed rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +8%
+                    </span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Active Trips</h3>
+<p class="font-headline-md text-headline-md text-primary font-bold">1,843</p>
+</div>
+</div>
+<div class="glass-card rounded-xl p-unit-md flex flex-col justify-between hover:shadow-md transition-shadow duration-300 transform hover:-translate-y-1">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-tertiary-fixed rounded-lg text-on-tertiary-fixed-variant">
+<span class="material-symbols-outlined text-3xl">payments</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary px-2 py-1 bg-tertiary-fixed rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +24%
+                    </span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Monthly Revenue</h3>
+<p class="font-headline-md text-headline-md text-primary font-bold">$142.5k</p>
+</div>
+</div>
+<div class="glass-card rounded-xl p-unit-md flex flex-col justify-between hover:shadow-md transition-shadow duration-300 transform hover:-translate-y-1">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-error-container rounded-lg text-on-error-container">
+<span class="material-symbols-outlined text-3xl">forum</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant px-2 py-1 bg-surface-variant rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_flat</span> 0%
+                    </span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Community Posts</h3>
+<p class="font-headline-md text-headline-md text-primary font-bold">8,201</p>
+</div>
+</div>
+</section>
+<!-- Charts Section -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-gutter mb-unit-lg">
+<!-- User Growth Chart Placeholder -->
+<div class="glass-card rounded-xl p-unit-md flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-title-lg text-title-lg text-primary">User Growth</h3>
+<select class="bg-surface border border-outline-variant text-on-surface text-label-sm font-label-sm rounded-lg focus:ring-primary focus:border-primary block p-2">
+<option>Last 30 Days</option>
+<option>This Year</option>
+<option>All Time</option>
+</select>
+</div>
+<!-- Abstract visual representation of a line chart -->
+<div class="flex-1 relative h-64 border-b border-l border-surface-variant pt-4 pr-4">
+<div class="absolute bottom-0 left-0 w-full h-full flex items-end">
+<svg class="w-full h-full text-secondary" preserveaspectratio="none" viewbox="0 0 100 50">
+<path class="opacity-80" d="M0,45 Q10,30 20,40 T40,25 T60,35 T80,10 T100,5" fill="none" stroke="currentColor" stroke-width="2"></path>
+<path class="opacity-10" d="M0,50 L0,45 Q10,30 20,40 T40,25 T60,35 T80,10 T100,5 L100,50 Z" fill="currentColor"></path>
+</svg>
+</div>
+<!-- Axis Labels (Simulated) -->
+<div class="absolute bottom-[-24px] left-0 w-full flex justify-between text-label-sm text-on-surface-variant px-2">
+<span>Week 1</span><span>Week 2</span><span>Week 3</span><span>Week 4</span>
+</div>
+</div>
+</div>
+<!-- Popular Destinations Bar Chart Placeholder -->
+<div class="glass-card rounded-xl p-unit-md flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-title-lg text-title-lg text-primary">Top Destinations</h3>
+<button class="text-secondary font-label-sm hover:underline">View All</button>
+</div>
+<div class="flex-1 flex flex-col justify-end gap-4 pb-4">
+<div class="w-full">
+<div class="flex justify-between text-label-sm mb-1 text-on-surface">
+<span>Kyoto, Japan</span>
+<span class="font-bold">1,240</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div class="w-full">
+<div class="flex justify-between text-label-sm mb-1 text-on-surface">
+<span>Reykjavik, Iceland</span>
+<span class="font-bold">980</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2">
+<div class="bg-primary h-2 rounded-full opacity-80" style="width: 70%"></div>
+</div>
+</div>
+<div class="w-full">
+<div class="flex justify-between text-label-sm mb-1 text-on-surface">
+<span>Rome, Italy</span>
+<span class="font-bold">850</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2">
+<div class="bg-primary h-2 rounded-full opacity-60" style="width: 60%"></div>
+</div>
+</div>
+<div class="w-full">
+<div class="flex justify-between text-label-sm mb-1 text-on-surface">
+<span>Bali, Indonesia</span>
+<span class="font-bold">720</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2">
+<div class="bg-primary h-2 rounded-full opacity-50" style="width: 45%"></div>
+</div>
+</div>
+<div class="w-full">
+<div class="flex justify-between text-label-sm mb-1 text-on-surface">
+<span>Patagonia, Chile</span>
+<span class="font-bold">510</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2">
+<div class="bg-primary h-2 rounded-full opacity-40" style="width: 30%"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- User Management Table -->
+<section class="glass-card rounded-xl overflow-hidden mb-unit-lg shadow-sm">
+<div class="p-unit-md border-b border-surface-variant flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<h3 class="font-title-lg text-title-lg text-primary">Recent User Activity</h3>
+<div class="relative w-full sm:w-auto">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full sm:w-64 pl-10 pr-4 py-2 border border-tertiary text-body-md rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary bg-surface-container-lowest" placeholder="Search users..." type="text"/>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-md text-label-md border-b border-surface-variant">
+<th class="p-4 font-semibold cursor-pointer hover:bg-surface-variant transition-colors group">
+<div class="flex items-center gap-1">User <span class="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100">arrow_downward</span></div>
+</th>
+<th class="p-4 font-semibold">Email</th>
+<th class="p-4 font-semibold">Role</th>
+<th class="p-4 font-semibold cursor-pointer hover:bg-surface-variant transition-colors group">
+<div class="flex items-center gap-1">Registration Date <span class="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100">arrow_downward</span></div>
+</th>
+<th class="p-4 font-semibold">Status</th>
+<th class="p-4 font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="text-body-md text-on-surface divide-y divide-surface-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors bg-cloud-white">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<img alt="Sarah Jenkins" class="w-10 h-10 rounded-full object-cover shadow-sm" data-alt="A small circular profile picture of a young professional woman smiling. The image is brightly lit against a neutral light background, fitting a clean, minimalist UI style." src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<span class="font-medium text-primary">Sarah Jenkins</span>
+</div>
+</td>
+<td class="p-4 text-on-surface-variant">sarah.j@example.com</td>
+<td class="p-4"><span class="px-2 py-1 bg-surface-container rounded text-label-sm font-label-sm">User</span></td>
+<td class="p-4 text-on-surface-variant">Oct 12, 2024</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full text-label-sm font-label-sm bg-tertiary-fixed text-primary">
+<span class="w-2 h-2 rounded-full bg-primary inline-block"></span> Active
+                                </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-on-surface-variant hover:text-primary p-1 transition-colors" title="Edit"><span class="material-symbols-outlined">edit</span></button>
+<button class="text-on-surface-variant hover:text-error p-1 transition-colors" title="Disable"><span class="material-symbols-outlined">block</span></button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors bg-cloud-white">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<img alt="Marcus Chen" class="w-10 h-10 rounded-full object-cover shadow-sm" data-alt="A small circular profile picture of a middle-aged man with glasses. Professional, bright lighting, light background, minimalist startup aesthetic." src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<span class="font-medium text-primary">Marcus Chen</span>
+</div>
+</td>
+<td class="p-4 text-on-surface-variant">m.chen@globetrotter.io</td>
+<td class="p-4"><span class="px-2 py-1 bg-primary-fixed text-on-primary-fixed-variant rounded text-label-sm font-label-sm font-bold">Admin</span></td>
+<td class="p-4 text-on-surface-variant">Jan 05, 2023</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full text-label-sm font-label-sm bg-tertiary-fixed text-primary">
+<span class="w-2 h-2 rounded-full bg-primary inline-block"></span> Active
+                                </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-on-surface-variant hover:text-primary p-1 transition-colors" title="Edit"><span class="material-symbols-outlined">edit</span></button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors bg-cloud-white opacity-70">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-bold">
+                                        JD
+                                    </div>
+<span class="font-medium text-primary line-through decoration-surface-variant">John Doe</span>
+</div>
+</td>
+<td class="p-4 text-on-surface-variant">john.d@spam.com</td>
+<td class="p-4"><span class="px-2 py-1 bg-surface-container rounded text-label-sm font-label-sm">User</span></td>
+<td class="p-4 text-on-surface-variant">Oct 18, 2024</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full text-label-sm font-label-sm bg-error-container text-on-error-container">
+<span class="w-2 h-2 rounded-full bg-error inline-block"></span> Suspended
+                                </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-on-surface-variant hover:text-primary p-1 transition-colors" title="Edit"><span class="material-symbols-outlined">edit</span></button>
+<button class="text-on-surface-variant hover:text-primary p-1 transition-colors" title="Restore"><span class="material-symbols-outlined">settings_backup_restore</span></button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-lowest transition-colors bg-cloud-white">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<img alt="Eleanor Rigby" class="w-10 h-10 rounded-full object-cover shadow-sm" data-alt="A small circular profile picture of an elderly woman outdoors. Bright natural lighting, soft focus background, premium minimalist travel aesthetic." src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<span class="font-medium text-primary">Eleanor Vance</span>
+</div>
+</td>
+<td class="p-4 text-on-surface-variant">e.vance@example.com</td>
+<td class="p-4"><span class="px-2 py-1 bg-surface-container rounded text-label-sm font-label-sm">User</span></td>
+<td class="p-4 text-on-surface-variant">Oct 20, 2024</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full text-label-sm font-label-sm bg-tertiary-fixed text-primary">
+<span class="w-2 h-2 rounded-full bg-primary inline-block"></span> Active
+                                </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-on-surface-variant hover:text-primary p-1 transition-colors" title="Edit"><span class="material-symbols-outlined">edit</span></button>
+<button class="text-on-surface-variant hover:text-error p-1 transition-colors" title="Disable"><span class="material-symbols-outlined">block</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination (Simulated) -->
+<div class="p-4 border-t border-surface-variant flex justify-between items-center bg-surface-container-lowest text-label-sm text-on-surface-variant">
+<span>Showing 1 to 4 of 24,592 users</span>
+<div class="flex gap-1">
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-variant transition-colors disabled:opacity-50" disabled="">Prev</button>
+<button class="px-3 py-1 border border-primary bg-primary text-cloud-white rounded">1</button>
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-variant transition-colors">2</button>
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-variant transition-colors">3</button>
+</div></div></section></main></body></html>

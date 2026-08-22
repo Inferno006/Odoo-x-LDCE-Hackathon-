@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Activity Search - GlobeTrotter</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=EB+Garamond:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#b8cac9",
+                        "surface-variant": "#e1e3e4",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#d5e3ff",
+                        "on-primary-fixed-variant": "#1f477b",
+                        "surface-tint": "#3a5f94",
+                        "tertiary-container": "#263636",
+                        "secondary-container": "#fe7e4f",
+                        "secondary-fixed-dim": "#ffb59c",
+                        "on-secondary-fixed-variant": "#822800",
+                        "primary": "#001e40",
+                        "on-tertiary-container": "#8e9f9e",
+                        "inverse-primary": "#a7c8ff",
+                        "surface-container-low": "#f3f4f5",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#001b3c",
+                        "cloud-white": "#FFFFFF",
+                        "primary-fixed-dim": "#a7c8ff",
+                        "surface-bright": "#f8f9fa",
+                        "primary-container": "#003366",
+                        "outline-variant": "#c3c6d1",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#d9dadb",
+                        "on-background": "#191c1d",
+                        "on-surface": "#191c1d",
+                        "on-tertiary-fixed-variant": "#3a4a49",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#380c00",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f8f9fa",
+                        "error-container": "#ffdad6",
+                        "background": "#f8f9fa",
+                        "deep-ocean": "#001F3F",
+                        "inverse-surface": "#2e3132",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#43474f",
+                        "on-error": "#ffffff",
+                        "surface-container": "#edeeef",
+                        "on-primary-container": "#799dd6",
+                        "tertiary-fixed": "#d4e6e5",
+                        "slate-gray": "#333333",
+                        "on-secondary-container": "#6b1f00",
+                        "secondary-fixed": "#ffdbcf",
+                        "on-tertiary-fixed": "#0e1e1e",
+                        "sunset-accent": "#FF4500",
+                        "secondary": "#a43c12",
+                        "tertiary": "#112121",
+                        "outline": "#737780"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit-md": "16px",
+                        "gutter": "24px",
+                        "unit-lg": "32px",
+                        "unit-sm": "8px",
+                        "unit-xs": "4px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "20px",
+                        "unit-xl": "64px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Hanken Grotesk", "sans-serif"],
+                        "label-md": ["Hanken Grotesk", "sans-serif"],
+                        "body-lg": ["Hanken Grotesk", "sans-serif"],
+                        "display-lg": ["EB Garamond", "serif"],
+                        "headline-md": ["EB Garamond", "serif"],
+                        "label-sm": ["Hanken Grotesk", "sans-serif"],
+                        "title-lg": ["Hanken Grotesk", "sans-serif"],
+                        "headline-lg": ["EB Garamond", "serif"],
+                        "headline-lg-mobile": ["EB Garamond", "serif"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "500" }],
+                        "title-lg": ["22px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "500" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pt-16 flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 max-w-container-max mx-auto bg-cloud-white/70 backdrop-blur-md shadow-sm">
+<div class="font-display-lg text-title-lg font-bold text-primary flex items-center gap-2">
+<span>GlobeTrotter</span>
+</div>
+<nav class="hidden md:flex gap-6">
+<a class="text-primary border-b-2 border-secondary font-bold pb-1 font-label-md text-label-md hover:text-secondary transition-colors duration-200" href="#">Discover</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-secondary transition-colors duration-200" href="#">My Trips</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-secondary transition-colors duration-200" href="#">Community</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-secondary transition-colors duration-200" href="#">Calendar</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center bg-surface-container-low rounded-full px-4 py-2 border border-tertiary focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-outline mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none outline-none font-body-md text-body-md text-on-surface w-32 focus:ring-0" placeholder="Search..." type="text"/>
+</div>
+<button class="hidden md:block bg-primary text-cloud-white font-label-md text-label-md rounded-full px-6 py-2 hover:bg-primary-container transition-colors shadow-sm scale-95 active:scale-90 transition-transform">Create Trip</button>
+<button class="text-on-surface-variant hover:text-secondary transition-colors duration-200 scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full object-cover shadow-sm cursor-pointer scale-95 active:scale-90 transition-transform" data-alt="A minimal, professional avatar placeholder image featuring a soft grey silhouette on a white background, representing a user profile, matching the modern, premium aesthetic of the GlobeTrotter luxury travel app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp4t4wLpnKL28ZboA42g8l2FFjChEyu5m4c0sFZ6Ny3PgafGRBShztCBHQbj72InjuBUx884WJ0FoyLGo-bRCa8iMEPueFGrqG5GbZuI3GynHDtFVtOUoyBWJ0XDAU_0RP1b1Czf5U92xgb91S9VCHJLkVTn5jrJVE_dESLrPpcyVV6SwmkdowFYNm3mxd1tUqN6nbZTS04BjlHPiEttmq3_UXQZKm_fP8wnAad5_2X6Yl8ykICtaF"/>
+</div>
+</header>
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-unit-xl">
+<!-- Header & Search -->
+<div class="mb-unit-lg flex flex-col gap-unit-md md:flex-row md:items-end md:justify-between">
+<div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-2">Explore Activities</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Find the perfect experience for your next adventure.</p>
+</div>
+<button class="flex items-center gap-2 text-primary font-label-md text-label-md hover:text-secondary transition-colors self-start md:self-auto">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+                Show Map
+            </button>
+</div>
+<!-- Advanced Filter Bar -->
+<div class="bg-cloud-white p-unit-md rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] mb-unit-xl flex flex-col lg:flex-row gap-unit-md">
+<div class="flex-grow relative flex items-center border border-tertiary rounded-lg px-unit-md focus-within:border-primary transition-colors bg-surface">
+<span class="material-symbols-outlined text-outline mr-2" data-icon="search">search</span>
+<input class="w-full bg-transparent border-none outline-none font-body-md text-body-md py-3 focus:ring-0" placeholder="Search destinations, cities or activities..." type="text"/>
+</div>
+<div class="flex gap-unit-sm overflow-x-auto pb-2 lg:pb-0 hide-scrollbar">
+<!-- Dropdown: Category -->
+<div class="relative min-w-[140px]">
+<select class="w-full appearance-none border border-tertiary rounded-lg bg-cloud-white px-4 py-3 pr-10 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary cursor-pointer">
+<option value="">Category</option>
+<option value="food">Food</option>
+<option value="outdoor">Outdoor</option>
+<option value="culture">Culture</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="expand_more">expand_more</span>
+</div>
+<!-- Dropdown: Price -->
+<div class="relative min-w-[120px]">
+<select class="w-full appearance-none border border-tertiary rounded-lg bg-cloud-white px-4 py-3 pr-10 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary cursor-pointer">
+<option value="">Price</option>
+<option value="1">$</option>
+<option value="2">$$</option>
+<option value="3">$$$</option>
+<option value="4">$$$$</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="expand_more">expand_more</span>
+</div>
+<!-- Dropdown: Rating -->
+<div class="relative min-w-[120px]">
+<select class="w-full appearance-none border border-tertiary rounded-lg bg-cloud-white px-4 py-3 pr-10 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary cursor-pointer">
+<option value="">Rating</option>
+<option value="4">4* &amp; Up</option>
+<option value="5">5* Only</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="expand_more">expand_more</span>
+</div>
+<!-- Dropdown: City -->
+<div class="relative min-w-[150px]">
+<select class="w-full appearance-none border border-tertiary rounded-lg bg-cloud-white px-4 py-3 pr-10 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary cursor-pointer">
+<option value="">City</option>
+<option value="paris">Paris</option>
+<option value="kyoto">Kyoto</option>
+<option value="rome">Rome</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Results Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Activity Card 1 -->
+<div class="bg-cloud-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 flex flex-col group cursor-pointer">
+<div class="relative h-48 overflow-hidden">
+<img alt="Paris Culinary Tour" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high-quality, sunlit photograph of a gourmet culinary tour in Paris, France. Close up on beautifully plated French pastries and cheese on a rustic wooden table outside a classic cafe. The image is bright, inviting, and communicates luxury travel and local food culture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfNgoM2VHUqYT1LCdtBPJzMyJCRytFXucbKyf_GlXfo8VIz2RX-1l7whxUUO9mHLeDK4alJivGcg9Pse9lYpQKCHbPoAXY2A1wSx4tskfEw3SiF8MHcM6dtPNRyI3Zrz2hPbbidLdZ9C3cA-SDScNBwMwVzGRLIzIu0KFE-Sd3AF9qt1fRd01hYXG2FpcE0aThqVpe-rFATMVLloOciJQefB-8SGiF6HeaszSh2tOQVRY_KWC9vZ3W"/>
+<div class="absolute top-unit-sm right-unit-sm glass-panel px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm font-bold text-primary">4.9</span>
+</div>
+</div>
+<div class="p-unit-md flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-title-lg text-title-lg text-primary line-clamp-1">Montmartre Tasting Tour</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1 mb-4">
+<span class="material-symbols-outlined text-[18px]" data-icon="location_on">location_on</span>
+                        Paris, France
+                    </p>
+<div class="mt-auto flex justify-between items-center pt-unit-sm border-t border-surface-variant">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Est. Cost</span>
+<span class="font-label-md text-label-md font-bold text-primary">$$$</span>
+</div>
+<button class="text-secondary font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1">
+                            View Details <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Activity Card 2 -->
+<div class="bg-cloud-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 flex flex-col group cursor-pointer">
+<div class="relative h-48 overflow-hidden">
+<img alt="Kyoto Bamboo Forest" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A breathtaking landscape photo of the Arashiyama Bamboo Grove in Kyoto, Japan. Towering green bamboo stalks filter soft morning sunlight, creating an ethereal, tranquil atmosphere. The path is empty, evoking a sense of peaceful, premium outdoor exploration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmDTAMYOf5SGRqiLsMiCXAdJqdmv6Fpc-0aErEYTNGmjrNpNVhb6JO8cWqOd_INxhB-45-gL4zrhuBruATjCHD4y5XyzeawoLQo3a1pv8jS_-NfdvQb1zUa_y5kUre5JPAX8_9OCh3hU0n6fZj3ysmr0KgzYGcj3SrNEkn6EYyMQN_LM-djvOi3BO0avwm6FS57pIQD0o5wWRZ40wFi5fGWN86R2l7NsbfOLWwBVieviNYqFR8qjSt"/>
+<div class="absolute top-unit-sm right-unit-sm glass-panel px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm font-bold text-primary">4.8</span>
+</div>
+</div>
+<div class="p-unit-md flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-title-lg text-title-lg text-primary line-clamp-1">Bamboo Forest Walk</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1 mb-4">
+<span class="material-symbols-outlined text-[18px]" data-icon="location_on">location_on</span>
+                        Kyoto, Japan
+                    </p>
+<div class="mt-auto flex justify-between items-center pt-unit-sm border-t border-surface-variant">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Est. Cost</span>
+<span class="font-label-md text-label-md font-bold text-primary">$</span>
+</div>
+<button class="text-secondary font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1">
+                            View Details <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Activity Card 3 -->
+<div class="bg-cloud-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 flex flex-col group cursor-pointer">
+<div class="relative h-48 overflow-hidden">
+<img alt="Rome Colosseum Tour" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A stunning sunset view of the Colosseum in Rome, Italy. The ancient ruins are illuminated warmly against a deep blue and orange sky, capturing the grandeur of historical culture and luxury travel sightseeing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZsCeUwQNEFnLN5hEVlaMxVuJLRcWdqaZrJhVjMewbe10RujCtzta1Y8jb7-8x-UTtYBx_ezRRTD55T7uuHeN8Z-ZaeTVJ_Lb1FBDfE47oPovVvxQ4JZyLvrGj7wxkwiY59UIC7xOukSS8a3GzfUledZ4l8QzFCrbd9ervfSrH-l0k8Wxf-Jna9FQBvQGu_S4S3rJcVe6zL8UiNR_HpjFQwxeXJmQkihRIeccS-pvs8yc-9Zw_Jy4Y"/>
+<div class="absolute top-unit-sm right-unit-sm glass-panel px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm font-bold text-primary">4.7</span>
+</div>
+</div>
+<div class="p-unit-md flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-title-lg text-title-lg text-primary line-clamp-1">Colosseum Twilight Tour</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1 mb-4">
+<span class="material-symbols-outlined text-[18px]" data-icon="location_on">location_on</span>
+                        Rome, Italy
+                    </p>
+<div class="mt-auto flex justify-between items-center pt-unit-sm border-t border-surface-variant">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Est. Cost</span>
+<span class="font-label-md text-label-md font-bold text-primary">$$</span>
+</div>
+<button class="text-secondary font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1">
+                            View Details <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Activity Card 4 -->
+<div class="bg-cloud-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 flex flex-col group cursor-pointer">
+<div class="relative h-48 overflow-hidden">
+<img alt="Amalfi Coast Cruise" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A luxurious private boat cruising along the Amalfi Coast, Italy. Crystal clear turquoise water, colorful cliffside villages in the background under bright sunshine. High-end lifestyle imagery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjLC5al0dWXPDss8L6EChMV4QISoDV-rAy_7YYxMJ4sleMZr265mmbwMQAt1U07yHEndTBmRYCa3PkMrDYt8WFjsUkAlA2LNVd7Ufp73yAJGIIq_bPu284oYNe3E6-BaXFqM33mF4pc8BZSCEHf21n3Eb6NKty3cBMWlzMkWpxVOWL8DVaXTrF6fgp8WXgxFCg9YrCopYK28N8Tp1yHj2mOJ2n94rIFAOcXExGaPc9tAMQ_xf8_CbF"/>
+<div class="absolute top-unit-sm right-unit-sm glass-panel px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm font-bold text-primary">5.0</span>
+</div>
+</div>
+<div class="p-unit-md flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-title-lg text-title-lg text-primary line-clamp-1">Private Amalfi Cruise</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1 mb-4">
+<span class="material-symbols-outlined text-[18px]" data-icon="location_on">location_on</span>
+                        Amalfi, Italy
+                    </p>
+<div class="mt-auto flex justify-between items-center pt-unit-sm border-t border-surface-variant">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Est. Cost</span>
+<span class="font-label-md text-label-md font-bold text-primary">$$$$</span>
+</div>
+<button class="text-secondary font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1">
+                            View Details <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State (Hidden by default, structure provided) -->
+<div class="hidden flex-col items-center justify-center py-unit-xl text-center">
+<span class="material-symbols-outlined text-[64px] text-tertiary-fixed-dim mb-4" data-icon="travel_explore">travel_explore</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">No activities found</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">We couldn't find any activities matching your current filters. Try adjusting your search or clearing some filters.</p>
+<button class="mt-unit-md border border-primary text-primary font-label-md text-label-md rounded-full px-6 py-2 hover:bg-primary hover:text-cloud-white transition-colors">Clear All Filters</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-unit-xl mt-unit-xl bg-primary dark:bg-on-primary-fixed">
+<div class="w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-gutter">
+<div class="font-display-lg text-title-lg text-cloud-white mb-4 md:mb-0">
+                GlobeTrotter
+            </div>
+<div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-4 md:mb-0">
+<a class="font-label-sm text-label-sm text-tertiary-fixed-dim hover:text-cloud-white hover:text-secondary-fixed transition-colors" href="#">Destinations</a>
+<a class="font-label-sm text-label-sm text-tertiary-fixed-dim hover:text-cloud-white hover:text-secondary-fixed transition-colors" href="#">Itineraries</a>
+<a class="font-label-sm text-label-sm text-tertiary-fixed-dim hover:text-cloud-white hover:text-secondary-fixed transition-colors" href="#">Support</a>
+<a class="font-label-sm text-label-sm text-tertiary-fixed-dim hover:text-cloud-white hover:text-secondary-fixed transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-tertiary-fixed-dim hover:text-cloud-white hover:text-secondary-fixed transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="font-body-md text-body-md text-cloud-white text-center md:text-right text-opacity-80">
+                © 2024 GlobeTrotter Luxury Travel. All rights reserved.
+            </div>
+</div>
+</footer>
+<style>
+        /* Utility to hide scrollbar for horizontal scrolling filter area */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

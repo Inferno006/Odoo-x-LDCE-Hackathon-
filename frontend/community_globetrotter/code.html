@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GlobeTrotter Community</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed-dim": "#b8cac9",
+                      "surface-variant": "#e1e3e4",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-fixed": "#d5e3ff",
+                      "on-primary-fixed-variant": "#1f477b",
+                      "surface-tint": "#3a5f94",
+                      "tertiary-container": "#263636",
+                      "secondary-container": "#fe7e4f",
+                      "secondary-fixed-dim": "#ffb59c",
+                      "on-secondary-fixed-variant": "#822800",
+                      "primary": "#001e40",
+                      "on-tertiary-container": "#8e9f9e",
+                      "inverse-primary": "#a7c8ff",
+                      "surface-container-low": "#f3f4f5",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed": "#001b3c",
+                      "cloud-white": "#FFFFFF",
+                      "primary-fixed-dim": "#a7c8ff",
+                      "surface-bright": "#f8f9fa",
+                      "primary-container": "#003366",
+                      "outline-variant": "#c3c6d1",
+                      "inverse-on-surface": "#f0f1f2",
+                      "on-primary": "#ffffff",
+                      "surface-dim": "#d9dadb",
+                      "on-background": "#191c1d",
+                      "on-surface": "#191c1d",
+                      "on-tertiary-fixed-variant": "#3a4a49",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed": "#380c00",
+                      "on-secondary": "#ffffff",
+                      "surface": "#f8f9fa",
+                      "error-container": "#ffdad6",
+                      "background": "#f8f9fa",
+                      "deep-ocean": "#001F3F",
+                      "inverse-surface": "#2e3132",
+                      "surface-container-high": "#e7e8e9",
+                      "surface-container-highest": "#e1e3e4",
+                      "on-tertiary": "#ffffff",
+                      "on-surface-variant": "#43474f",
+                      "on-error": "#ffffff",
+                      "surface-container": "#edeeef",
+                      "on-primary-container": "#799dd6",
+                      "tertiary-fixed": "#d4e6e5",
+                      "slate-gray": "#333333",
+                      "on-secondary-container": "#6b1f00",
+                      "secondary-fixed": "#ffdbcf",
+                      "on-tertiary-fixed": "#0e1e1e",
+                      "sunset-accent": "#FF4500",
+                      "secondary": "#a43c12",
+                      "tertiary": "#112121",
+                      "outline": "#737780"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit-md": "16px",
+                      "gutter": "24px",
+                      "unit-lg": "32px",
+                      "unit-sm": "8px",
+                      "unit-xs": "4px",
+                      "margin-desktop": "64px",
+                      "margin-mobile": "20px",
+                      "unit-xl": "64px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "hankenGrotesk"
+                      ],
+                      "label-md": [
+                              "hankenGrotesk"
+                      ],
+                      "body-lg": [
+                              "hankenGrotesk"
+                      ],
+                      "display-lg": [
+                              "ebGaramond"
+                      ],
+                      "headline-md": [
+                              "ebGaramond"
+                      ],
+                      "label-sm": [
+                              "hankenGrotesk"
+                      ],
+                      "title-lg": [
+                              "hankenGrotesk"
+                      ],
+                      "headline-lg": [
+                              "ebGaramond"
+                      ],
+                      "headline-lg-mobile": [
+                              "ebGaramond"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.03em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "title-lg": [
+                              "22px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+      </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md min-h-screen pt-16">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 max-w-container-max mx-auto bg-cloud-white/70 backdrop-blur-md shadow-sm">
+<div class="flex items-center gap-unit-lg">
+<span class="font-display-lg text-title-lg font-bold text-primary">GlobeTrotter</span>
+<div class="hidden md:flex gap-unit-md items-center h-full pt-1">
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-md text-label-md" href="#">Discover</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-md text-label-md" href="#">My Trips</a>
+<a class="text-primary border-b-2 border-secondary font-bold pb-1 font-label-md text-label-md" href="#">Community</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-md text-label-md" href="#">Calendar</a>
+</div>
+</div>
+<div class="flex items-center gap-unit-md">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 rounded-full border border-tertiary-fixed-dim bg-surface-container-lowest focus:outline-none focus:border-primary text-body-md w-64" placeholder="Search community..." type="text"/>
+</div>
+<button class="bg-primary text-cloud-white font-label-md text-label-md px-4 py-2 rounded-full scale-95 active:scale-90 transition-transform">Create Trip</button>
+<button aria-label="notifications" class="text-on-surface-variant hover:text-secondary transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="settings" class="text-on-surface-variant hover:text-secondary transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="User profile avatar" class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of an adventurous young traveler with a slight smile, standing against a brightly lit out of focus cityscape background, representing a high quality user profile avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCET7luHuwqhQmM_7ujORpYakJmZL6uXFHCiHprAVkMGzSLhHbmKAYNz5ylRgwkNRnDo0ho5E41Zfd5pDKWs-UV0NdoLk2wpjlKVfE81TsqbCu5Xux9qPA9H5FPnf2wQx3w0fu1kf2Wx0ck4pnrIgmY8DCd5AgqfaTQLg442ZOEk6iKOWdeShXKUWQ0rNRVF9IBIJt2OzwG-K0dh6o4XqX-8HEjuxCyB4eDnB-NTj2kxLPweEyjXmGt"/>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-unit-lg flex gap-gutter justify-center">
+<!-- Feed Column -->
+<div class="w-full max-w-[680px] flex flex-col gap-unit-lg">
+<!-- Feed Header & Create Action -->
+<div class="bg-cloud-white rounded-xl shadow-sm p-unit-md flex gap-unit-md items-center mb-unit-sm">
+<img alt="User profile avatar" class="w-12 h-12 rounded-full object-cover" data-alt="A portrait of an adventurous young traveler with a slight smile, standing against a brightly lit out of focus cityscape background, representing a high quality user profile avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBhop1gP3Y7fwM_1n3OVOliGQd5Fi6IDRYLXBVGR3b8VYpTDfNHfXDGhCbjL935EhQ20UYY6foDDFj-th7jHdmTLChePQcrfn6WG_9IUEyiqD4y_JfQS986S0K1WCKoiISzNeQqjaUVRq1FCv3RZN0tqmobFwCd5duOFQN0PQ__k8IAZLGL-_7lUnJqo3QOZopcn47byVLwpcUIKmsGeg8AVaPBxmK_x0qefAwLWW6dQw61U-5IB2t"/>
+<button class="flex-grow text-left text-on-surface-variant bg-surface px-4 py-3 rounded-full hover:bg-surface-variant transition-colors border border-surface-dim" onclick="document.getElementById('createModal').classList.remove('hidden')">
+                     Share your latest travel experience...
+                 </button>
+<button class="text-primary hover:text-secondary p-2 bg-primary-fixed/20 rounded-full" onclick="document.getElementById('createModal').classList.remove('hidden')">
+<span class="material-symbols-outlined">add_photo_alternate</span>
+</button>
+</div>
+<!-- Experience Post 1 -->
+<article class="bg-cloud-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 relative group">
+<div class="p-unit-md flex justify-between items-start">
+<div class="flex gap-unit-sm items-center">
+<img alt="User avatar" class="w-10 h-10 rounded-full object-cover" data-alt="A vibrant headshot of a female traveler with short dark hair, wearing a sun hat, smiling broadly in bright daylight, suitable for a lifestyle social media avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1FB8uQc_kR504PNNfi3ekVmoGKKaqXjuuwFsSmKX7J-ynWqRE1PFouguEuStmVtUr85DuSfkFKq3oICAf00zXILGbiSDgDyaNRtM1w0RYKT_38PuJ8f5wdmMU81jrXZZdn5naz6emqyJRPvyJNcJrjhY8qxN5E20GSvjDaIuGQ1fNsNiznvz_py2zsjM_M5cn1hJsVc87e7CyLZHy_hPKFtjJMukY7ev2vneVTsbZ-Ygdq7nPS-q5"/>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Elena Rodriguez</p>
+<div class="flex items-center gap-1 text-on-surface-variant text-label-sm font-label-sm">
+<span>2 hours ago</span>
+<span>•</span>
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[14px]">location_on</span> Kyoto, Japan
+                                </a>
+</div>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">more_horiz</span></button>
+</div>
+<div class="px-unit-md pb-unit-sm">
+<p class="font-body-md text-body-md text-on-surface mb-2">Lost in the mesmerizing Arashiyama Bamboo Grove. The light filtering through these towering green stalks feels like stepping into another world. Highly recommend arriving before 7 AM to beat the crowds! 🎋✨ #Kyoto #BambooForest</p>
+</div>
+<div class="relative w-full aspect-[4/3] bg-surface-variant">
+<img class="w-full h-full object-cover" data-alt="A stunning, high-contrast travel photograph of the Arashiyama Bamboo Grove in Kyoto. Towering, vibrant green bamboo stalks frame a narrow path, with golden morning sunlight piercing through the canopy, creating a serene, majestic, and aspirational mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCQPRx2U-6JoCm4VnQZkmiXNgZqoggNeMULK4OE48zuf_5zSittVJlnrZNP46yzHKI88oVIkD2P6exRLA8WswUcSRZDsNMjRNMzCj-LDhBwJScLIXpNe__xnhr5afyDrVreiZR4DdbYmNtHMxRNkD4PqN82wMjjdmcr1-dYCw3_wMZMI6XNQpDJ2ptWvsGnsge56A7Om75wMRKHuhGtucCJFznqt9hCz1Ea65meDUbFtsXRrX29McN"/>
+<div class="absolute top-4 right-4 bg-cloud-white/80 backdrop-blur-md px-3 py-1 rounded-full text-label-sm font-label-sm text-primary shadow-sm">
+                         Guided Tour
+                     </div>
+</div>
+<div class="p-unit-md flex justify-between items-center border-t border-surface-container">
+<div class="flex gap-unit-md">
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-secondary transition-colors group">
+<span class="material-symbols-outlined group-hover:fill-current">favorite</span>
+<span class="font-label-md text-label-md">245</span>
+</button>
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-label-md text-label-md">18</span>
+</button>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</article>
+<!-- Experience Post 2 -->
+<article class="bg-cloud-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 relative group">
+<div class="p-unit-md flex justify-between items-start">
+<div class="flex gap-unit-sm items-center">
+<img alt="User avatar" class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a male backpacker with a beard and sunglasses, leaning against a rustic stone wall in a sunlit European town, looking relaxed and adventurous." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAFMi8Uod-k6ABO6zqkzkReUCxo8BO6YK-Uff1QPynY5KYnbretLuUHrhAFXThRtIYe03K4WM_DFZfpZHYW--bjreLRiU9oVWsZIH9Q4C_REQH6aUZjUtoOCQSNZOEbUBo760nIt6TgQbRBhQTzmlKrTYirR5q9uIqixZME6J5R70MbLkbCCyuIT400tMmy2HKXkyYc6dCfaPd8hq9v-kTMc4X1njQQGNAokcQNJ_WylGpX-n27qPX"/>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Marcus Chen</p>
+<div class="flex items-center gap-1 text-on-surface-variant text-label-sm font-label-sm">
+<span>Yesterday</span>
+<span>•</span>
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[14px]">location_on</span> Amalfi Coast, Italy
+                                </a>
+</div>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">more_horiz</span></button>
+</div>
+<div class="px-unit-md pb-unit-sm">
+<p class="font-body-md text-body-md text-on-surface mb-2">The coastal drive from Positano to Amalfi is just breathtaking. Every turn reveals another postcard view of pastel houses clinging to the cliffs above the azure sea.</p>
+</div>
+<div class="relative w-full aspect-video bg-surface-variant">
+<img class="w-full h-full object-cover" data-alt="A panoramic, sun-drenched shot of the Amalfi Coast in Italy. Pastel-colored houses cascade down steep cliffs into the deep blue Mediterranean sea. The scene is vibrant, luxurious, and evokes a strong sense of wanderlust under a clear summer sky." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACMGRluFFmESEwlrZA99wdc6ocw5O4JnXNvcuMk4zcgRwIqtcvAVf6SkfM2tyCh6gz13fZuwbtenSVJZAVy6ZD5Sdbvv_BCYHi-tToqMUqqUVHAAQZOq1u2x1R79nRNRCjSe2p-BX-pQ5ogVJAnU0Hom9Xg1zQxyHjl2GAVy_crpYsPCHTDhlbXBfBkg5Mw8ICKTetBrGlgyo3zBoGZ3v-RBpmXZsvMZNCXxXIH8I6XYE_6yPvN6ww"/>
+</div>
+<div class="p-unit-md flex justify-between items-center border-t border-surface-container">
+<div class="flex gap-unit-md">
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-secondary transition-colors group">
+<span class="material-symbols-outlined group-hover:fill-current">favorite</span>
+<span class="font-label-md text-label-md">892</span>
+</button>
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-label-md text-label-md">45</span>
+</button>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</article>
+</div>
+</main>
+<!-- Create Post Modal -->
+<div class="hidden fixed inset-0 bg-primary/40 backdrop-blur-sm z-[100] flex items-center justify-center p-4" id="createModal">
+<div class="bg-cloud-white w-full max-w-[600px] rounded-xl shadow-lg overflow-hidden flex flex-col max-h-[921px]">
+<!-- Header -->
+<div class="p-4 border-b border-surface-container flex justify-between items-center bg-surface-bright">
+<h2 class="font-headline-md text-title-lg text-primary">Create Experience</h2>
+<button class="text-on-surface-variant hover:text-error transition-colors" onclick="document.getElementById('createModal').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Body -->
+<div class="p-unit-md overflow-y-auto flex flex-col gap-unit-md">
+<div class="flex gap-3 items-center mb-2">
+<img alt="User avatar" class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of an adventurous young traveler with a slight smile, standing against a brightly lit out of focus cityscape background, representing a high quality user profile avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD54V-lXsz9ZOvIcNRM8J1c3jEkHJ8zHG0eNfD8qyPFPqYfydr0LdunItALJx7IygJhYTgur92PkB9sOOhxn8DQnsKQ3hSJOpBBff7mIEdy2sNqjOB-9uGDv-fx6pfgyJlaxgYvqg4ascara52yC5GMsp4HHLYYdFNa0UcZArMg_iEf5DGB19_cZtNoweqCIWBXmdHTIeTD2-7WyQuEWwRc4UXtNp-0w9Hj3iauhWWS4qlz7PsEGv0A"/>
+<span class="font-label-md text-label-md text-on-surface">Posting publicly</span>
+</div>
+<!-- Inputs -->
+<div>
+<input class="w-full border-0 border-b border-tertiary-fixed-dim focus:ring-0 focus:border-primary bg-transparent text-title-lg font-title-lg px-0 py-2 placeholder:text-on-surface-variant/50" placeholder="Title your experience..." type="text"/>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-0 top-1/2 -translate-y-1/2 text-on-surface-variant">location_on</span>
+<input class="w-full pl-8 border-0 border-b border-tertiary-fixed-dim focus:ring-0 focus:border-primary bg-transparent font-body-md text-body-md py-2" placeholder="Add destination..." type="text"/>
+</div>
+<div>
+<textarea class="w-full border border-tertiary-fixed-dim rounded-lg focus:ring-primary focus:border-primary p-3 font-body-md text-body-md resize-none" placeholder="Share the details of your adventure..." rows="4"></textarea>
+</div>
+<!-- Image Upload Area -->
+<div class="border-2 border-dashed border-tertiary-fixed-dim rounded-xl p-8 flex flex-col items-center justify-center gap-2 hover:bg-surface transition-colors cursor-pointer group">
+<div class="p-3 bg-primary-fixed/30 rounded-full text-primary group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">cloud_upload</span>
+</div>
+<p class="font-label-md text-label-md text-primary">Click to upload photo or video</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">High quality images recommended</p>
+</div>
+<!-- Trip Link -->
+<div class="flex items-center justify-between p-3 border border-tertiary-fixed-dim rounded-lg bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">flight_takeoff</span>
+<span class="font-label-md text-label-md text-on-surface">Link to an itinerary (optional)</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+<!-- Footer -->
+<div class="p-4 border-t border-surface-container flex justify-end gap-3 bg-surface-bright">
+<button class="px-4 py-2 font-label-md text-label-md text-primary border border-primary rounded-full hover:bg-primary-fixed/20 transition-colors" onclick="document.getElementById('createModal').classList.add('hidden')">Cancel</button>
+<button class="px-6 py-2 font-label-md text-label-md text-cloud-white bg-primary rounded-full hover:bg-deep-ocean transition-colors shadow-sm">Post Experience</button>
+</div>
+</div>
+</div>
+</body></html>
