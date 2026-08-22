@@ -1,10 +1,10 @@
+import os
 from collections.abc import Generator
 
 from sqlalchemy import event
 from sqlmodel import Session, SQLModel, create_engine
 
-SQLITE_FILE_NAME = "globetrotter.db"
-DATABASE_URL = f"sqlite:///{SQLITE_FILE_NAME}"
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./globetrotter.db")
 
 engine = create_engine(
     DATABASE_URL,

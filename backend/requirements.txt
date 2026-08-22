@@ -3,3 +3,4 @@ uvicorn
 sqlmodel
 google-genai
 pydantic
+python-dotenv

@@ -5,14 +5,27 @@ from pydantic import BaseModel
 from sqlmodel import Field, Relationship, SQLModel
 
 
+class User(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str
+    email: str = Field(unique=True, index=True)
+    password_hash: str
+    avatar_url: Optional[str] = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
+
+    trips: List["Trip"] = Relationship(back_populates="user")
+
+
 class Trip(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
+    user_id: Optional[int] = Field(default=None, foreign_key="user.id")
     title: str
     share_code: str = Field(unique=True, index=True)
+    cover_image: Optional[str] = "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800"
     transport_budget: float = 0.0
     stay_budget: float = 0.0
     meals_budget: float = 0.0
 
+    user: Optional[User] = Relationship(back_populates="trips")
     stops: List["Stop"] = Relationship(back_populates="trip", cascade_delete=True)
 
 
@@ -20,6 +33,7 @@ class Stop(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     trip_id: Optional[int] = Field(default=None, foreign_key="trip.id")
     city: str
+    city_image: Optional[str] = "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400"
     start_date: date
     end_date: date
 
@@ -38,6 +52,24 @@ class Activity(SQLModel, table=True):
     stop: Optional[Stop] = Relationship(back_populates="activities")
 
 
+class UserLogin(SQLModel):
+    email: str
+    password: str
+
+
+class UserRegister(SQLModel):
+    name: str
+    email: str
+    password: str
+
+
+class UserRead(SQLModel):
+    id: int
+    name: str
+    email: str
+    avatar_url: Optional[str] = None
+
+
 class ActivityCreate(SQLModel):
     title: str
     activity_time: datetime
@@ -47,6 +79,7 @@ class ActivityCreate(SQLModel):
 
 class StopCreate(SQLModel):
     city: str
+    city_image: Optional[str] = None
     start_date: date
     end_date: date
     activities: List[ActivityCreate] = []
@@ -55,9 +88,11 @@ class StopCreate(SQLModel):
 class TripCreate(SQLModel):
     title: str
     share_code: str
+    cover_image: Optional[str] = None
     transport_budget: float = 0.0
     stay_budget: float = 0.0
     meals_budget: float = 0.0
+    user_id: Optional[int] = None
     stops: List[StopCreate] = []
 
 
@@ -74,6 +109,7 @@ class StopRead(SQLModel):
     id: int
     trip_id: Optional[int] = None
     city: str
+    city_image: Optional[str] = None
     start_date: date
     end_date: date
     activities: List[ActivityRead] = []
@@ -81,8 +117,10 @@ class StopRead(SQLModel):
 
 class TripRead(SQLModel):
     id: int
+    user_id: Optional[int] = None
     title: str
     share_code: str
+    cover_image: Optional[str] = None
     transport_budget: float
     stay_budget: float
     meals_budget: float
@@ -92,3 +130,4 @@ class TripRead(SQLModel):
 
 class AIGenerateTripRequest(BaseModel):
     prompt: str
+    user_id: Optional[int] = None

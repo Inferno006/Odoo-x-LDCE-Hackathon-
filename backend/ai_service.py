@@ -2,10 +2,15 @@ import json
 import os
 from uuid import uuid4
 
+from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
 from models import Activity, Stop, Trip, TripCreate
+
+load_dotenv()
+
+# Used only when GEMINI_API_KEY is missing from the environment / .env
 
 _client: genai.Client | None = None
 
@@ -13,11 +18,10 @@ _client: genai.Client | None = None
 def get_genai_client() -> genai.Client:
     global _client
     if _client is None:
-        api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
-        if not api_key:
-            raise RuntimeError(
-                "Set GEMINI_API_KEY or GOOGLE_API_KEY to use AI trip generation."
-            )
+        api_key = (
+            os.environ.get("GEMINI_API_KEY")
+            or os.getenv("GOOGLE_API_KEY")
+        )
         _client = genai.Client(api_key=api_key)
     return _client
 
@@ -25,14 +29,17 @@ def get_genai_client() -> genai.Client:
 def trip_from_create(payload: TripCreate) -> Trip:
     share_code = (payload.share_code or "").strip() or uuid4().hex[:8]
     return Trip(
+        user_id=payload.user_id,
         title=payload.title,
         share_code=share_code,
+        cover_image=payload.cover_image,
         transport_budget=payload.transport_budget,
         stay_budget=payload.stay_budget,
         meals_budget=payload.meals_budget,
         stops=[
             Stop(
                 city=stop.city,
+                city_image=stop.city_image,
                 start_date=stop.start_date,
                 end_date=stop.end_date,
                 activities=[
