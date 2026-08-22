@@ -19,11 +19,11 @@ A multi-city travel planning and budget-tracking web application built for the h
 
 Odoo-x-LDCE-Hackathon-/
 ├── README.md
-├── frontend/                 # empty (no app files yet)
+├── frontend/                 
 └── backend/
-    ├── main.py               # FastAPI app, CORS, routes, seed
-    ├── models.py             # SQLModel tables + create/read schemas
-    ├── database.py           # SQLite engine, sessions, create_db_and_tables
-    ├── ai_service.py         # Gemini trip generation
+    ├── main.py               
+    ├── models.py         
+    ├── database.py      
+    ├── ai_service.py       
     ├── requirements.txt
-    └── globetrotter.db       # SQLite DB (created at runtime)
+    └── globetrotter.db      
