@@ -1,19 +1,36 @@
 import hashlib
 import hmac
-import secrets
-from datetime import date, datetime
+import os
+from datetime import date, datetime, timedelta, timezone
+from pathlib import Path
 from typing import Annotated, Optional
 from urllib.parse import quote_plus
 
 from dotenv import load_dotenv
 
+load_dotenv(Path(__file__).resolve().parent / ".env")
 load_dotenv()
 
-from fastapi import Depends, FastAPI, HTTPException, Query, status
+SECRET_KEY = os.getenv("SECRET_KEY", "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7")
+ALGORITHM = os.getenv("ALGORITHM", "HS256")
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "1440"))
+
+from fastapi import Depends, FastAPI, HTTPException, Query, Request, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import OAuth2PasswordBearer
+from jose import JWTError, jwt
+from passlib.context import CryptContext
 from sqlalchemy import inspect, text
 from sqlalchemy.exc import IntegrityError
 from sqlmodel import Session, select
+
+import bcrypt as _bcrypt
+
+if not hasattr(_bcrypt, "__about__"):
+    class _BcryptAbout:
+        __version__ = getattr(_bcrypt, "__version__", "4.0.0")
+
+    _bcrypt.__about__ = _BcryptAbout()
 
 from ai_service import generate_ai_trip, trip_from_create
 from database import create_db_and_tables, engine, get_session
@@ -23,6 +40,8 @@ from models import (
     ActivityRead,
     Stop,
     StopRead,
+    Token,
+    TokenData,
     Trip,
     TripCreate,
     TripRead,
@@ -38,6 +57,9 @@ DEFAULT_COVER = "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=
 DEFAULT_CITY = "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400"
 DEFAULT_AVATAR = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
 
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
+
 app = FastAPI(title="Globetrotter API", version="1.0.0")
 
 app.add_middleware(
@@ -50,18 +72,54 @@ app.add_middleware(
 
 
 def hash_password(password: str) -> str:
-    salt = secrets.token_hex(16)
-    digest = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"), salt.encode("utf-8"), 120_000).hex()
-    return f"{salt}${digest}"
+    return pwd_context.hash(password)
 
 
-def verify_password(password: str, password_hash: str) -> bool:
+def _verify_legacy_pbkdf2(password: str, password_hash: str) -> bool:
     try:
         salt, digest = password_hash.split("$", 1)
     except ValueError:
         return False
     check = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"), salt.encode("utf-8"), 120_000).hex()
     return hmac.compare_digest(check, digest)
+
+
+def verify_password(password: str, password_hash: str) -> bool:
+    if password_hash.startswith("$2"):
+        return pwd_context.verify(password, password_hash)
+    return _verify_legacy_pbkdf2(password, password_hash)
+
+
+def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
+    to_encode = data.copy()
+    expire = datetime.now(timezone.utc) + (
+        expires_delta if expires_delta is not None else timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    )
+    to_encode.update({"exp": expire})
+    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+
+
+def get_current_user(
+    token: Annotated[str, Depends(oauth2_scheme)],
+    session: SessionDep,
+) -> User:
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        email = payload.get("sub")
+        if not isinstance(email, str) or not email:
+            raise credentials_exception
+        token_data = TokenData(email=email)
+    except JWTError:
+        raise credentials_exception
+    user = session.exec(select(User).where(User.email == token_data.email)).first()
+    if user is None:
+        raise credentials_exception
+    return user
 
 
 def normalize_email(email: str) -> str:
@@ -325,6 +383,31 @@ def on_startup() -> None:
     seed_sample_trips()
 
 
+def authenticate_user(session: Session, email: str, password: str) -> User:
+    normalized = normalize_email(email)
+    user = session.exec(select(User).where(User.email == normalized)).first()
+    if user is None or not verify_password(password, user.password_hash):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="invalid email or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    if not user.password_hash.startswith("$2"):
+        user.password_hash = hash_password(password)
+        session.add(user)
+        session.commit()
+        session.refresh(user)
+    return user
+
+
+def issue_token(user: User) -> Token:
+    access_token = create_access_token(
+        data={"sub": user.email},
+        expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
+    )
+    return Token(access_token=access_token, token_type="bearer")
+
+
 @app.post("/api/auth/register", response_model=UserRead, status_code=status.HTTP_201_CREATED)
 def register_user(payload: UserRegister, session: SessionDep) -> UserRead:
     email = normalize_email(payload.email)
@@ -349,13 +432,24 @@ def register_user(payload: UserRegister, session: SessionDep) -> UserRead:
     return user_to_read(user)
 
 
-@app.post("/api/auth/login", response_model=UserRead)
-def login_user(payload: UserLogin, session: SessionDep) -> UserRead:
-    email = normalize_email(payload.email)
-    user = session.exec(select(User).where(User.email == email)).first()
-    if user is None or not verify_password(payload.password, user.password_hash):
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="invalid email or password")
-    return user_to_read(user)
+@app.post("/api/auth/login", response_model=Token)
+async def login_user(request: Request, session: SessionDep) -> Token:
+    content_type = (request.headers.get("content-type") or "").lower()
+    if "application/json" in content_type:
+        payload = UserLogin.model_validate(await request.json())
+        email = payload.email
+        password = payload.password
+    else:
+        form = await request.form()
+        email = str(form.get("username") or form.get("email") or "")
+        password = str(form.get("password") or "")
+    user = authenticate_user(session, email, password)
+    return issue_token(user)
+
+
+@app.get("/api/auth/me", response_model=UserRead)
+def read_current_user(current_user: Annotated[User, Depends(get_current_user)]) -> UserRead:
+    return user_to_read(current_user)
 
 
 @app.get("/api/trips", response_model=list[TripRead])

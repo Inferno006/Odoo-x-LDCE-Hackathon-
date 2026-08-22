@@ -1,5 +1,6 @@
 import json
 import os
+from pathlib import Path
 from uuid import uuid4
 
 from dotenv import load_dotenv
@@ -8,9 +9,8 @@ from google.genai import types
 
 from models import Activity, Stop, Trip, TripCreate
 
+load_dotenv(Path(__file__).resolve().parent / ".env")
 load_dotenv()
-
-# Used only when GEMINI_API_KEY is missing from the environment / .env
 
 _client: genai.Client | None = None
 
@@ -18,10 +18,9 @@ _client: genai.Client | None = None
 def get_genai_client() -> genai.Client:
     global _client
     if _client is None:
-        api_key = (
-            os.environ.get("GEMINI_API_KEY")
-            or os.getenv("GOOGLE_API_KEY")
-        )
+        api_key = (os.environ.get("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or "").strip().strip('"')
+        if not api_key:
+            raise RuntimeError("GEMINI_API_KEY is not set")
         _client = genai.Client(api_key=api_key)
     return _client
 

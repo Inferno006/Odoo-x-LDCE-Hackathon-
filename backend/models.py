@@ -52,6 +52,15 @@ class Activity(SQLModel, table=True):
     stop: Optional[Stop] = Relationship(back_populates="activities")
 
 
+class Token(SQLModel):
+    access_token: str
+    token_type: str = "bearer"
+
+
+class TokenData(SQLModel):
+    email: Optional[str] = None
+
+
 class UserLogin(SQLModel):
     email: str
     password: str

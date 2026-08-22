@@ -4,3 +4,6 @@ sqlmodel
 google-genai
 pydantic
 python-dotenv
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
